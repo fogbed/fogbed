@@ -4,7 +4,7 @@ A simple command-line interface for Mininet.
 The Mininet CLI provides a simple control console which
 makes it easy to talk to nodes. For example, the command
 
-mininet> h27 ifconfig
+fogbed> h27 ifconfig
 
 runs 'ifconfig' on host h27.
 
@@ -15,7 +15,7 @@ size.
 The CLI automatically substitutes IP addresses for node names,
 so commands like
 
-mininet> h2 ping h3
+fogbed> h2 ping h3
 
 should work correctly and allow host h2 to ping host h3
 
@@ -43,7 +43,7 @@ from mininet.util import ( quietRun, dumpNodeConnections,
 class CLI( Cmd ):
     "Simple command-line interface to talk to nodes."
 
-    prompt = 'containernet> '
+    prompt = 'fogbed> '
 
     def __init__( self, mininet, stdin=sys.stdin, script=None ):
         """Start and run interactive or batch mode CLI
@@ -111,7 +111,11 @@ class CLI( Cmd ):
                 except Exception:
                     pass
                 # pylint: enable=broad-except
-
+            except Exception as e:
+                info("Exiting cmd loop due to error.\n")
+                self.mn.stop()
+                raise
+                
     def emptyline( self ):
         "Don't repeat last command when you hit return."
         pass
@@ -125,19 +129,19 @@ class CLI( Cmd ):
         'You may also send a command to a node using:\n'
         '  <node> command {args}\n'
         'For example:\n'
-        '  mininet> h1 ifconfig\n'
+        '  fogbed> h1 ifconfig\n'
         '\n'
         'The interpreter automatically substitutes IP addresses\n'
         'for node names when a node is the first arg, so commands\n'
         'like\n'
-        '  mininet> h2 ping h3\n'
+        '  fogbed> h2 ping h3\n'
         'should work.\n'
         '\n'
         'Some character-oriented interactive commands require\n'
         'noecho:\n'
-        '  mininet> noecho h2 vi foo.py\n'
+        '  fogbed> noecho h2 vi foo.py\n'
         'However, starting up an xterm/gterm is generally better:\n'
-        '  mininet> xterm h2\n\n'
+        '  fogbed> xterm h2\n\n'
     )
 
     def do_help( self, line ):
@@ -164,6 +168,26 @@ class CLI( Cmd ):
            Usage: sh [cmd args]"""
         assert self  # satisfy pylint and allow override
         call( line, shell=True )
+
+    def do_ip(self, line):
+        "Print ip of host"
+        node = self.mn.get(line)
+        if node is None:
+            output ("Error: Node '%s' does not exist\n" % line)
+        else:
+            output ("%s\n" % node.IP())
+    
+    def do_ipall(self, line):
+        "Print ip of each host"
+        for node in self.mn.hosts:
+            output("%s -> %s\n" % (node.name, node.IP()))
+        
+        if not self.mn.hosts:
+            output ("No host found.\n")
+
+    def do_print(self, line):
+        "print input line"
+        output('%s\n' % line)
 
     # do_py() and do_px() need to catch any exception during eval()/exec()
     # pylint: disable=broad-except

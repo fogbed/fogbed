@@ -204,6 +204,26 @@ def makeIntfPair( intf1, intf2, addr1=None, addr2=None, node1=None, node2=None,
     moveIntf(intf1, node1)
     moveIntf(intf2, node2)
 
+def timeout(func, duration_seconds, default, *args, **kwargs):
+    import signal
+
+    class TimeoutError(Exception):
+        pass
+    
+    def handler(signum, frame):
+        raise TimeoutError()
+
+    signal.signal(signal.SIGALRM, handler)
+    signal.alarm(duration_seconds)
+    try:
+        result = func(*args, **kwargs)
+    except TimeoutError as exc:
+        result = default
+    finally:
+        signal.alarm(0)
+    
+    return result
+
 def retry( retries, delaySecs, fn, *args, **keywords ):
     """Try something several times before giving up.
        n: number of times to retry

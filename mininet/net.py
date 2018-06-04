@@ -1090,7 +1090,14 @@ class Containernet( Mininet ):
             self.removeSAPNAT(self.SAPswitches[SAPswitch])
         info("\n")
 
+class Fogbed (Containernet):
+    """
+    A Containernet with virtual instances related methods.
+    Inherits Containernet.
+    """
 
+    def __init__(self, **params):
+        Containernet.__init(self, **params)
 
 class MininetWithControlNet( Mininet ):
 

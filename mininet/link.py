@@ -25,7 +25,7 @@ Link: basic link class for creating veth pairs
 """
 
 from mininet.log import info, error, debug
-from mininet.util import makeIntfPair
+from mininet.util import makeIntfPair, timeout
 import mininet.node
 import re
 
@@ -198,7 +198,7 @@ class Intf( object ):
 
     def delete( self ):
         "Delete interface"
-        self.cmd( 'ip link del ' + self.name )
+        timeout(self.cmd, 2, None, 'ip link del ' + self.name)
         # We used to do this, but it slows us down:
         # if self.node.inNamespace:
         # Link may have been dumped into root NS
@@ -206,7 +206,7 @@ class Intf( object ):
 
         # call detach if we have a OVSSwitch (just to be sure)
         if isinstance( self.node, mininet.node.OVSSwitch ):
-            self.node.detach(self)
+            timeout(self.node.detach, 2, None, self)
 
     def status( self ):
         "Return intf status as a string"
