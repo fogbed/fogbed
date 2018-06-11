@@ -100,7 +100,7 @@ from math import ceil
 
 from mininet.cli import CLI
 from mininet.log import info, error, debug, output, warn
-from mininet.node import ( Node, Docker, Host, OVSKernelSwitch,
+from mininet.node import ( Node, Docker, Host, VirtualInstance, OVSKernelSwitch,
                            DefaultController, Controller, OVSSwitch, OVSBridge )
 from mininet.nodelib import NAT
 from mininet.link import Link, Intf
@@ -1097,7 +1097,49 @@ class Fogbed (Containernet):
     """
 
     def __init__(self, **params):
-        Containernet.__init(self, **params)
+        Containernet.__init__(self, **params)
+
+        self.vinsts = {}
+
+    def addVirtualInstance(self, label):
+
+        if label in self.vinsts:
+            raise Exception('Virtual Instance label already exists: %s' % label)
+        
+        vi = VirtualInstance(label, self)
+        self.vinsts[label] = vi
+        info("added virtual instance: %s\n" % label)
+        return vi
+
+    def addLink(self, node1, node2, **params):
+
+        assert node1 is not None
+        assert node2 is not None
+
+        if isinstance(node1, VirtualInstance):
+            node1 = node1.switch
+
+        if isinstance(node2, VirtualInstance):
+            node2 = node2.switch
+
+        return Containernet.addLink(self, node1, node2, **params)
+    
+    def removeLink(self, node1=None, node2=None):
+
+        assert node1 is not None
+        assert node2 is not None
+
+        if isinstance(node1, VirtualInstance):
+            node1 = node1.switch
+
+        if isinstance(node2, VirtualInstance):
+            node2 = node2.switch
+
+        return Containernet.removeLink(self, node1=node1, node2=node2)
+
+    @classmethod
+    def removeSpace(name):
+        return name.replace(' ', '_')
 
 class MininetWithControlNet( Mininet ):
 

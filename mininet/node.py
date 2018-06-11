@@ -647,6 +647,56 @@ class Host( Node ):
     "A host is simply a Node"
     pass
 
+class VirtualInstance ( object ) :
+
+    _COUNTER = 1
+    
+    def __init__(self, label, net):
+        
+        self.name = "vi%d" % VirtualInstance._COUNTER
+        VirtualInstance._COUNTER += 1
+
+        self.net = net
+        self.label = label
+        self.containers = {}
+        self.resource_model = None
+        self.switch = self.net.addSwitch("%s.s1" % self.name)
+
+        debug("created data center switch: %s\n" % str(self.switch))
+
+    def __repr__ (self):
+        return self.label
+
+    def addDocker(self, name, **params):
+        
+        new_name = "%s.%s" % (self.name, name)
+
+        d = self.net.addDocker(new_name, **params)
+
+        self.net.addLink(d, self.switch)
+
+        self.containers[name] = d
+
+        return d
+
+    def removeDocker(self, name, **params):
+
+        new_name = "%s.%s" % (self.name, name)
+
+        d = self.containers.pop(name, None)
+
+        self.net.removeLink(node1=d, node2=self.switch)
+
+        return self.net.removeDocker(new_name, **params)
+
+    def assignResourceModel(self, resource_model):
+
+        if self.resource_model is not None:
+            raise Exception("There is already an resource model assigned to this DC.")
+        self.resource_model = resource_model
+        #self.net.rm_registrar.register(self, resm)
+        info("Assigned RM: %r to DC: %r\n" % (resm, self))
+
 
 class Docker ( Host ):
     """Node that represents a docker container.
