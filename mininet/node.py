@@ -69,6 +69,7 @@ from mininet.moduledeps import moduleDeps, pathCheck, TUN
 from mininet.link import Link, Intf, TCIntf, OVSIntf
 from re import findall
 from distutils.version import StrictVersion
+from mininet.resourcemodel import NotEnoughResourcesAvailable
 
 class Node( object ):
     """A virtual network node is simply a shell in a network namespace.
@@ -659,6 +660,7 @@ class VirtualInstance ( object ) :
         self.net = net
         self.label = label
         self.containers = {}
+        self.allocated_resources = {}
         self.resource_model = None
         self.switch = self.net.addSwitch("%s.s1" % self.name)
 
@@ -667,7 +669,7 @@ class VirtualInstance ( object ) :
     def __repr__ (self):
         return self.label
 
-    def addDocker(self, name, **params):
+    def addDocker(self, name, resources={"cpu": 1.0, "mem": 128}, **params):
         
         new_name = "%s.%s" % (self.name, name)
 
@@ -676,6 +678,15 @@ class VirtualInstance ( object ) :
         self.net.addLink(d, self.switch)
 
         self.containers[name] = d
+        self.allocated_resources[name] = resources
+
+        if self.resource_model is not None:
+            try:
+                self.resource_model.allocate(d, resources)
+            except NotEnoughResourcesAvailable as ex:
+                info(ex.message)
+                self.net.removeDocker(new_name)
+                return None
 
         return d
 
@@ -684,8 +695,11 @@ class VirtualInstance ( object ) :
         new_name = "%s.%s" % (self.name, name)
 
         d = self.containers.pop(name, None)
+        resources = self.allocated_resources.pop(name, None)
 
         self.net.removeLink(node1=d, node2=self.switch)
+
+        self.resource_model.free(d, resources)
 
         return self.net.removeDocker(new_name, **params)
 
@@ -694,8 +708,9 @@ class VirtualInstance ( object ) :
         if self.resource_model is not None:
             raise Exception("There is already an resource model assigned to this DC.")
         self.resource_model = resource_model
+        self.net.net_resources.addResourceModel(self, resource_model)
         #self.net.rm_registrar.register(self, resm)
-        info("Assigned RM: %r to DC: %r\n" % (resm, self))
+        info("Assigned RM: %r to VI: %r\n" % (self.resource_model, self))
 
 
 class Docker ( Host ):

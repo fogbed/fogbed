@@ -184,6 +184,8 @@ class CLI( Cmd ):
         
         if not self.mn.hosts:
             output ("No host found.\n")
+    
+    
 
     def do_print(self, line):
         "print input line"

@@ -109,6 +109,8 @@ from mininet.util import ( quietRun, fixLimits, numCores, ensureRoot,
                            waitListening )
 from mininet.term import cleanUpScreens, makeTerms
 
+from mininet.resourcemodel import NetworkResources
+
 from subprocess import Popen
 
 # Mininet version: should be consistent with README and LICENSE
@@ -1100,6 +1102,7 @@ class Fogbed (Containernet):
         Containernet.__init__(self, **params)
 
         self.vinsts = {}
+        self.net_resources = NetworkResources()
 
     def addVirtualInstance(self, label):
 

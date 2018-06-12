@@ -7,6 +7,7 @@ from mininet.node import Controller
 from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import info, setLogLevel
+from mininet.resourcemodel import EdgeResourceModel, FogResourceModel, CloudResourceModel
 setLogLevel('info')
 
 net = Fogbed(controller=Controller)
@@ -14,6 +15,13 @@ info('**** Adding Virtual Instances\n')
 c1 = net.addVirtualInstance("cloud")
 f1 = net.addVirtualInstance("fog")
 e1 = net.addVirtualInstance("edge")
+info('*** Adding Resource Models\n')
+erm = EdgeResourceModel()
+frm = FogResourceModel()
+crm = CloudResourceModel()
+e1.assignResourceModel(erm)
+f1.assignResourceModel(frm)
+c1.assignResourceModel(crm)
 info('*** Adding controller\n')
 net.addController('c0')
 info('*** Adding docker containers\n')
