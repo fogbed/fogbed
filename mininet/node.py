@@ -59,6 +59,7 @@ import signal
 import select
 import docker
 import json
+import re
 from subprocess import Popen, PIPE, check_output
 from time import sleep
 
@@ -1596,6 +1597,47 @@ class OVSSwitch( Switch ):
             self.commands.append( cmd )
         else:
             return self.cmd( 'ovs-vsctl', *args, **kwargs )
+
+    #TODO fix this
+    def dump_ports(self):
+        ports_data = self.dpctl('dump-ports')
+        ports_descs = self.dpctl('dump-ports-desc')
+
+        map = dict()
+
+        for desc in ports_descs.split('\n'):
+            m = re.search(r"(\d+)\((.+)\)", desc)
+            if m is not None:
+                map[m.group(1)] = {"intf": m.group(2)}
+
+        nextline = False
+        tmp = -1
+        for data in ports_data.split('\n'):
+            if nextline:
+                nextline = False
+                t = data.strip()
+                t = t.replace(",", "")
+                p = t.split(' ')
+                map[tmp][p[0]] = {}
+                for q in p[1:]:
+                    var = q.split('=')[0]
+                    val = q.split('=')[1].replace('\r', '')
+                    map[tmp][p[0]][var] = int(val)
+            m = re.search(r"port\s+(\d+):\s(.+)", data)
+            if m is not None:
+                nextline = True
+                n = m.group(1)
+                tmp = n
+                t = m.group(2)
+                t = t.replace(",", "")
+                p = t.split(' ')
+                map[n][p[0]] = {}
+                for q in p[1:]:
+                    var = q.split('=')[0]
+                    val = q.split('=')[1].replace('\r', '')
+                    map[n][p[0]][var] = int(val)
+        print map
+        return ports_data
 
     @staticmethod
     def TCReapply( intf ):

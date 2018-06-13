@@ -1,0 +1,19 @@
+[
+  "mininet/test/test_containernet.py::testContainernetConnectivity::testDockerDocker", 
+  "mininet/test/test_containernet.py::testContainernetConnectivity::testDockerMultipleInterfaces", 
+  "mininet/test/test_containernet.py::testContainernetConnectivity::testDockerSwtichDocker", 
+  "mininet/test/test_containernet.py::testContainernetConnectivity::testHostDocker", 
+  "mininet/test/test_containernet.py::testContainernetConnectivity::testHostSwtichDocker", 
+  "mininet/test/test_containernet.py::testContainernetContainerCommandExecution::testCommandSimple", 
+  "mininet/test/test_containernet.py::testContainernetDynamicTopologies::testFullyDynamic", 
+  "mininet/test/test_containernet.py::testContainernetDynamicTopologies::testSimpleAdd", 
+  "mininet/test/test_containernet.py::testContainernetDynamicTopologies::testSimpleRemove", 
+  "mininet/test/test_containernet.py::testContainernetTCLinks::testCustomDelay", 
+  "mininet/test/test_containernet.py::testContainernetTCLinks::testCustomLoss", 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testCPULimitCFSBased", 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testCPUShare", 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testMemLimits", 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testRuntimeCPULimitUpdate", 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testRuntimeMemoryLimitUpdate", 
+  "mininet/test/test_containernet.py::testContainernetVolumeAPI::testContainerVolumes"
+]

@@ -185,7 +185,9 @@ class CLI( Cmd ):
         if not self.mn.hosts:
             output ("No host found.\n")
     
-    
+    def do_data(self, line):
+        for switch in self.mn.switches:
+            output(switch.dump_ports())
 
     def do_print(self, line):
         "print input line"

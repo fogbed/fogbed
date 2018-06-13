@@ -1,0 +1,4 @@
+{
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testRuntimeCPULimitUpdate": true, 
+  "mininet/test/test_containernet.py::testContainernetContainerResourceLimitAPI::testRuntimeMemoryLimitUpdate": true
+}
