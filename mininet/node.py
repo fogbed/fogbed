@@ -1598,46 +1598,69 @@ class OVSSwitch( Switch ):
         else:
             return self.cmd( 'ovs-vsctl', *args, **kwargs )
 
-    #TODO fix this
-    def dump_ports(self):
-        ports_data = self.dpctl('dump-ports')
-        ports_descs = self.dpctl('dump-ports-desc')
+    def ports_mapping(self):
+        descriptions = self.dpctl('dump-ports-desc')
 
-        map = dict()
+        mappings = dict()
 
-        for desc in ports_descs.split('\n'):
+        for desc in descriptions.split('\n'):
             m = re.search(r"(\d+)\((.+)\)", desc)
             if m is not None:
-                map[m.group(1)] = {"intf": m.group(2)}
+                mappings[m.group(1)] = m.group(2)
 
-        nextline = False
-        tmp = -1
-        for data in ports_data.split('\n'):
-            if nextline:
-                nextline = False
-                t = data.strip()
-                t = t.replace(",", "")
-                p = t.split(' ')
-                map[tmp][p[0]] = {}
-                for q in p[1:]:
-                    var = q.split('=')[0]
-                    val = q.split('=')[1].replace('\r', '')
-                    map[tmp][p[0]][var] = int(val)
-            m = re.search(r"port\s+(\d+):\s(.+)", data)
+        return mappings
+
+    def _extract_data(self, line):
+        line = line.replace(',', '').strip()
+        pairs = line.split(' ')
+
+        for pair in pairs[1:]:
+            var = pair.split('=')[0]
+            val = int(pair.split('=')[1].replace('\r', ''))
+
+            yield pairs[0], var, val
+
+    def interface_traffic(self):
+        ports_data = self.dpctl('dump-ports')
+        mappings = self.ports_mapping()
+
+        read_next_line = False
+
+        res = dict()
+
+        number = -1
+        for line in ports_data.split('\n'):
+
+            if read_next_line:
+                read_next_line = False
+
+                for type, var, val in self._extract_data(line):
+                    if mappings[number] not in res:
+                        res[mappings[number]] = {}
+                    if type not in res[mappings[number]]:
+                        res[mappings[number]][type] = {}
+                    res[mappings[number]][type][var] = val
+
+            m = re.search(r"port\s+(\d+):\s(.+)", line)
+
             if m is not None:
-                nextline = True
-                n = m.group(1)
-                tmp = n
-                t = m.group(2)
-                t = t.replace(",", "")
-                p = t.split(' ')
-                map[n][p[0]] = {}
-                for q in p[1:]:
-                    var = q.split('=')[0]
-                    val = q.split('=')[1].replace('\r', '')
-                    map[n][p[0]][var] = int(val)
-        print map
-        return ports_data
+                read_next_line = True
+                number = m.group(1)
+                line = m.group(2)
+
+                for type, var, val in self._extract_data(line):
+                    if mappings[number] not in res:
+                        res[mappings[number]] = {}
+                    if type not in res[mappings[number]]:
+                        res[mappings[number]][type] = {}
+                    res[mappings[number]][type][var] = val
+
+        return res
+
+
+    def traffic_by_interface(self):
+        data = self.interface_traffic()
+        return data
 
     @staticmethod
     def TCReapply( intf ):

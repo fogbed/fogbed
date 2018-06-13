@@ -185,9 +185,31 @@ class CLI( Cmd ):
         if not self.mn.hosts:
             output ("No host found.\n")
     
-    def do_data(self, line):
+    def do_traffic(self, line):
+
+        switch_map = {}
+        intf_map = {}
+
         for switch in self.mn.switches:
-            output(switch.dump_ports())
+            switch_map.update(switch.traffic_by_interface())
+
+        for link in self.mn.links:
+            intf_map[link.intf1.name] = link.intf2.name
+
+        for node in self.mn.hosts:
+            print node.name
+            for intf in node.nameToIntf.keys():
+                print " ", intf
+                print "   received:"
+                map_rx = switch_map[intf_map[intf]]['tx']
+                for attr in map_rx.keys():
+                    print "    ",attr,":",map_rx[attr]
+
+                print "   transmitted:"
+                map_tx = switch_map[intf_map[intf]]['rx']
+                for attr in map_tx.keys():
+                    print "    ", attr, ":", map_tx[attr]
+
 
     def do_print(self, line):
         "print input line"

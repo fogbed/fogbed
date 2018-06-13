@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2595f0f-bfb2-4a08-b5c4-a871add460bb" name="Default" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mininet/cli.py" beforeDir="false" afterPath="$PROJECT_DIR$/mininet/cli.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mininet/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/mininet/node.py" afterDir="false" />
     </list>
@@ -13,12 +14,12 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
-      <file leaf-file-name="cli.py" pinned="false" current-in-tab="false">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="cli.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/mininet/cli.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2868">
-              <caret line="401" column="16" selection-start-line="401" selection-start-column="8" selection-end-line="401" selection-end-column="16" />
+            <state relative-caret-position="187">
+              <caret line="208" column="47" selection-start-line="208" selection-start-column="47" selection-end-line="208" selection-end-column="47" />
             </state>
           </provider>
         </entry>
@@ -26,17 +27,17 @@
       <file leaf-file-name="link.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mininet/link.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="206" column="44" selection-start-line="206" selection-start-column="44" selection-end-line="206" selection-end-column="44" />
+            <state relative-caret-position="-8">
+              <caret line="31" column="10" selection-start-line="31" selection-end-line="31" selection-end-column="10" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="node.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="node.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mininet/node.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="35">
-              <caret line="1600" column="18" selection-start-line="1600" selection-start-column="18" selection-end-line="1600" selection-end-column="18" />
+            <state relative-caret-position="109">
+              <caret line="1669" column="35" selection-start-line="1669" selection-start-column="35" selection-end-line="1669" selection-end-column="35" />
               <folding>
                 <element signature="e#1836#1845#0" expanded="true" />
               </folding>
@@ -44,11 +45,18 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="virtual_instance_example.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/examples/virtual_instance_example.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="356">
+              <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="net.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/mininet/net.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1677" />
-          </provider>
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -58,7 +66,14 @@
       <find>OVSswi</find>
       <find>Switch</find>
       <find>class OVSSwitch</find>
+      <find>print</find>
       <find>do_links</find>
+      <find>dump_ports</find>
+      <find>&lt;-&gt;</find>
+      <find>TCIntf</find>
+      <find>class TCIntf</find>
+      <find>class Intf</find>
+      <find>do_data</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -67,8 +82,9 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mininet/cli.py" />
         <option value="$PROJECT_DIR$/mininet/node.py" />
+        <option value="$PROJECT_DIR$/mininet/cli.py" />
+        <option value="$PROJECT_DIR$/examples/virtual_instance_example.py" />
       </list>
     </option>
   </component>
@@ -94,7 +110,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -105,12 +120,18 @@
             <path>
               <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myfog" type="462c0819:PsiDirectoryNode" />
+              <item name="examples" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myfog" type="462c0819:PsiDirectoryNode" />
               <item name="mininet" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -149,26 +170,26 @@
     <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Event Log" side_tool="true" />
-      <window_info anchor="bottom" id="Database Changes" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" />
-      <window_info anchor="bottom" id="Python Console" />
+      <window_info anchor="bottom" id="Event Log" order="7" side_tool="true" />
+      <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Version Control" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="7" />
       <window_info anchor="bottom" id="Run" order="2" />
-      <window_info anchor="bottom" id="Terminal" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2496329" />
-      <window_info anchor="bottom" id="Docker" show_stripe_button="false" />
-      <window_info anchor="right" id="Database" />
-      <window_info anchor="right" id="SciView" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="7" visible="true" weight="0.35869566" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2496329" />
+      <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
+      <window_info anchor="right" id="Database" order="3" />
+      <window_info anchor="right" id="SciView" order="3" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
-      <window_info id="Favorites" side_tool="true" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Find" order="1" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" />
     </layout>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -178,32 +199,64 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/mininet/net.py">
+    <entry file="file://$PROJECT_DIR$/mininet/cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1677" />
+        <state relative-caret-position="5213">
+          <caret line="401" column="16" selection-start-line="401" selection-start-column="8" selection-end-line="401" selection-end-column="16" />
+        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mininet/link.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
+        <state relative-caret-position="2678">
           <caret line="206" column="44" selection-start-line="206" selection-start-column="44" selection-end-line="206" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet/net.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="20800">
+          <caret line="1600" column="18" selection-start-line="1600" selection-start-column="18" selection-end-line="1600" selection-end-column="18" />
+          <folding>
+            <element signature="e#1836#1845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet/net.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet/node.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="1669" column="35" selection-start-line="1669" selection-start-column="35" selection-end-line="1669" selection-end-column="35" />
+          <folding>
+            <element signature="e#1836#1845#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/mininet/link.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-8">
+          <caret line="31" column="10" selection-start-line="31" selection-end-line="31" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/examples/virtual_instance_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="356">
+          <caret line="50" lean-forward="true" selection-start-line="50" selection-end-line="50" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/mininet/cli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2868">
-          <caret line="401" column="16" selection-start-line="401" selection-start-column="8" selection-end-line="401" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/mininet/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="35">
-          <caret line="1600" column="18" selection-start-line="1600" selection-start-column="18" selection-end-line="1600" selection-end-column="18" />
-          <folding>
-            <element signature="e#1836#1845#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="187">
+          <caret line="208" column="47" selection-start-line="208" selection-start-column="47" selection-end-line="208" selection-end-column="47" />
         </state>
       </provider>
     </entry>
