@@ -197,18 +197,19 @@ class CLI( Cmd ):
             intf_map[link.intf1.name] = link.intf2.name
 
         for node in self.mn.hosts:
-            print node.name
+            output(node.name+'\n')
             for intf in node.nameToIntf.keys():
-                print " ", intf
-                print "   received:"
+                output(" "+intf+'\n')
+                output("   received:\n")
                 map_rx = switch_map[intf_map[intf]]['tx']
                 for attr in map_rx.keys():
-                    print "    ",attr,":",map_rx[attr]
+                    output("    "+attr+":"+str(map_rx[attr])+'\n')
 
-                print "   transmitted:"
+                output("   transmitted:\n")
                 map_tx = switch_map[intf_map[intf]]['rx']
                 for attr in map_tx.keys():
-                    print "    ", attr, ":", map_tx[attr]
+                    output("    "+attr+":"+str(map_tx[attr])+'\n')
+
 
 
     def do_print(self, line):
