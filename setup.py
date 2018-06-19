@@ -8,19 +8,19 @@ from os.path import join
 # Get version number from source tree
 import sys
 sys.path.append( '.' )
-from mininet.net import CONTAINERNET_VERSION
+from mininet.net import FOGBED_VERSION
 
 scripts = [ join( 'bin', filename ) for filename in [ 'mn' ] ]
 
-modname = distname = 'mininet'
+modname = distname = 'fogbed'
 
 setup(
     name=distname,
-    version=CONTAINERNET_VERSION,
-    description='Mininet fork that add Container support.',
-    author='Manuel Peuster',
-    author_email='manuel.peuster@upb.de',
-    packages=[ 'mininet', 'mininet.examples' ],
+    version=FOGBED_VERSION,
+    description='Containernet fork that add Fogbed support.',
+    author='Heitor Rodrigues',
+    author_email='hr.heitor@hotmail.com',
+    packages=find_packages(),
     long_description="""
         Mininet is a network emulator which uses lightweight
         virtualization to create virtual networks for rapid
@@ -39,14 +39,26 @@ setup(
           "Intended Audience :: Developers",
           "Topic :: System :: Emulators",
     ],
-    keywords='networking emulator protocol Internet OpenFlow SDN',
+    keywords='networking emulator protocol Internet OpenFlow SDN fog',
     license='BSD',
     install_requires=[
         'setuptools',
         'urllib3',
         'docker==2.0.2',
         'python-iptables',
-        'pytest'
+        'pytest',
+        'Pyro4'
     ],
+    include_package_data=True,
+    package_data={
+        "maxinet":["Scripts/*"],
+      },
+    entry_points={
+        'console_scripts': [
+            'FogbedWorker = maxinet.WorkerServer.server:main',
+            'FogbedFrontendServer = maxinet.FrontendServer.server:main',
+            'FogbedStatus = maxinet.WorkerServer.server:getFrontendStatus',
+        ]
+      },
     scripts=scripts,
 )

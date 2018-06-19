@@ -51,6 +51,18 @@ install: $(MNEXEC) $(MANPAGES)
 	install $(MANPAGES) $(MANDIR)
 	python setup.py install
 
+maxinstall:
+	mkdir -p /usr/local/share/maxinet
+	cp -rv maxinet/Frontend/examples /usr/local/share/maxinet/
+	chmod +x /usr/local/share/maxinet/examples/*
+	cp share/MaxiNet-cfg-sample /usr/local/share/maxinet/config.example
+	cp share/maxinet_plot.py /usr/local/share/maxinet/
+
+maxuninstall:
+	rm -rf /usr/local/lib/python2.7/dist-packages/maxinet-*/
+	rm -rf /usr/local/share/maxinet
+	rm -f /usr/local/bin/FogbedServer /usr/local/bin/FogbedStatus /usr/local/bin/FogbedFrondendServer /usr/local/bin/FogbedWorker
+
 develop: $(MNEXEC) $(MANPAGES)
 # 	Perhaps we should link these as well
 	install $(MNEXEC) $(BINDIR)

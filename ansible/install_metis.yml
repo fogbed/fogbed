@@ -1,0 +1,41 @@
+- hosts: localhost
+  tasks:
+   - name: updates apt
+     shell: apt-get -qq update
+
+   - name: install basic packages
+     apt: name={{item}} state=installed
+     with_items:
+       - build-essential
+       - python-matplotlib
+       - sysstat
+       - cmake
+
+   - name: Download Metis
+     get_url: url=http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz
+              dest=/tmp/metis-5.1.0.tar.gz
+
+   - name: Extract Metis
+     unarchive: src=/tmp/metis-5.1.0.tar.gz
+                dest=/tmp
+
+   - name: Delete Metis
+     shell: rm /tmp/metis-5.1.0.tar.gz
+
+   - name: Config Metis
+     shell: make config
+     args:
+       chdir: /tmp/metis-5.1.0
+
+   - name: Make Metis
+     shell: make
+     args:
+       chdir: /tmp/metis-5.1.0
+
+   - name: Install Metis
+     shell: make install
+     args:
+       chdir: /tmp/metis-5.1.0
+
+   - name: Clean Metis
+     shell: rm -rf /tmp/metis-5.1.0

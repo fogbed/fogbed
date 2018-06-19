@@ -106,7 +106,7 @@ def clear_prof_data():
 def notify_manager():
     while True:
         try:
-            r = requests.get("%s/cloud" % os.environ['MANAGER_ADDR'])
+            r = requests.get("%s/register/cloud" % os.environ['MANAGER_ADDR'])
 
             if r.status_code == 200:
                 break

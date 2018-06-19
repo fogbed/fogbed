@@ -17,15 +17,25 @@ RUN apt-get update \
     iputils-ping \
     sudo
 
-# install containernet (using its Ansible playbook)
-COPY . /containernet
-WORKDIR /containernet/ansible
+# install fogbed (using its Ansible playbook)
+COPY . /fogbed
+WORKDIR /fogbed/ansible
+RUN ansible-playbook -i "localhost," -c local install_metis.yml
 RUN ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install.yml
-WORKDIR /containernet
+WORKDIR /fogbed
 RUN python setup.py develop
 
 # tell containernet that it runs in a container
 ENV CONTAINERNET_NESTED 1
+
+# namespace port
+EXPOSE 9090
+
+# sshd port
+EXPOSE 5345
+
+# Controller port
+EXPOSE 6633
 
 # Important: This entrypoint is required to start the OVS service
 ENTRYPOINT ["util/docker/entrypoint.sh"]

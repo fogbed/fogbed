@@ -42,7 +42,7 @@ def topk(arr, k):
 def notify_manager():
     while True:
         try:
-            r = requests.get("%s/fog" % os.environ['MANAGER_ADDR'])
+            r = requests.get("%s/register/fog" % os.environ['MANAGER_ADDR'])
 
             if r.status_code == 200:
                 break

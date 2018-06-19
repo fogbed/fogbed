@@ -6,14 +6,16 @@
    - name: install basic packages
      apt: name={{item}} state=installed
      with_items:
+       - uuid-runtime
        - aptitude
        - apt-transport-https
        - ca-certificates
        - curl
        - python-setuptools
        - python-dev
-       - build-essential
        - python-pip
+       - autoconf
+       - screen
        - iptables
        - software-properties-common
 
@@ -39,12 +41,17 @@
      pip: name=python-iptables state=latest
 
    - name: built and install Containernet (using Mininet installer)
-     shell: containernet/util/install.sh
+     shell: fogbed/util/install.sh
      args:
        chdir: ../../
 
    - name: install Containernet Python egg etc.
      shell: make develop
+     args:
+       chdir: ../
+
+   - name: install Maxinet
+     shell: make maxinstall
      args:
        chdir: ../
 
