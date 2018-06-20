@@ -655,7 +655,8 @@ class VirtualInstance ( object ) :
     
     def __init__(self, label, net):
         
-        self.name = "vi%d" % VirtualInstance._COUNTER
+        #self.name = "vi%d" % VirtualInstance._COUNTER
+        self.name = label
         VirtualInstance._COUNTER += 1
 
         self.net = net
@@ -788,7 +789,9 @@ class Docker ( Host ):
 
         # setup docker client
         # self.dcli = docker.APIClient(base_url='unix://var/run/docker.sock')
-        self.dcli = docker.from_env().api
+        self.dcli = docker.from_env(timeout=60).api
+
+        print(self.dcli.__dict__)
 
         # pull image if it does not exist
         self._check_image_exists(dimage, True)
@@ -825,7 +828,8 @@ class Docker ( Host ):
             ports=defaults['ports'],
             labels=['com.containernet'],
             volumes=[self._get_volume_mount_name(v) for v in self.volumes if self._get_volume_mount_name(v) is not None],
-            hostname=name
+            hostname=name,
+
         )
 
         # start the container
@@ -887,8 +891,10 @@ class Docker ( Host ):
         self.lastPid = None
         self.readbuf = ''
         # Wait for prompt
+        info(cmd)
         while True:
             data = self.read( 1024 )
+            info(data)
             if data[ -1 ] == chr( 127 ):
                 break
             self.pollOut.poll()
@@ -1377,7 +1383,9 @@ class Switch( Node ):
         if dpid:
             # Remove any colons and make sure it's a good hex number
             dpid = dpid.translate( None, ':' )
-            assert len( dpid ) <= self.dpidLen and int( dpid, 16 ) >= 0
+            dpid = dpid[(len(dpid) - self.dpidLen):]
+            assert len( dpid ) <= self.dpidLen
+            assert int( dpid, 16 ) >= 0
         else:
             # Use hex of the first number in the switch name
             nums = re.findall( r'\d+', self.name )

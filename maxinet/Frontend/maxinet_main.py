@@ -49,7 +49,7 @@ from maxinet.Frontend.partitioner import Partitioner
 
 
 logger = logging.getLogger(__name__)
-
+sys.excepthook = Pyro4.util.excepthook
 
 # the following block is to support deprecation warnings. this is really
 # not solved nicely and should probably be somewhere else
@@ -333,11 +333,16 @@ class Worker(object):
         if self.ip(classifier="backend") is None:
             logger.warn("no ip configured - can not fix MTU ")
             return 0
+
         intf = self.run_cmd("ip addr show to " + self.ip(classifier="backend") +
                             "/24 | head -n1 | cut -d' ' -f2 | tr -d :").strip()
         if intf == "":
             logger.warn("could not find eth device - can not fix MTU")
             return 0
+
+        if '@' in intf:
+            intf = intf.split('@')[0]
+
         mtu = int(self.run_cmd("ip li show dev " + intf +
                                " | head -n1 | cut -d ' ' -f5"))
         if(mtu < 1600):

@@ -20,8 +20,13 @@ topo.addLink(d1, s1)
 topo.addLink(s1, s2)
 topo.addLink(d2, s2)
 
+mappings = {
+    "s1": 0,
+    "s2": 1
+}
+
 cluster = maxinet_main.Cluster()
-exp = maxinet_main.Experiment(cluster, topo, switch=OVSSwitch)
+exp = maxinet_main.Experiment(cluster, topo, switch=OVSSwitch, nodemapping=mappings)
 exp.setup()
 
 try:

@@ -44,7 +44,7 @@ setup(
     install_requires=[
         'setuptools',
         'urllib3',
-        'docker==2.0.2',
+        'docker==3.4.0',
         'python-iptables',
         'pytest',
         'Pyro4'

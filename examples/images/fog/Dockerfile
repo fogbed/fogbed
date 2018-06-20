@@ -13,8 +13,9 @@ RUN pip install --no-cache-dir -r requirements.txt
 COPY . .
 
 ENV FLASK_APP main.py
+ENV FLASK_PORT 4000
 
-EXPOSE 5000
+EXPOSE 4000
 
-#CMD [ "python", "./your-daemon-or-script.py" ]
-CMD /bin/bash
+CMD [ "./start.sh"]
+#CMD /bin/bash

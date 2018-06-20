@@ -1,7 +1,7 @@
 import os
 import random
 import time
-
+import socket
 import requests
 from flask import Flask
 from flask import jsonify
@@ -15,6 +15,7 @@ def temperature():
     n = int(os.environ.get("VALUES", 10))
     return jsonify({
         'ip': request.remote_addr,
+        'hostname': socket.gethostname(),
         'temps': [random.randint(1, 100) for x in range(n)]
     }), 200
 
@@ -33,4 +34,4 @@ def notify_manager():
         time.sleep(1)
 
 
-notify_manager()
+#notify_manager()

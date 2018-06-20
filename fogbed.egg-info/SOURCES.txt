@@ -18,6 +18,7 @@ examples/cpu.py
 examples/docker_cpuset.py
 examples/dockerhosts.py
 examples/emptynet.py
+examples/health_care.py
 examples/hwintf.py
 examples/intfoptions.py
 examples/limit.py
@@ -54,7 +55,7 @@ maxinet/Frontend/__init__.py
 maxinet/Frontend/cli.py
 maxinet/Frontend/container.py
 maxinet/Frontend/libvirt.py
-maxinet/Frontend/maxinet.py
+maxinet/Frontend/maxinet_main.py
 maxinet/Frontend/partitioner.py
 maxinet/FrontendServer/__init__.py
 maxinet/FrontendServer/server.py
@@ -92,6 +93,7 @@ mininet/examples/cpu.py
 mininet/examples/docker_cpuset.py
 mininet/examples/dockerhosts.py
 mininet/examples/emptynet.py
+mininet/examples/health_care.py
 mininet/examples/hwintf.py
 mininet/examples/intfoptions.py
 mininet/examples/limit.py

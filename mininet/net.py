@@ -1108,6 +1108,10 @@ class Fogbed (Containernet):
 
         if label in self.vinsts:
             raise Exception('Virtual Instance label already exists: %s' % label)
+
+        if ' ' in label:
+            label = self.removeSpace(label)
+            info("Replacing label empty spaces, new label: %s" % label)
         
         vi = VirtualInstance(label, self)
         self.vinsts[label] = vi

@@ -25,6 +25,8 @@ RUN ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install.
 WORKDIR /fogbed
 RUN python setup.py develop
 
+RUN chmod a+x maxinet/Scripts/*
+
 # tell containernet that it runs in a container
 ENV CONTAINERNET_NESTED 1
 
