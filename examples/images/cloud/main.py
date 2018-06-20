@@ -1,5 +1,7 @@
 import os
 import time
+
+import socket
 from functools import wraps
 
 import requests
@@ -18,7 +20,7 @@ _FOG_ADDRS = []
 def profile(fn):
     @wraps(fn)
     def profiled(*args, **kwargs):
-        start_time = time.start()
+        start_time = time.time()
 
         ret = fn(*args, **kwargs)
 
@@ -41,7 +43,7 @@ def temperature_from_fogs():
     k = int(os.environ.get('K_VALUE', 10))
     temps = []
     for sensor_addr in _SENSOR_ADDRS:
-        r = requests.get("%s:3000" % sensor_addr)
+        r = requests.get("http://%s:3000" % sensor_addr)
 
         data = r.json()
 
@@ -57,7 +59,7 @@ def temperature_from_sensors():
     k = int(os.environ.get('K_VALUE', 10))
     temps = []
     for fog_addr in _FOG_ADDRS:
-        r = requests.get("%s:4000" % fog_addr)
+        r = requests.get("http://%s:4000" % fog_addr)
 
         data = r.json()
 
@@ -72,8 +74,10 @@ def topk(arr, k):
 def notification_handler():
     global _SENSOR_ADDRS, _FOG_ADDRS
     payload = request.get_json(force=True)
-    _SENSOR_ADDRS = payload['sensor_addrs']
-    _FOG_ADDRS = payload['fog_addrs']
+    _SENSOR_ADDRS = list(map(lambda x: x['ip'], payload['sensor_addrs']))
+    _FOG_ADDRS = list(map(lambda x: x['ip'], payload['fog_addrs']))
+    print(_SENSOR_ADDRS)
+    print(_FOG_ADDRS)
 
     return "OK", 200
 
@@ -101,20 +105,3 @@ def print_prof_data():
 def clear_prof_data():
     global PROF_DATA
     PROF_DATA = {}
-
-
-def notify_manager():
-    while True:
-        try:
-            r = requests.get("%s/register/cloud" % os.environ['MANAGER_ADDR'])
-
-            if r.status_code == 200:
-                break
-        except:
-            print("Failed to connect to manager. Trying again in 2 seconds.")
-            time.sleep(1)
-
-        time.sleep(1)
-
-
-notify_manager()

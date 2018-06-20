@@ -1,8 +1,6 @@
 import os
 import random
-import time
 import socket
-import requests
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -18,20 +16,3 @@ def temperature():
         'hostname': socket.gethostname(),
         'temps': [random.randint(1, 100) for x in range(n)]
     }), 200
-
-
-def notify_manager():
-    while True:
-        try:
-            r = requests.get("%s/register/sensor" % os.environ['MANAGER_ADDR'])
-
-            if r.status_code == 200:
-                break
-        except:
-            print("Failed to connect to manager. Trying again in 2 seconds.")
-            time.sleep(1)
-
-        time.sleep(1)
-
-
-#notify_manager()

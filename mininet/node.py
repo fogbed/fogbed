@@ -791,8 +791,6 @@ class Docker ( Host ):
         # self.dcli = docker.APIClient(base_url='unix://var/run/docker.sock')
         self.dcli = docker.from_env(timeout=60).api
 
-        print(self.dcli.__dict__)
-
         # pull image if it does not exist
         self._check_image_exists(dimage, True)
 
@@ -891,10 +889,8 @@ class Docker ( Host ):
         self.lastPid = None
         self.readbuf = ''
         # Wait for prompt
-        info(cmd)
         while True:
             data = self.read( 1024 )
-            info(data)
             if data[ -1 ] == chr( 127 ):
                 break
             self.pollOut.poll()

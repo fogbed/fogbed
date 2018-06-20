@@ -1,7 +1,7 @@
 ; place this at ~/.MaxiNet.cfg
 [all]
 password = HalloWelt
-controller = 192.168.123.1:6633
+controller = 172.17.0.2:6633
 logLevel = INFO        ; Either CRITICAL, ERROR, WARNING, INFO  or DEBUG
 port_ns = 9090         ; Nameserver port
 port_sshd = 5345       ; Port where MaxiNet will start an ssh server on each worker
@@ -13,17 +13,9 @@ usesudo = False        ; If sshuser is set to something different than root set 
 useSTT = False         ; enables stt usage for tunnels. Only usable with OpenVSwitch. Bandwithlimitations etc do not work on STT tunnels!
 
 [FrontendServer]
-ip = 192.168.123.1
+ip = 172.17.0.2
 threadpool = 256       ; increase if more workers are needed (each Worker requires 2 threads on the FrontendServer)
 
-[debian-vm1]
-ip = 192.168.123.1
-share = 1
-
-[debian-vm2]
-ip = 192.168.123.2
-share = 1
-
-[debian-vm3]
-ip = 192.168.123.3
+[fogbed]
+ip = 172.17.0.2
 share = 1

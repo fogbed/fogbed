@@ -2,6 +2,7 @@ import os
 import time
 
 import requests
+import socket
 from flask import Flask
 from flask import jsonify
 from flask import request
@@ -17,7 +18,7 @@ def temperature():
     k = int(os.environ.get('K_VALUE', 10))
     temps = []
     for sensor_addr in _SENSOR_ADDRS:
-        r = requests.get("%s:3000" % sensor_addr)
+        r = requests.get("http://%s:3000" % sensor_addr)
 
         data = r.json()
 
@@ -30,27 +31,10 @@ def temperature():
 def notification_handler():
     global _SENSOR_ADDRS
     payload = request.get_json(force=True)
-    _SENSOR_ADDRS = payload['sensor_addrs']
-
+    _SENSOR_ADDRS = list(map(lambda x: x['ip'], payload['sensor_addrs']))
+    print(_SENSOR_ADDRS)
     return "OK", 200
 
 
 def topk(arr, k):
     return sorted(arr, reverse=True)[:k]
-
-
-def notify_manager():
-    while True:
-        try:
-            r = requests.get("%s/register/fog" % os.environ['MANAGER_ADDR'])
-
-            if r.status_code == 200:
-                break
-        except:
-            print("Failed to connect to manager. Trying again in 2 seconds.")
-            time.sleep(1)
-
-        time.sleep(1)
-
-
-notify_manager()

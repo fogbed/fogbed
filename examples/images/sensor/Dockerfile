@@ -3,7 +3,9 @@ FROM python:2
 RUN apt-get update && apt-get install -y \
     net-tools \
     iputils-ping \
-    iproute
+    iproute \
+    && apt-get clean \
+    && rm -rf /var/tmp/*
 
 WORKDIR /usr/src/app
 
@@ -19,6 +21,4 @@ ENV FLASK_PORT 3000
 
 EXPOSE 3000
 
-#ENTRYPOINT start.sh
-
-CMD start.sh
+ENTRYPOINT ./start.sh
