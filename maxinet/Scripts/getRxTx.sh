@@ -17,7 +17,7 @@ do
 	rx_pkt=`echo ${s} | awk '{print $3}'`
 	tx_pkt=`echo ${s} | awk '{print $11}'`
 
-	if [ "$rx_old" -ge 1 ]
+	if ((rx_old >= 1));
 	then
 		rec=$(($rx - $rx_old))
 		sen=$(($tx - $tx_old))

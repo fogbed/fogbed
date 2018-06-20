@@ -1105,7 +1105,8 @@ class Experiment(object):
             #get interface logs
             intf = worker.run_cmd("ip addr show to " + worker.ip(classifier="backend") + "/24 " +
                                   "| head -n1 | cut -d' ' -f2 | tr -d :")\
-                                  .strip()
+                                  .strip().split('@')[0]
+
             worker.get_file("/tmp/maxinet_intf_" + intf + "_" +
                         str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
                         "/tmp/maxinet_logs/" +
@@ -1159,6 +1160,7 @@ class Experiment(object):
                          Tools.time_to_string(self.starttime) + "/"])
         node = self.get(node)
         worker = self.get_worker(node)
+
         for intf in node.intfNames():
             self.log_interface(worker, intf)
 
@@ -1169,6 +1171,7 @@ class Experiment(object):
         Format is:
         timestamp,received bytes,sent bytes,received packets,sent packets
         """
+        intf = intf.split('@')[0]
         worker.daemonize_script("getRxTx.sh", " " + intf + " > \"/tmp/maxinet_intf_" +
                          intf + "_" + str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() +
                          ").log\"")
@@ -1184,7 +1187,7 @@ class Experiment(object):
         for worker in self.cluster.workers():
             intf = worker.run_cmd("ip addr show to " + worker.ip(classifier="backend") + "/24 " +
                                   "| head -n1 | cut -d' ' -f2 | tr -d :")\
-                                  .strip()
+                                  .strip().split('@')[0]
             if(intf == ""):
                 self.logger.warn("could not find main eth interface for " +
                                  worker.hn() + ". no logging possible.")

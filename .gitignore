@@ -16,3 +16,5 @@ trunk
 .vagrant/
 vscode/
 venv/
+maxinet_logs/
+.idea

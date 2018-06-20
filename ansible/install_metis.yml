@@ -1,16 +1,5 @@
 - hosts: localhost
   tasks:
-   - name: updates apt
-     shell: apt-get -qq update
-
-   - name: install basic packages
-     apt: name={{item}} state=installed
-     with_items:
-       - build-essential
-       - python-matplotlib
-       - sysstat
-       - cmake
-
    - name: Download Metis
      get_url: url=http://glaros.dtc.umn.edu/gkhome/fetch/sw/metis/metis-5.1.0.tar.gz
               dest=/tmp/metis-5.1.0.tar.gz

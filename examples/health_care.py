@@ -11,7 +11,7 @@ setLogLevel('info')
 
 SENSORS_PER_FOG = 2
 
-FOG_NODES = ["f{}".format(x+1) for x in range(1)]
+FOG_NODES = ["f{}".format(x+1) for x in range(2)]
 SENSOR_NODES = ["h{}".format(x+1) for x in range(SENSORS_PER_FOG*len(FOG_NODES))]
 
 fogs = []
