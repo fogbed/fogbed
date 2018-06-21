@@ -1,20 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e2595f0f-bfb2-4a08-b5c4-a871add460bb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/health_care.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/health_care.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/cloud/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/cloud/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/cloud/notifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/cloud/notifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/fog/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/fog/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/fog/notifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/fog/notifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/manager/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/manager/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/sensor/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/sensor/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/images/sensor/notifier.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/images/sensor/notifier.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/mininet/node.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/topo.py" beforeDir="false" afterPath="$PROJECT_DIR$/mininet/topo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/share/MaxiNet-cfg-sample" beforeDir="false" afterPath="$PROJECT_DIR$/share/MaxiNet-cfg-sample" afterDir="false" />
-    </list>
+    <list default="true" id="e2595f0f-bfb2-4a08-b5c4-a871add460bb" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -49,8 +36,8 @@
       <file leaf-file-name="health_care.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/maxinet/Frontend/examples/health_care.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="208">
-              <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+            <state>
+              <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
               <folding>
                 <element signature="e#83#94#0" expanded="true" />
               </folding>
@@ -360,7 +347,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="23" width="1366" height="745" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5007342" side_tool="true" weight="0.4068323" />
@@ -723,8 +709,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/maxinet/Frontend/examples/health_care.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="16" column="49" selection-start-line="16" selection-start-column="49" selection-end-line="16" selection-end-column="49" />
+        <state>
+          <caret line="12" column="19" lean-forward="true" selection-start-line="12" selection-start-column="19" selection-end-line="12" selection-end-column="19" />
           <folding>
             <element signature="e#83#94#0" expanded="true" />
           </folding>
