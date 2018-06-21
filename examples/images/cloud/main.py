@@ -36,36 +36,56 @@ def profile(fn):
     return profiled
 
 
-@app.route('/tempsFromFog')
-@profile
-def temperature_from_fogs():
+@app.route('/tempsFromSensor/<runs>')
+def temperature_from_sensor(runs):
     global _SENSOR_ADDRS
     k = int(os.environ.get('K_VALUE', 10))
+
     temps = []
-    for sensor_addr in _SENSOR_ADDRS:
-        r = requests.get("http://%s:3000" % sensor_addr)
 
-        data = r.json()
+    for x in range(int(runs)):
+        temps.append(topk(get_temperatures_sensor(), k))
 
-        temps += data['temps']
-
-    return jsonify({'ip': request.remote_addr, 'temps': topk(temps, k)}), 200
+    return jsonify({'ip': request.remote_addr, 'temps': temps}), 200
 
 
-@app.route('/tempsFromSensor')
-@profile
-def temperature_from_sensors():
+@app.route('/tempsFromFog/<runs>')
+def temperature_from_fogs(runs):
     global _FOG_ADDRS
     k = int(os.environ.get('K_VALUE', 10))
+
     temps = []
-    for fog_addr in _FOG_ADDRS:
-        r = requests.get("http://%s:4000" % fog_addr)
+
+    for x in range(int(runs)):
+        temps.append(topk(get_temperatures_fog(), k))
+
+    return jsonify({'ip': request.remote_addr, 'temps': temps}), 200
+
+@profile
+def get_temperatures_fog():
+    global _FOG_ADDRS
+    temps = []
+    for addr in _FOG_ADDRS:
+        r = requests.get("http://%s:%d" % (addr, 4000))
 
         data = r.json()
 
         temps += data['temps']
 
-    return jsonify({'ip': request.remote_addr, 'temps': topk(temps, k)}), 200
+    return temps
+
+@profile
+def get_temperatures_sensor():
+    global _SENSOR_ADDRS
+    temps = []
+    for addr in _SENSOR_ADDRS:
+        r = requests.get("http://%s:%d" % (addr, 3000))
+
+        data = r.json()
+
+        temps += data['temps']
+
+    return temps
 
 def topk(arr, k):
     return sorted(arr, reverse=True)[:k]
@@ -74,10 +94,8 @@ def topk(arr, k):
 def notification_handler():
     global _SENSOR_ADDRS, _FOG_ADDRS
     payload = request.get_json(force=True)
-    _SENSOR_ADDRS = list(map(lambda x: x['ip'], payload['sensor_addrs']))
-    _FOG_ADDRS = list(map(lambda x: x['ip'], payload['fog_addrs']))
-    print(_SENSOR_ADDRS)
-    print(_FOG_ADDRS)
+    _SENSOR_ADDRS = payload['sensor_addrs']
+    _FOG_ADDRS = payload['fog_addrs']
 
     return "OK", 200
 

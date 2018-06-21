@@ -434,9 +434,10 @@ class Node( object ):
         self.intfs[ port ] = intf
         self.ports[ intf ] = port
         self.nameToIntf[ intf.name ] = intf
+
         debug( '\n' )
-        debug( 'added intf %s (%d) to node %s\n' % (
-                intf, port, self.name ) )
+
+        debug( 'added intf %s (%d) to node %s\n' % ( intf, port, self.name ) )
         if self.inNamespace:
             debug( 'moving', intf, 'into namespace for', self.name, '\n' )
             moveIntfFn( intf.name, self  )
@@ -1430,7 +1431,6 @@ class Switch( Node ):
                               for i in self.intfList() ] ) )
         return '<%s %s: %s pid=%s> ' % (
             self.__class__.__name__, self.name, intfs, self.pid )
-
 
 class UserSwitch( Switch ):
     "User-space switch."

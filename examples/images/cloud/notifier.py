@@ -12,6 +12,9 @@ def notify_manager():
 
             if r.status_code == 200:
                 break
+        except requests.exceptions.ConnectionError:
+            print("Connection Error")
+            continue
         except:
             print("Failed to connect to manager. Trying again in 6 seconds.")
             time.sleep(3)

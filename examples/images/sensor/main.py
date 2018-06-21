@@ -13,6 +13,5 @@ def temperature():
     n = int(os.environ.get("VALUES", 10))
     return jsonify({
         'ip': request.remote_addr,
-        'hostname': socket.gethostname(),
         'temps': [random.randint(1, 100) for x in range(n)]
     }), 200

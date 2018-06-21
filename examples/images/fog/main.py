@@ -31,8 +31,7 @@ def temperature():
 def notification_handler():
     global _SENSOR_ADDRS
     payload = request.get_json(force=True)
-    _SENSOR_ADDRS = list(map(lambda x: x['ip'], payload['sensor_addrs']))
-    print(_SENSOR_ADDRS)
+    _SENSOR_ADDRS = payload['sensor_addrs']
     return "OK", 200
 
 

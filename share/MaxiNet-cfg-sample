@@ -19,3 +19,7 @@ threadpool = 256       ; increase if more workers are needed (each Worker requir
 [fogbed]
 ip = 172.17.0.2
 share = 1
+
+[worker2]
+ip = 172.17.0.3
+share = 1

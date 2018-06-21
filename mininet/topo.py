@@ -10,7 +10,7 @@ This package includes code to represent network topologies.
 A Topo object can be a topology database for NOX, can represent a physical
 setup for testing, and can even be emulated with the Mininet package.
 """
-
+from mininet.node import Docker
 from mininet.util import irange, natural, naturalSeq
 
 class MultiGraph( object ):
@@ -134,6 +134,14 @@ class Topo( object ):
         if not opts and self.hopts:
             opts = self.hopts
         return self.addNode( name, **opts )
+
+    def addDocker(self, name, **opts):
+        """Convenience method: Add docker host to graph.
+           name: host name
+           opts: host options
+           returns: host name"""
+        opts['cls'] = Docker
+        return self.addHost(name, **opts)
 
     def addSwitch( self, name, **opts ):
         """Convenience method: Add switch to graph.
