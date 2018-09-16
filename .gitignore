@@ -7,7 +7,7 @@ mnexec
 *.xcodeproj
 *.xcworkspace
 \#*\#
-mininet.egg-info
+*.egg-info
 build
 dist
 doc/html

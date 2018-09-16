@@ -8,7 +8,7 @@ from mininet.cli import CLI
 from mininet.link import TCLink
 from mininet.log import info, setLogLevel
 from mininet.resourcemodel import EdgeResourceModel, FogResourceModel, CloudResourceModel
-setLogLevel('info')
+setLogLevel('debug')
 
 net = Fogbed(controller=Controller)
 info('**** Adding Virtual Instances\n')
