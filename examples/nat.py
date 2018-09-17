@@ -4,9 +4,9 @@
 Example to create a Mininet topology and connect it to the internet via NAT
 """
 
-from mininet.cli import CLI
-from mininet.log import lg
-from mininet.topolib import TreeNet
+from src.mininet.cli import CLI
+from src.mininet.log import lg
+from src.mininet.topolib import TreeNet
 
 if __name__ == '__main__':
     lg.setLogLevel( 'info')

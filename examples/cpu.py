@@ -4,11 +4,11 @@
 cpu.py: test iperf bandwidth for varying cpu limits
 """
 
-from mininet.net import Mininet
-from mininet.node import CPULimitedHost
-from mininet.topolib import TreeTopo
-from mininet.util import custom, waitListening
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.node import CPULimitedHost
+from src.mininet.topolib import TreeTopo
+from src.mininet.util import custom, waitListening
+from src.mininet.log import setLogLevel, info
 
 
 def bwtest( cpuLimits, period_us=100000, seconds=5 ):

@@ -7,7 +7,7 @@ Test for numberedports.py
 import unittest
 import pexpect
 from collections import defaultdict
-from mininet.node import OVSSwitch
+from src.mininet.node import OVSSwitch
 
 class testNumberedports( unittest.TestCase ):
 

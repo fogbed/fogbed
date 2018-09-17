@@ -8,7 +8,7 @@ from os.path import join
 # Get version number from source tree
 import sys
 sys.path.append( '.' )
-from mininet.net import FOGBED_VERSION
+from src.mininet.net import FOGBED_VERSION
 
 scripts = [ join( 'bin', filename ) for filename in [ 'mn' ] ]
 
@@ -51,13 +51,13 @@ setup(
     ],
     include_package_data=True,
     package_data={
-        "maxinet":["Scripts/*"],
+        "src.maxinet":["Scripts/*"],
       },
     entry_points={
         'console_scripts': [
-            'FogbedWorker = maxinet.WorkerServer.server:main',
-            'FogbedFrontendServer = maxinet.FrontendServer.server:main',
-            'FogbedStatus = maxinet.WorkerServer.server:getFrontendStatus',
+            'FogbedWorker = src.maxinet.WorkerServer.server:main',
+            'FogbedFrontendServer = src.maxinet.FrontendServer.server:main',
+            'FogbedStatus = src.maxinet.WorkerServer.server:getFrontendStatus',
         ]
       },
     scripts=scripts,

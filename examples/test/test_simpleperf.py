@@ -7,9 +7,8 @@ Test for simpleperf.py
 import unittest
 import pexpect
 import sys
-from mininet.log import setLogLevel
+from src.mininet.log import setLogLevel
 
-from mininet.examples.simpleperf import SingleSwitchTopo
 
 class testSimplePerf( unittest.TestCase ):
 

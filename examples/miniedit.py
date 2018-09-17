@@ -45,25 +45,25 @@ if 'PYTHONPATH' in os.environ:
 
 # someday: from ttk import *
 
-from mininet.log import info, setLogLevel
-from mininet.net import Mininet, VERSION, Containernet
-from mininet.util import netParse, ipAdd, quietRun
-from mininet.util import buildTopo
-from mininet.util import custom, customClass
-from mininet.term import makeTerm, cleanUpScreens
-from mininet.node import Controller, RemoteController, NOX, OVSController
-from mininet.node import CPULimitedHost, Host, Node, Docker
-from mininet.node import OVSSwitch, UserSwitch
-from mininet.link import TCLink, Intf, Link
-from mininet.cli import CLI
-from mininet.moduledeps import moduleDeps
-from mininet.topo import SingleSwitchTopo, LinearTopo, SingleSwitchReversedTopo
-from mininet.topolib import TreeTopo
+from src.mininet.log import info, setLogLevel
+from src.mininet.net import Mininet, VERSION, Containernet
+from src.mininet.util import netParse, ipAdd, quietRun
+from src.mininet.util import buildTopo
+from src.mininet.util import custom, customClass
+from src.mininet.term import makeTerm, cleanUpScreens
+from src.mininet.node import Controller, RemoteController, NOX, OVSController
+from src.mininet.node import CPULimitedHost, Host, Node, Docker
+from src.mininet.node import OVSSwitch, UserSwitch
+from src.mininet.link import TCLink, Intf, Link
+from src.mininet.cli import CLI
+from src.mininet.moduledeps import moduleDeps
+from src.mininet.topo import SingleSwitchTopo, LinearTopo, SingleSwitchReversedTopo
+from src.mininet.topolib import TreeTopo
 
 print 'MiniEdit running against Containernet ' + VERSION
 MININET_VERSION = re.sub(r'[^\d\.]', '', VERSION)
 if StrictVersion(MININET_VERSION) > StrictVersion('2.0'):
-    from mininet.node import IVSSwitch
+    from src.mininet.node import IVSSwitch
 
 TOPODEF = 'none'
 TOPOS = { 'minimal': lambda: SingleSwitchTopo( k=2 ),
@@ -1809,15 +1809,15 @@ class MiniEdit( Frame ):
 
             f.write("#!/usr/bin/python\n")
             f.write("\n")
-            f.write("from mininet.net import Mininet\n")
-            f.write("from mininet.node import Controller, RemoteController, OVSController\n")
-            f.write("from mininet.node import CPULimitedHost, Host, Node\n")
-            f.write("from mininet.node import OVSKernelSwitch, UserSwitch\n")
+            f.write("from src.mininet.net import Mininet\n")
+            f.write("from src.mininet.node import Controller, RemoteController, OVSController\n")
+            f.write("from src.mininet.node import CPULimitedHost, Host, Node\n")
+            f.write("from src.mininet.node import OVSKernelSwitch, UserSwitch\n")
             if StrictVersion(MININET_VERSION) > StrictVersion('2.0'):
-                f.write("from mininet.node import IVSSwitch\n")
-            f.write("from mininet.cli import CLI\n")
-            f.write("from mininet.log import setLogLevel, info\n")
-            f.write("from mininet.link import TCLink, Intf\n")
+                f.write("from src.mininet.node import IVSSwitch\n")
+            f.write("from src.mininet.cli import CLI\n")
+            f.write("from src.mininet.log import setLogLevel, info\n")
+            f.write("from src.mininet.link import TCLink, Intf\n")
             f.write("from subprocess import call\n")
 
             inBandCtrl = False

@@ -5,11 +5,11 @@ This example monitors a number of hosts using host.popen() and
 pmonitor()
 """
 
-from mininet.net import Mininet
-from mininet.node import CPULimitedHost
-from mininet.topo import SingleSwitchTopo
-from mininet.log import setLogLevel
-from mininet.util import custom, pmonitor
+from src.mininet.net import Mininet
+from src.mininet.node import CPULimitedHost
+from src.mininet.topo import SingleSwitchTopo
+from src.mininet.log import setLogLevel
+from src.mininet.util import custom, pmonitor
 
 def monitorhosts( hosts=5, sched='cfs' ):
     "Start a bunch of pings and monitor them using popen"

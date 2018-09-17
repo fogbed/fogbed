@@ -5,9 +5,9 @@ Simple example of sending output to multiple files and
 monitoring them
 """
 
-from mininet.topo import SingleSwitchTopo
-from mininet.net import Mininet
-from mininet.log import setLogLevel
+from src.mininet.topo import SingleSwitchTopo
+from src.mininet.net import Mininet
+from src.mininet.log import setLogLevel
 
 from time import time
 from select import poll, POLLIN

@@ -8,12 +8,12 @@ hardware interface) to a network after the network is created.
 import re
 import sys
 
-from mininet.cli import CLI
-from mininet.log import setLogLevel, info, error
-from mininet.net import Mininet
-from mininet.link import Intf
-from mininet.topolib import TreeTopo
-from mininet.util import quietRun
+from src.mininet.cli import CLI
+from src.mininet.log import setLogLevel, info, error
+from src.mininet.net import Mininet
+from src.mininet.link import Intf
+from src.mininet.topolib import TreeTopo
+from src.mininet.util import quietRun
 
 def checkIntf( intf ):
     "Make sure intf exists and is not configured."

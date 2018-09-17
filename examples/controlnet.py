@@ -16,12 +16,12 @@ control and data networks from a single CLI.
 
 from functools import partial
 
-from mininet.net import Mininet
-from mininet.node import Controller, UserSwitch
-from mininet.cli import CLI
-from mininet.topo import Topo
-from mininet.topolib import TreeTopo
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.node import Controller, UserSwitch
+from src.mininet.cli import CLI
+from src.mininet.topo import Topo
+from src.mininet.topolib import TreeTopo
+from src.mininet.log import setLogLevel, info
 
 # Some minor hacks
 

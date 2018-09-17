@@ -18,12 +18,12 @@ natnet.py: Example network with NATs
 
 """
 
-from mininet.topo import Topo
-from mininet.net import Mininet
-from mininet.nodelib import NAT
-from mininet.log import setLogLevel
-from mininet.cli import CLI
-from mininet.util import irange
+from src.mininet.topo import Topo
+from src.mininet.net import Mininet
+from src.mininet.nodelib import NAT
+from src.mininet.log import setLogLevel
+from src.mininet.cli import CLI
+from src.mininet.util import irange
 
 class InternetTopo(Topo):
     "Single switch connected to n hosts."

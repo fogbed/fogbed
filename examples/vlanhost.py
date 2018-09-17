@@ -24,10 +24,10 @@ Usage (example uses VLAN ID=1000):
 
 """
 
-from mininet.node import Host
-from mininet.topo import Topo
-from mininet.util import quietRun
-from mininet.log import error
+from src.mininet.node import Host
+from src.mininet.topo import Topo
+from src.mininet.util import quietRun
+from src.mininet.log import error
 
 class VLANHost( Host ):
     "Host connected to VLAN interface"
@@ -105,10 +105,10 @@ if __name__ == '__main__':
     import sys
     from functools import partial
 
-    from mininet.net import Mininet
-    from mininet.cli import CLI
-    from mininet.topo import SingleSwitchTopo
-    from mininet.log import setLogLevel
+    from src.mininet.net import Mininet
+    from src.mininet.cli import CLI
+    from src.mininet.topo import SingleSwitchTopo
+    from src.mininet.log import setLogLevel
 
     setLogLevel( 'info' )
 

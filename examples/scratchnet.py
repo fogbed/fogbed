@@ -8,11 +8,11 @@ but it exposes the configuration details and allows customization.
 For most tasks, the higher-level API will be preferable.
 """
 
-from mininet.net import Mininet
-from mininet.node import Node
-from mininet.link import Link
-from mininet.log import setLogLevel, info
-from mininet.util import quietRun
+from src.mininet.net import Mininet
+from src.mininet.node import Node
+from src.mininet.link import Link
+from src.mininet.log import setLogLevel, info
+from src.mininet.util import quietRun
 
 from time import sleep
 

@@ -5,10 +5,10 @@ This is a simple example that demonstrates multiple links
 between nodes.
 """
 
-from mininet.cli import CLI
-from mininet.log import setLogLevel
-from mininet.net import Mininet
-from mininet.topo import Topo
+from src.mininet.cli import CLI
+from src.mininet.log import setLogLevel
+from src.mininet.net import Mininet
+from src.mininet.topo import Topo
 
 def runMultiLink():
     "Create and run multiple link network"

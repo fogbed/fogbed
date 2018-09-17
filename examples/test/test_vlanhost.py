@@ -7,7 +7,7 @@ Test for vlanhost.py
 import unittest
 import pexpect
 import sys
-from mininet.util import quietRun
+from src.mininet.util import quietRun
 
 class testVLANHost( unittest.TestCase ):
 

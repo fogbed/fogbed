@@ -5,10 +5,10 @@ This example shows how to create an empty Mininet object
 (without a topology object) and add nodes to it manually.
 """
 
-from mininet.net import Mininet
-from mininet.node import Controller
-from mininet.cli import CLI
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.node import Controller
+from src.mininet.cli import CLI
+from src.mininet.log import setLogLevel, info
 
 def emptyNet():
 

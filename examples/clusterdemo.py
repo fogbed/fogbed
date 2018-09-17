@@ -2,10 +2,10 @@
 
 "clusterdemo.py: demo of Mininet Cluster Edition prototype"
 
-from mininet.examples.cluster import MininetCluster, SwitchBinPlacer
-from mininet.topolib import TreeTopo
-from mininet.log import setLogLevel
-from mininet.examples.clustercli import ClusterCLI as CLI
+from src.mininet.examples import MininetCluster, SwitchBinPlacer
+from src.mininet.topolib import TreeTopo
+from src.mininet.log import setLogLevel
+from src.mininet.examples import ClusterCLI as CLI
 
 def demo():
     "Simple Demo of Cluster Mode"

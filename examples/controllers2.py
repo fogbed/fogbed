@@ -11,10 +11,10 @@ Note that one could also create a custom switch class and pass it into
 the Mininet() constructor.
 """
 
-from mininet.net import Mininet
-from mininet.node import Controller, OVSSwitch
-from mininet.cli import CLI
-from mininet.log import setLogLevel
+from src.mininet.net import Mininet
+from src.mininet.node import Controller, OVSSwitch
+from src.mininet.cli import CLI
+from src.mininet.log import setLogLevel
 
 def multiControllerNet():
     "Create a network from semi-scratch with multiple controllers."

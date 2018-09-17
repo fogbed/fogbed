@@ -18,7 +18,7 @@ class testMultiLink( unittest.TestCase ):
         p.sendline( 'intfs' )
         p.expect( 's(\d): lo' )
         intfsOutput = p.before
-        # parse interfaces from mininet intfs, and store them in a list
+        # parse interfaces from src.mininet intfs, and store them in a list
         hostToIntfs = intfsOutput.split( '\r\n' )[ 1:3 ]
         intfList = []
         for hostToIntf in hostToIntfs:

@@ -4,12 +4,12 @@
 limit.py: example of using link and CPU limits
 """
 
-from mininet.net import Mininet
-from mininet.link import TCIntf
-from mininet.node import CPULimitedHost
-from mininet.topolib import TreeTopo
-from mininet.util import custom, quietRun
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.link import TCIntf
+from src.mininet.node import CPULimitedHost
+from src.mininet.topolib import TreeTopo
+from src.mininet.util import custom, quietRun
+from src.mininet.log import setLogLevel, info
 
 
 def testLinkLimit( net, bw ):

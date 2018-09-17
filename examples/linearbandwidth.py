@@ -23,12 +23,12 @@ of switches, this example demonstrates:
 
 """
 
-from mininet.net import Mininet
-from mininet.node import UserSwitch, OVSKernelSwitch, Controller
-from mininet.topo import Topo
-from mininet.log import lg
-from mininet.util import irange, quietRun
-from mininet.link import TCLink
+from src.mininet.net import Mininet
+from src.mininet.node import UserSwitch, OVSKernelSwitch, Controller
+from src.mininet.topo import Topo
+from src.mininet.log import lg
+from src.mininet.util import irange, quietRun
+from src.mininet.link import TCLink
 from functools import partial
 
 import sys

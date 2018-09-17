@@ -34,11 +34,11 @@ and '/var/run'. It also has a temporary private directory mounted
 on '/var/mn'
 """
 
-from mininet.net import Mininet
-from mininet.node import Host
-from mininet.cli import CLI
-from mininet.topo import SingleSwitchTopo
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.node import Host
+from src.mininet.cli import CLI
+from src.mininet.topo import SingleSwitchTopo
+from src.mininet.log import setLogLevel, info
 
 from functools import partial
 

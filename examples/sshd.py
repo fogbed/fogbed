@@ -18,12 +18,12 @@ demonstrates:
 
 import sys
 
-from mininet.net import Mininet
-from mininet.cli import CLI
-from mininet.log import lg
-from mininet.node import Node
-from mininet.topolib import TreeTopo
-from mininet.util import waitListening
+from src.mininet.net import Mininet
+from src.mininet.cli import CLI
+from src.mininet.log import lg
+from src.mininet.node import Node
+from src.mininet.topolib import TreeTopo
+from src.mininet.util import waitListening
 
 def TreeNet( depth=1, fanout=2, **kwargs ):
     "Convenience function for creating tree networks."

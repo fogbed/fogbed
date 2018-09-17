@@ -9,9 +9,9 @@ import re
 
 import pexpect
 
-from mininet.log import setLogLevel
-from mininet.node import Node
-from mininet.link import Link
+from src.mininet.log import setLogLevel
+from src.mininet.node import Node
+from src.mininet.link import Link
 
 
 class testHwintf( unittest.TestCase ):

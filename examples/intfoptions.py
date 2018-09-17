@@ -7,9 +7,9 @@ to use different traffic control commands to test
 bandwidth, loss, and delay
 '''
 
-from mininet.net import Mininet
-from mininet.log import setLogLevel, info
-from mininet.link import TCLink
+from src.mininet.net import Mininet
+from src.mininet.log import setLogLevel, info
+from src.mininet.link import TCLink
 
 def intfOptions():
     "run various traffic control commands on a single interface"

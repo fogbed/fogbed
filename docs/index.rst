@@ -7,12 +7,12 @@ Welcome to Fogbed's documentation!
 ==================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 4
    :caption: Contents:
 
-
-HELLO WORLD!
-
+   intro
+   getstarted
+   install
 
 Indices and tables
 ==================

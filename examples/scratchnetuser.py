@@ -10,10 +10,10 @@ For most tasks, the higher-level API will be preferable.
 This version uses the user datapath and an explicit control network.
 """
 
-from mininet.net import Mininet
-from mininet.node import Node
-from mininet.link import Link
-from mininet.log import setLogLevel, info
+from src.mininet.net import Mininet
+from src.mininet.node import Node
+from src.mininet.link import Link
+from src.mininet.log import setLogLevel, info
 
 def linkIntfs( node1, node2 ):
     "Create link from node1 to node2 and return intfs"

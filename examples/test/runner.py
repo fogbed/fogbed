@@ -9,8 +9,8 @@ Run all mininet.examples tests
 import unittest
 import os
 import sys
-from mininet.util import ensureRoot
-from mininet.clean import cleanup
+from src.mininet.util import ensureRoot
+from src.mininet.clean import cleanup
 
 class MininetTestResult( unittest.TextTestResult ):
     def addFailure( self, test, err ):

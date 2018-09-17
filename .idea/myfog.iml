@@ -10,6 +10,10 @@
     <orderEntry type="jdk" jdkName="Python 2.7 (myfog)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
   </component>
+  <component name="ReSTService">
+    <option name="workdir" value="$MODULE_DIR$/docs" />
+    <option name="DOC_DIR" value="$MODULE_DIR$/docs" />
+  </component>
   <component name="TestRunnerService">
     <option name="PROJECT_TEST_RUNNER" value="Unittests" />
   </component>

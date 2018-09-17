@@ -2,13 +2,13 @@
 """
 This is the most simple example to showcase Fogbed.
 """
-from mininet.net import Fogbed
-from mininet.node import Controller
-from mininet.cli import CLI
-from mininet.link import TCLink
-from mininet.log import info, setLogLevel
-from mininet.resourcemodel import EdgeResourceModel, FogResourceModel, CloudResourceModel
-setLogLevel('debug')
+from src.mininet.net import Fogbed
+from src.mininet.node import Controller
+from src.mininet.cli import CLI
+from src.mininet.link import TCLink
+from src.mininet.log import info, setLogLevel
+from src.mininet.resourcemodel import EdgeResourceModel, FogResourceModel, CloudResourceModel
+setLogLevel('info')
 
 net = Fogbed(controller=Controller)
 info('**** Adding Virtual Instances\n')

@@ -19,10 +19,10 @@ to-do:
 - think about clearing last hop - why doesn't that work?
 """
 
-from mininet.net import Mininet
-from mininet.node import OVSSwitch
-from mininet.topo import LinearTopo
-from mininet.log import output, warn
+from src.mininet.net import Mininet
+from src.mininet.node import OVSSwitch
+from src.mininet.topo import LinearTopo
+from src.mininet.log import output, warn
 
 from random import randint
 

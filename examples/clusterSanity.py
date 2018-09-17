@@ -4,10 +4,10 @@
 A sanity check for cluster edition
 '''
 
-from mininet.examples.cluster import MininetCluster
-from mininet.log import setLogLevel
-from mininet.examples.clustercli import ClusterCLI as CLI
-from mininet.topo import SingleSwitchTopo
+from src.mininet.examples import MininetCluster
+from src.mininet.log import setLogLevel
+from src.mininet.examples import ClusterCLI as CLI
+from src.mininet.topo import SingleSwitchTopo
 
 def clusterSanity():
     "Sanity check for cluster mode"

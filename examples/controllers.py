@@ -5,11 +5,11 @@ Create a network where different switches are connected to
 different controllers, by creating a custom Switch() subclass.
 """
 
-from mininet.net import Mininet
-from mininet.node import OVSSwitch, Controller, RemoteController
-from mininet.topolib import TreeTopo
-from mininet.log import setLogLevel
-from mininet.cli import CLI
+from src.mininet.net import Mininet
+from src.mininet.node import OVSSwitch, Controller, RemoteController
+from src.mininet.topolib import TreeTopo
+from src.mininet.log import setLogLevel
+from src.mininet.cli import CLI
 
 setLogLevel( 'info' )
 

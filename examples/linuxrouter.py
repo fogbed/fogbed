@@ -27,11 +27,11 @@ Additional routes may be added to the router or hosts by
 executing 'ip route' or 'route' commands on the router or hosts.
 """
 
-from mininet.topo import Topo
-from mininet.net import Mininet
-from mininet.node import Node
-from mininet.log import setLogLevel, info
-from mininet.cli import CLI
+from src.mininet.topo import Topo
+from src.mininet.net import Mininet
+from src.mininet.node import Node
+from src.mininet.log import setLogLevel, info
+from src.mininet.cli import CLI
 
 class LinuxRouter( Node ):
     "A Node with IP forwarding enabled."

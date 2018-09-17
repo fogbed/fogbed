@@ -3,8 +3,8 @@
 "This example doesn't use OpenFlow, but attempts to run sshd in a namespace."
 
 import sys
-from mininet.node import Host
-from mininet.util import ensureRoot, waitListening
+from src.mininet.node import Host
+from src.mininet.util import ensureRoot, waitListening
 
 ensureRoot()
 timeout = 5

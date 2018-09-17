@@ -7,10 +7,10 @@ to adjust them, e.g. by adding entries to /etc/sysctl.conf
 and running sysctl -p. Check util/sysctl_addon.
 """
 
-from mininet.cli import CLI
-from mininet.log import setLogLevel
-from mininet.node import OVSSwitch
-from mininet.topolib import TreeNet
+from src.mininet.cli import CLI
+from src.mininet.log import setLogLevel
+from src.mininet.node import OVSSwitch
+from src.mininet.topolib import TreeNet
 
 if __name__ == '__main__':
     setLogLevel( 'info' )

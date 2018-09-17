@@ -8,10 +8,10 @@ multiple hosts and monitor their output interactively for a period=
 of time.
 """
 
-from mininet.net import Mininet
-from mininet.node import Node
-from mininet.topo import SingleSwitchTopo
-from mininet.log import setLogLevel
+from src.mininet.net import Mininet
+from src.mininet.node import Node
+from src.mininet.topo import SingleSwitchTopo
+from src.mininet.log import setLogLevel
 
 from select import poll, POLLIN
 from time import time

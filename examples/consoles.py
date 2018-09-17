@@ -29,10 +29,10 @@ import re
 
 from Tkinter import Frame, Button, Label, Text, Scrollbar, Canvas, Wm, READABLE
 
-from mininet.log import setLogLevel
-from mininet.topolib import TreeNet
-from mininet.term import makeTerms, cleanUpScreens
-from mininet.util import quietRun
+from src.mininet.log import setLogLevel
+from src.mininet.topolib import TreeNet
+from src.mininet.term import makeTerms, cleanUpScreens
+from src.mininet.util import quietRun
 
 class Console( Frame ):
     "A simple console on a host."

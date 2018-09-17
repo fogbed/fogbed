@@ -6,7 +6,7 @@ Test for linuxrouter.py
 
 import unittest
 import pexpect
-from mininet.util import quietRun
+from src.mininet.util import quietRun
 
 class testLinuxRouter( unittest.TestCase ):
 

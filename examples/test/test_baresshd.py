@@ -6,7 +6,7 @@ Tests for baresshd.py
 
 import unittest
 import pexpect
-from mininet.clean import cleanup, sh
+from src.mininet.clean import cleanup, sh
 
 class testBareSSHD( unittest.TestCase ):
 

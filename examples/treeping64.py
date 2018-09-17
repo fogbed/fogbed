@@ -2,9 +2,9 @@
 
 "Create a 64-node tree network, and test connectivity using ping."
 
-from mininet.log import setLogLevel
-from mininet.node import UserSwitch, OVSKernelSwitch  # , KernelSwitch
-from mininet.topolib import TreeNet
+from src.mininet.log import setLogLevel
+from src.mininet.node import UserSwitch, OVSKernelSwitch  # , KernelSwitch
+from src.mininet.topolib import TreeNet
 
 def treePing64():
     "Run ping test on 64-node tree networks."

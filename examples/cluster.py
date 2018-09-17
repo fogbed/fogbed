@@ -74,15 +74,15 @@ Things to do:
 - hifi support (e.g. delay compensation)
 """
 
-from mininet.node import Node, Host, OVSSwitch, Controller
-from mininet.link import Link, Intf
-from mininet.net import Mininet
-from mininet.topo import LinearTopo
-from mininet.topolib import TreeTopo
-from mininet.util import quietRun, errRun
-from mininet.examples.clustercli import CLI
-from mininet.log import setLogLevel, debug, info, error
-from mininet.clean import addCleanupCallback
+from src.mininet.node import Node, Host, OVSSwitch, Controller
+from src.mininet.link import Link, Intf
+from src.mininet.net import Mininet
+from src.mininet.topo import LinearTopo
+from src.mininet.topolib import TreeTopo
+from src.mininet.util import quietRun, errRun
+from .clustercli import CLI
+from src.mininet.log import setLogLevel, debug, info, error
+from src.mininet.clean import addCleanupCallback
 
 from signal import signal, SIGINT, SIG_IGN
 from subprocess import Popen, PIPE, STDOUT

@@ -2,9 +2,9 @@
 
 "Monitor multiple hosts using popen()/pmonitor()"
 
-from mininet.net import Mininet
-from mininet.topo import SingleSwitchTopo
-from mininet.util import pmonitor
+from src.mininet.net import Mininet
+from src.mininet.topo import SingleSwitchTopo
+from src.mininet.util import pmonitor
 from time import time
 from signal import SIGINT
 

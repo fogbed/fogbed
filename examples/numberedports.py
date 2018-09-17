@@ -6,9 +6,9 @@ Validate that the port numbers match to the interface name,
 and that the ovs ports match the mininet ports.
 """
 
-from mininet.net import Mininet
-from mininet.node import Controller
-from mininet.log import setLogLevel, info, warn
+from src.mininet.net import Mininet
+from src.mininet.node import Controller
+from src.mininet.log import setLogLevel, info, warn
 
 def validatePort( switch, intf ):
     "Validate intf's OF port number"

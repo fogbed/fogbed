@@ -9,12 +9,12 @@ iperf will hang indefinitely if the TCP handshake fails
 to complete.
 """
 
-from mininet.topo import Topo
-from mininet.net import Mininet
-from mininet.node import CPULimitedHost
-from mininet.link import TCLink
-from mininet.util import dumpNodeConnections
-from mininet.log import setLogLevel
+from src.mininet.topo import Topo
+from src.mininet.net import Mininet
+from src.mininet.node import CPULimitedHost
+from src.mininet.link import TCLink
+from src.mininet.util import dumpNodeConnections
+from src.mininet.log import setLogLevel
 
 from sys import argv
 

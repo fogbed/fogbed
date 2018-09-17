@@ -5,11 +5,11 @@ This example shows how to create a network and run multiple tests.
 For a more complicated test example, see udpbwtest.py.
 """
 
-from mininet.cli import CLI
-from mininet.log import lg, info
-from mininet.net import Mininet
-from mininet.node import OVSKernelSwitch
-from mininet.topolib import TreeTopo
+from src.mininet.cli import CLI
+from src.mininet.log import lg, info
+from src.mininet.net import Mininet
+from src.mininet.node import OVSKernelSwitch
+from src.mininet.topolib import TreeTopo
 
 def ifconfigTest( net ):
     "Run ifconfig on all hosts in net."
