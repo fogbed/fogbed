@@ -8,7 +8,7 @@
      args:
        chdir: ../../
 
-   - name: install Containernet Python egg etc.
+   - name: install Fogbed Python egg etc.
      shell: make develop
      args:
        chdir: ../
@@ -18,7 +18,7 @@
      args:
        chdir: ../
 
-   - name: download 'ubuntu' docker image for Containernet example
+   - name: download 'ubuntu' docker image for Fogbed example
      shell: docker pull ubuntu:trusty
      tags:
         - notindocker

@@ -503,7 +503,7 @@ class Link(object):
 
 
 class OVSIntf(Intf):
-    "Patch interface on an OVSSwitch"
+    "Patch interface on an node.OVSSwitch"
 
     def ifconfig(self, *args):
         cmd = ' '.join(args)
@@ -515,7 +515,7 @@ class OVSIntf(Intf):
 
 
 class OVSLink(Link):
-    """Link that makes patch links between OVSSwitches
+    """Link that makes patch links between node.OVSSwitches
        Warning: in testing we have found that no more
        than ~64 OVS patch links should be used in row."""
 

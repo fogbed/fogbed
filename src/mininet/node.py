@@ -52,25 +52,24 @@ Future enhancements:
 - Create proxy objects for remote nodes (Mininet: Cluster Edition)
 """
 
+import json
 import os
 import pty
 import re
-import signal
 import select
-import docker
-import json
-import re
+import signal
+from distutils.version import StrictVersion
+from re import findall
 from subprocess import Popen, PIPE, check_output
 from time import sleep
 
+import docker
+
+import src.mininet.link
 from src.mininet.log import info, error, warn, debug
-from src.mininet.util import (quietRun, errRun, errFail, moveIntf, isShellBuiltin,
-                          numCores, retry, mountCgroups)
 from src.mininet.moduledeps import moduleDeps, pathCheck, TUN
-from src.mininet.link import Link, Intf, TCIntf, OVSIntf
-from re import findall
-from distutils.version import StrictVersion
-from src.mininet.resourcemodel import NotEnoughResourcesAvailable
+from src.mininet.util import (quietRun, errRun, errFail, moveIntf, isShellBuiltin,
+                              numCores, retry, mountCgroups)
 
 
 class Node(object):
@@ -602,7 +601,7 @@ class Node(object):
         self.config(**self.params)
 
     # This is here for backward compatibility
-    def linkTo(self, node, link=Link):
+    def linkTo(self, node, link=src.mininet.link.Link):
         """(Deprecated) Link to another node
            replace with Link( node1, node2)"""
         return link(self, node)
@@ -655,13 +654,12 @@ class Host(Node):
 class VirtualInstance(object):
     _COUNTER = 1
 
-    def __init__(self, label, net):
-
+    def __init__(self, label, net_or_topo=None):
         # self.name = "vi%d" % VirtualInstance._COUNTER
         self.name = label
         VirtualInstance._COUNTER += 1
 
-        self.net = net
+        self.net = net_or_topo
         self.label = label
         self.containers = {}
         self.allocated_resources = {}
@@ -673,7 +671,8 @@ class VirtualInstance(object):
     def __repr__(self):
         return self.label
 
-    def addDocker(self, name, resources={"cpu": 1.0, "mem": 128}, **params):
+    def addDocker(self, name, resources=None, **params):
+        resources = resources if resources else {"cpu": 1.0, "mem": 128}
 
         new_name = "%s.%s" % (self.name, name)
 
@@ -682,20 +681,22 @@ class VirtualInstance(object):
         self.net.addLink(d, self.switch)
 
         self.containers[name] = d
-        self.allocated_resources[name] = resources
-
-        if self.resource_model is not None:
-            try:
-                self.resource_model.allocate(d, resources)
-            except NotEnoughResourcesAvailable as ex:
-                info(ex.message)
-                self.net.removeDocker(new_name)
-                return None
+        # self.allocated_resources[name] = resources
+        #
+        # if self.resource_model is not None:
+        #     try:
+        #         self.resource_model.allocate(d, resources)
+        #     except NotEnoughResourcesAvailable as ex:
+        #         info(ex.message)
+        #         self.net.removeDocker(new_name)
+        #         return None
 
         return d
 
-    def removeDocker(self, name, **params):
+    def getSwitch(self):
+        return self.switch
 
+    def removeDocker(self, name, **params):
         new_name = "%s.%s" % (self.name, name)
 
         d = self.containers.pop(name, None)
@@ -708,11 +709,10 @@ class VirtualInstance(object):
         return self.net.removeDocker(new_name, **params)
 
     def assignResourceModel(self, resource_model):
-
         if self.resource_model is not None:
-            raise Exception("There is already an resource model assigned to this DC.")
+            raise Exception("There is already an resource model assigned to this VI.")
         self.resource_model = resource_model
-        self.net.net_resources.addResourceModel(self, resource_model)
+        # self.net.net_resources.addResourceModel(self, resource_model)
         # self.net.rm_registrar.register(self, resm)
         info("Assigned RM: %r to VI: %r\n" % (self.resource_model, self))
 
@@ -815,9 +815,16 @@ class Docker(Host):
             dns=self.dns,
         )
 
+        container_name = "%s.%s" % (self.dnameprefix, name)
+
+        # remove previously running container with same name
+        for container in self.dcli.containers(all=True):
+            if container_name in container['Names'][0]:
+                self.dcli.remove_container(container, force=True)
+
         # create new docker container
         self.dc = self.dcli.create_container(
-            name="%s.%s" % (self.dnameprefix, name),
+            name=container_name,
             image=self.dimage,
             command=self.dcmd,
             stdin_open=True,  # keep container open
@@ -1087,7 +1094,7 @@ class Docker(Host):
             cpu_period=cpu_period,
             cpu_shares=cpu_shares,
             cpuset_cpus=cores)
-            # quota, period ad shares can also be set by this line. Usable for future work.
+        # quota, period ad shares can also be set by this line. Usable for future work.
 
     def updateMemoryLimit(self, mem_limit=-1, memswap_limit=-1):
         """
@@ -1378,7 +1385,7 @@ class Switch(Node):
         self.opts = opts
         self.listenPort = listenPort
         if not self.inNamespace:
-            self.controlIntf = Intf('lo', self, port=0)
+            self.controlIntf = src.mininet.link.Intf('lo', self, port=0)
 
     def defaultDpid(self, dpid=None):
         "Return correctly formatted dpid from dpid or switch name (s1 -> 1)"
@@ -1485,7 +1492,7 @@ class UserSwitch(Switch):
            over tc queuing disciplines. To resolve the conflict,
            we re-create the user switch's configuration, but as a
            leaf of the TCIntf-created configuration."""
-        if isinstance(intf, TCIntf):
+        if isinstance(intf, src.mininet.link.TCIntf):
             ifspeed = 10000000000  # 10 Gbps
             minspeed = ifspeed * 0.001
 
@@ -1675,7 +1682,7 @@ class OVSSwitch(Switch):
         """Unfortunately OVS and Mininet are fighting
            over tc queuing disciplines. As a quick hack/
            workaround, we clear OVS's and reapply our own."""
-        if isinstance(intf, TCIntf):
+        if isinstance(intf, src.mininet.link.TCIntf):
             intf.config(**intf.params)
 
     def attach(self, intf):
@@ -1688,7 +1695,7 @@ class OVSSwitch(Switch):
         """Add an interface of type:internal to the ovs switch
            and add routing entry to host"""
         self.vsctl('add-port', self.deployed_name, intf_name, '--', 'set', ' interface', intf_name, 'type=internal')
-        int_intf = Intf(intf_name, node=self.deployed_name)
+        int_intf = src.mininet.link.Intf(intf_name, node=self.deployed_name)
         # self.addIntf(int_intf, moveIntfFn=None)
         self.cmd('ip route add', net, 'dev', intf_name)
 
@@ -1726,7 +1733,7 @@ class OVSSwitch(Switch):
             # ofport_request is not supported on old OVS
             opts += ' ofport_request=%s' % self.ports[intf]
             # Patch ports don't work well with old OVS
-            if isinstance(intf, OVSIntf):
+            if isinstance(intf, src.mininet.link.OVSIntf):
                 intf1, intf2 = intf.link.intf1, intf.link.intf2
                 peer = intf1 if intf1 != intf else intf2
                 opts += ' type=patch options:peer=%s' % peer
@@ -1814,7 +1821,7 @@ class OVSSwitch(Switch):
         # Reapply link config if necessary...
         for switch in switches:
             for intf in switch.intfs.itervalues():
-                if isinstance(intf, TCIntf):
+                if isinstance(intf, src.mininet.link.TCIntf):
                     intf.config(**intf.params)
         return switches
 

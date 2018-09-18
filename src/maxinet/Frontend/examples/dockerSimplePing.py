@@ -4,15 +4,14 @@
 
 import time
 
-from src.maxinet.Frontend import maxinet_main
-from src.maxinet.Frontend.container import Docker
-from src.mininet.topo import Topo
+from src.fogbed.experiment import FogbedDistributedExperiment
 from src.mininet.node import OVSSwitch
+from src.mininet.topo import FogTopo
 
-topo = Topo()
+topo = FogTopo()
 
-d1 = topo.addHost("d1", cls=Docker, ip="10.0.0.251", dimage="ubuntu:trusty")
-d2 = topo.addHost("d2", cls=Docker, ip="10.0.0.252", dimage="ubuntu:trusty")
+d1 = topo.addDocker("d1", ip="10.0.0.251", dimage="ubuntu:trusty")
+d2 = topo.addDocker("d2", ip="10.0.0.252", dimage="ubuntu:trusty")
 
 s1 = topo.addSwitch("s1")
 s2 = topo.addSwitch("s2")
@@ -25,9 +24,12 @@ mappings = {
     "s2": 1
 }
 
-cluster = maxinet_main.Cluster()
-exp = maxinet_main.Experiment(cluster, topo, switch=OVSSwitch, nodemapping=mappings)
-exp.setup()
+exp = FogbedDistributedExperiment(topo, switch=OVSSwitch, nodemapping=mappings)
+
+exp.start()
+# cluster = maxinet_main.Cluster()
+# exp = maxinet_main.Experiment(cluster, topo, switch=OVSSwitch, nodemapping=mappings)
+# exp.setup()
 
 try:
     print exp.get_node("d1").cmd("ifconfig")

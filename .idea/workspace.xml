@@ -2,189 +2,31 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e2595f0f-bfb2-4a08-b5c4-a871add460bb" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/myfog.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/myfog.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/bin/mn" beforeDir="false" afterPath="$PROJECT_DIR$/bin/mn" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/custom/topo-2sw-2host.py" beforeDir="false" afterPath="$PROJECT_DIR$/custom/topo-2sw-2host.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/ansible/install.yml" beforeDir="false" afterPath="$PROJECT_DIR$/ansible/install.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/environment.pickle" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/.doctrees/index.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/index.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/environment.pickle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/doctrees/index.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/.buildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/alabaster.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/basic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/comment-bright.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/comment-close.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/comment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/badge_only.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/css/theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/custom.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/doctools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/documentation_options.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/down-pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/file.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bolditalic.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bolditalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bolditalic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-bolditalic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-italic.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-italic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-italic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-italic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/Lato/lato-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery-3.2.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/modernizr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/js/theme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/minus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/pygments.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/searchtools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore-1.3.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/underscore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/up-pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/_static/websupport.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/objects.inv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/.doctrees/install.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/.doctrees/install.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/index.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/_sources/install.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/_sources/install.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/install.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/install.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/_build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/_build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/getstarted.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/getstarted.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/baresshd.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/baresshd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/bind.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/bind.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cluster.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/cluster.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/clusterSanity.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/clusterSanity.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/clustercli.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/clustercli.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/clusterdemo.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/clusterdemo.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/consoles.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/consoles.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/containernet_container_test.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/containernet_container_test.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/containernet_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/containernet_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/controllers.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/controllers.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/controllers2.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/controllers2.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/controlnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/controlnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/cpu.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/cpu.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/docker_cpuset.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/docker_cpuset.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/dockerhosts.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/dockerhosts.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/emptynet.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/emptynet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/health_care.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/health_care.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/hwintf.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/hwintf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/intfoptions.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/intfoptions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/limit.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/limit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/linearbandwidth.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/linearbandwidth.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/linuxrouter.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/linuxrouter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/miniedit.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/miniedit.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/mobility.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/mobility.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/multilink.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/multilink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/multiping.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/multiping.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/multipoll.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/multipoll.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/multitest.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/multitest.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/nat.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/nat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/natnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/natnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/numberedports.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/numberedports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/popen.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/popen.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/popenpoll.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/popenpoll.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/scratchnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/scratchnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/scratchnetuser.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/scratchnetuser.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/simpleperf.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/simpleperf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/sshd.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/sshd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/runner.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/runner.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_baresshd.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_baresshd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_hwintf.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_hwintf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_linuxrouter.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_linuxrouter.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_multilink.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_multilink.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_nat.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_nat.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_natnet.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_natnet.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_numberedports.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_numberedports.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_simpleperf.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_simpleperf.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_sshd.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_sshd.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/test/test_vlanhost.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/test/test_vlanhost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/tree1024.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/tree1024.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/treeping64.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/treeping64.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/install.rst" beforeDir="false" afterPath="$PROJECT_DIR$/docs/install.rst" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/examples/virtual_instance_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/virtual_instance_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/examples/vlanhost.py" beforeDir="false" afterPath="$PROJECT_DIR$/examples/vlanhost.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fogbed.egg-info/SOURCES.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fogbed.egg-info/SOURCES.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fogbed.egg-info/entry_points.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fogbed.egg-info/entry_points.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/fogbed.egg-info/top_level.txt" beforeDir="false" afterPath="$PROJECT_DIR$/fogbed.egg-info/top_level.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/container.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/dockerNodeWrapper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/dockerSimplePing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/dynamicTopology.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/filetransfer.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/health_care.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/libvirtNodeWrapper.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/linkUpDown.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/monitoring.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/nodeWrapperTest.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/openflow13.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/shell.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/simplePing.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/sshd.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/static_mapping.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/examples/sync_file.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/libvirt.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/maxinet_main.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Frontend/partitioner.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/FrontendServer/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/FrontendServer/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/create_tunnel.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/delete_tunnel.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/delete_tunnels.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/getMemoryUsage.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/getRxTx.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/Scripts/load_tunneling.sh" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/WorkerServer/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/WorkerServer/server.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/WorkerServer/ssh_manager.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/WorkerServer/sshd_config.template" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/maxinet/tools.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/clean.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/cli.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/examples" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/link.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/log.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/moduledeps.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/net.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/node.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/nodelib.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/resourcemodel.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/term.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/test/test_containernet.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/test/test_hifi.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/test/test_nets.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/test/test_switchdpidassignment.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/test/test_walkthrough.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/topo.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/topolib.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/mininet/util.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/setup.py" beforeDir="false" afterPath="$PROJECT_DIR$/setup.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/share/MaxiNet-cfg-sample" beforeDir="false" afterPath="$PROJECT_DIR$/share/MaxiNet-cfg-sample" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maxinet/Frontend/examples/dockerSimplePing.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/maxinet/Frontend/examples/dockerSimplePing.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/maxinet/WorkerServer/server.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/maxinet/WorkerServer/server.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mininet/link.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mininet/link.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mininet/net.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mininet/net.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mininet/node.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mininet/node.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/mininet/topo.py" beforeDir="false" afterPath="$PROJECT_DIR$/src/mininet/topo.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/util/docker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/util/docker/Dockerfile" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -193,25 +35,28 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
-    <SUITE FILE_PATH="coverage/myfog$build_html.coverage" NAME="build html Coverage Results" MODIFIED="1537151879186" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/myfog$build_html.coverage" NAME="build html Coverage Results" MODIFIED="1537242975443" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="FUSProjectUsageTrigger">
     <session id="-1748713297">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="1" />
+          <entry key="project.closed" value="2" />
           <entry key="project.open.time.1" value="2" />
           <entry key="project.open.time.15" value="1" />
-          <entry key="project.opened" value="3" />
+          <entry key="project.open.time.16" value="1" />
+          <entry key="project.opened" value="4" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="CONTRIBUTORS" value="1" />
-          <entry key="Dockerfile" value="3" />
-          <entry key="INSTALL" value="1" />
-          <entry key="LICENSE" value="1" />
+          <entry key="Dockerfile" value="6" />
+          <entry key="INSTALL" value="3" />
+          <entry key="LICENSE" value="2" />
           <entry key="Makefile" value="2" />
+          <entry key="MaxiNet-cfg-sample" value="3" />
+          <entry key="PKG-INFO" value="1" />
           <entry key="Vagrantfile" value="1" />
           <entry key="buildinfo" value="1" />
           <entry key="c" value="1" />
@@ -221,47 +66,53 @@
           <entry key="gitignore" value="1" />
           <entry key="html" value="5" />
           <entry key="js" value="1" />
-          <entry key="md" value="2" />
+          <entry key="md" value="3" />
           <entry key="mn" value="3" />
           <entry key="pickle" value="1" />
-          <entry key="py" value="75" />
+          <entry key="py" value="127" />
           <entry key="pylint" value="1" />
-          <entry key="rst" value="5" />
-          <entry key="sh" value="3" />
-          <entry key="txt" value="2" />
-          <entry key="yml" value="5" />
+          <entry key="rst" value="8" />
+          <entry key="sh" value="4" />
+          <entry key="txt" value="10" />
+          <entry key="yml" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="Bash" value="3" />
+          <entry key="Bash" value="4" />
           <entry key="C++" value="1" />
-          <entry key="Dockerfile" value="3" />
+          <entry key="Dockerfile" value="6" />
           <entry key="HTML" value="5" />
           <entry key="Ini" value="1" />
           <entry key="JavaScript" value="1" />
-          <entry key="Markdown" value="2" />
-          <entry key="PLAIN_TEXT" value="14" />
-          <entry key="Python" value="78" />
-          <entry key="ReST" value="5" />
-          <entry key="YAML" value="5" />
+          <entry key="Markdown" value="3" />
+          <entry key="PLAIN_TEXT" value="29" />
+          <entry key="Python" value="130" />
+          <entry key="ReST" value="8" />
+          <entry key="YAML" value="9" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="Dockerfile" value="31" />
+          <entry key="Dockerfile" value="41" />
+          <entry key="INSTALL" value="15" />
+          <entry key="MaxiNet-cfg-sample" value="15" />
           <entry key="gitignore" value="4" />
-          <entry key="mn" value="577" />
-          <entry key="py" value="734" />
-          <entry key="rst" value="422" />
+          <entry key="md" value="100" />
+          <entry key="mn" value="852" />
+          <entry key="py" value="7817" />
+          <entry key="rst" value="2583" />
+          <entry key="yml" value="89" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Dockerfile" value="31" />
-          <entry key="PLAIN_TEXT" value="4" />
-          <entry key="Python" value="1311" />
-          <entry key="ReST" value="422" />
+          <entry key="Dockerfile" value="41" />
+          <entry key="Markdown" value="100" />
+          <entry key="PLAIN_TEXT" value="34" />
+          <entry key="Python" value="8669" />
+          <entry key="ReST" value="2583" />
+          <entry key="YAML" value="89" />
         </counts>
       </usages-collector>
     </session>
@@ -271,83 +122,79 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/docs/install.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/setup.py">
+        <entry file="file://$PROJECT_DIR$/docs/getstarted.rst">
+          <provider selected="true" editor-type-id="restructured-text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/ansible/install.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="309">
-              <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
-              <folding>
-                <element signature="e#44#87#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="300">
+              <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/examples/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/mn">
+        <entry file="file://$PROJECT_DIR$/ansible/install_centos.yml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="555">
-              <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
-              <folding>
-                <element signature="e#243#252#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="415">
+              <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mininet/examples/__init__.py">
+        <entry file="file://$PROJECT_DIR$/ansible/install_docker.yml">
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/cli.py">
+        <entry file="file://$PROJECT_DIR$/ansible/install_metis.yml">
+          <provider selected="true" editor-type-id="text-editor" />
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/util/docker/Dockerfile">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="30">
-              <caret line="2" selection-start-line="2" selection-end-line="2" />
-              <folding>
-                <element signature="e#19#38#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="-270" />
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Dockerfile">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="390">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/libvirt.py">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="285">
+                <caret line="44" selection-start-line="44" selection-end-line="44" />
+              </first_editor>
+              <second_editor />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/mininet/__init__.py">
+        <entry file="file://$PROJECT_DIR$/INSTALL">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
+            <state relative-caret-position="90">
+              <caret line="6" selection-start-line="6" selection-end-line="6" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/bin/clear_crash.sh">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/__init__.py">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -361,28 +208,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>MaxiNet</find>
-      <find>main</find>
-      <find>port</find>
-      <find>containernet</find>
-      <find>fogbed</find>
-      <find>maxinet.c</find>
-      <find>CONTAINERNET_NESTED</find>
-      <find>MaxiNetConfig</find>
-      <find>getFrontendStatus</find>
-      <find>server</find>
-      <find>RawConfigParser</find>
-      <find>detach</find>
-      <find>mininet.destroy_mininet()</find>
-      <find>timeout</find>
-      <find>class Containernet</find>
-      <find>class Switch</find>
-      <find>class switch</find>
-      <find>create_m</find>
-      <find>IP</find>
-      <find>Container</find>
-      <find>docker</find>
-      <find>Containernet</find>
       <find>addIntf</find>
       <find>self.intf</find>
       <find>class TCLink</find>
@@ -391,11 +216,34 @@
       <find>__repr__</find>
       <find>import mininet</find>
       <find>from maxinet</find>
+      <find>/etc/MaxiN</find>
+      <find>setMtu</find>
+      <find>shutting down...</find>
+      <find>setting resour</find>
+      <find>Experiment</find>
+      <find>buildFromTopo</find>
+      <find>Fogbed</find>
+      <find>create_min</find>
+      <find>setup(self)</find>
+      <find>create_mininet</find>
+      <find>addHost</find>
+      <find>create_mini</find>
+      <find>Containernet</find>
+      <find>VirtualInstance</find>
+      <find>addController</find>
+      <find>src.mininet.node</find>
+      <find>OVSSwitch</find>
+      <find>VirtualInst</find>
+      <find>Link</find>
+      <find>Intf</find>
+      <find>OVS</find>
+      <find>get_node</find>
     </findStrings>
     <replaceStrings>
       <replace>from maxinet</replace>
       <replace>import src.mininet</replace>
       <replace>from src.maxinet</replace>
+      <replace>node.OVSSwitch</replace>
     </replaceStrings>
     <dirStrings>
       <dir>$PROJECT_DIR$/maxinet</dir>
@@ -408,13 +256,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/mininet/examples/images/cloud/Dockerfile" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/build.sh" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/sensor/start.sh" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/sensor/main.py" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/fog/start.sh" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/cloud/start.sh" />
-        <option value="$PROJECT_DIR$/mininet/examples/images/fog/main.py" />
         <option value="$PROJECT_DIR$/mininet/examples/images/fog/notifier.py" />
         <option value="$PROJECT_DIR$/mininet/examples/images/cloud/notifier.py" />
         <option value="$PROJECT_DIR$/mininet/examples/images/sensor/notifier.py" />
@@ -423,7 +264,6 @@
         <option value="$PROJECT_DIR$/mininet/examples/health_care.py" />
         <option value="$PROJECT_DIR$/ansible/install_docker.yml" />
         <option value="$PROJECT_DIR$/ansible/install_metis.yml" />
-        <option value="$PROJECT_DIR$/ansible/install.yml" />
         <option value="$PROJECT_DIR$/requirements.txt" />
         <option value="$PROJECT_DIR$/maxinet/Scripts/getRxTx.sh" />
         <option value="$PROJECT_DIR$/maxinet/Frontend/examples/monitoring.py" />
@@ -437,28 +277,36 @@
         <option value="$PROJECT_DIR$/examples/images/cloud/main.py" />
         <option value="$PROJECT_DIR$/examples/health_care.py" />
         <option value="$PROJECT_DIR$/mininet/topo.py" />
-        <option value="$PROJECT_DIR$/share/MaxiNet-cfg-sample" />
         <option value="$PROJECT_DIR$/maxinet/WorkerServer/server.py" />
         <option value="$PROJECT_DIR$/maxinet/Frontend/examples/health_care.py" />
         <option value="$PROJECT_DIR$/.gitignore" />
-        <option value="$PROJECT_DIR$/Dockerfile" />
         <option value="$PROJECT_DIR$/docs/conf.py" />
         <option value="$PROJECT_DIR$/docs/test.rst.py" />
         <option value="$PROJECT_DIR$/docs/test.rst" />
-        <option value="$PROJECT_DIR$/docs/install.rst" />
-        <option value="$PROJECT_DIR$/docs/getstarted.rst" />
-        <option value="$PROJECT_DIR$/examples/virtual_instance_example.py" />
         <option value="$PROJECT_DIR$/mininet/node.py" />
-        <option value="$PROJECT_DIR$/docs/index.rst" />
         <option value="$PROJECT_DIR$/docs/intro.rst" />
         <option value="$PROJECT_DIR$/src/mininet/clean.py" />
         <option value="$PROJECT_DIR$/src/mininet/cli.py" />
-        <option value="$PROJECT_DIR$/src/mininet/link.py" />
         <option value="$PROJECT_DIR$/src/mininet/examples/cluster.py" />
-        <option value="$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py" />
         <option value="$PROJECT_DIR$/src/mininet/__init__.py" />
-        <option value="$PROJECT_DIR$/bin/mn" />
         <option value="$PROJECT_DIR$/setup.py" />
+        <option value="$PROJECT_DIR$/examples/cluster.py" />
+        <option value="$PROJECT_DIR$/bin/mn" />
+        <option value="$PROJECT_DIR$/share/MaxiNet-cfg-sample" />
+        <option value="$PROJECT_DIR$/src/maxinet/WorkerServer/server.py" />
+        <option value="$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py" />
+        <option value="$PROJECT_DIR$/src/mininet/topo.py" />
+        <option value="$PROJECT_DIR$/src/mininet/link.py" />
+        <option value="$PROJECT_DIR$/src/mininet/net.py" />
+        <option value="$PROJECT_DIR$/Dockerfile" />
+        <option value="$PROJECT_DIR$/src/mininet/node.py" />
+        <option value="$PROJECT_DIR$/src/fogbed/experiment.py" />
+        <option value="$PROJECT_DIR$/examples/virtual_instance_example.py" />
+        <option value="$PROJECT_DIR$/src/maxinet/Frontend/examples/dockerSimplePing.py" />
+        <option value="$PROJECT_DIR$/docs/index.rst" />
+        <option value="$PROJECT_DIR$/ansible/install.yml" />
+        <option value="$PROJECT_DIR$/docs/install.rst" />
+        <option value="$PROJECT_DIR$/docs/getstarted.rst" />
       </list>
     </option>
   </component>
@@ -493,7 +341,17 @@
             <path>
               <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myfog" type="462c0819:PsiDirectoryNode" />
-              <item name="bin" type="462c0819:PsiDirectoryNode" />
+              <item name="ansible" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myfog" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myfog" type="462c0819:PsiDirectoryNode" />
+              <item name="share" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
@@ -504,12 +362,18 @@
               <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myfog" type="462c0819:PsiDirectoryNode" />
               <item name="src" type="462c0819:PsiDirectoryNode" />
-              <item name="mininet" type="462c0819:PsiDirectoryNode" />
+              <item name="fogbed" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
               <item name="myfog" type="462c0819:PsiDirectoryNode" />
               <item name="util" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="myfog" type="b2602c69:ProjectViewProjectNode" />
+              <item name="myfog" type="462c0819:PsiDirectoryNode" />
+              <item name="util" type="462c0819:PsiDirectoryNode" />
+              <item name="docker" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -587,21 +451,21 @@
     <frame x="67" y="25" width="1853" height="1055" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4986945" visible="true" weight="0.17985612" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4986945" visible="true" weight="0.18206973" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" sideWeight="0.50130546" side_tool="true" weight="0.18869309" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" weight="0.32972974" />
+      <window_info anchor="bottom" id="Run" order="2" visible="true" weight="0.32972974" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" />
+      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32972974" />
       <window_info anchor="bottom" id="Database Changes" order="9" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Python Console" order="10" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4992658" visible="true" weight="0.33405405" />
+      <window_info anchor="bottom" id="Python Console" order="10" weight="0.32972974" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4992658" weight="0.33297297" />
       <window_info anchor="bottom" id="Event Log" order="12" sideWeight="0.5007342" side_tool="true" weight="0.4068323" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -616,197 +480,93 @@
   <component name="UnknownFeatures">
     <option featureType="com.intellij.fileTypeFactory" implementationName="*.log" />
   </component>
+  <component name="Vcs.Log.History.Properties">
+    <option name="COLUMN_ORDER">
+      <list>
+        <option value="0" />
+        <option value="2" />
+        <option value="3" />
+        <option value="1" />
+      </list>
+    </option>
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State>
+              <option name="RECENTLY_FILTERED_USER_GROUPS">
+                <collection />
+              </option>
+              <option name="RECENTLY_FILTERED_BRANCH_GROUPS">
+                <collection />
+              </option>
+              <option name="FILTERS">
+                <map>
+                  <entry key="text">
+                    <value>
+                      <list>
+                        <option value="mtu" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+              <option name="COLUMN_ORDER">
+                <list>
+                  <option value="0" />
+                  <option value="1" />
+                  <option value="2" />
+                  <option value="3" />
+                </list>
+              </option>
+            </State>
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/Makefile">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/_build/.buildinfo" />
-    <entry file="file://$PROJECT_DIR$/docs/_build/genindex.html" />
-    <entry file="file://$PROJECT_DIR$/docs/_build/index.html" />
-    <entry file="file://$PROJECT_DIR$/docs/_build/search.html" />
-    <entry file="file://$PROJECT_DIR$/docs/_build/searchindex.js" />
-    <entry file="file://$PROJECT_DIR$/docs/_build/html/genindex.html">
+    <entry file="file://$PROJECT_DIR$/examples/baresshd.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1845" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1200">
-          <caret line="80" column="29" selection-start-line="80" selection-start-column="29" selection-end-line="80" selection-end-column="29" />
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/test.rst" />
-    <entry file="file://$PROJECT_DIR$/docs/install.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/getstarted.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/sch_htb-ofbuf/sch_htb.c">
+    <entry file="file://$PROJECT_DIR$/examples/clustercli.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-11610" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Dockerfile">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="34" column="28" selection-start-line="34" selection-start-column="28" selection-end-line="34" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/virtual_instance_example.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="9">
-          <caret line="10" column="16" selection-start-line="10" selection-start-column="16" selection-end-line="10" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/index.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/intro.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/test/test_containernet.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="14" selection-start-line="7" selection-start-column="14" selection-end-line="7" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/moduledeps.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="435">
-          <caret line="31" column="30" selection-start-line="31" selection-start-column="30" selection-end-line="31" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/net.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="387" column="52" selection-start-line="387" selection-start-column="52" selection-end-line="387" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/node.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="1061" column="72" selection-start-line="1061" selection-start-column="72" selection-end-line="1061" selection-end-column="72" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/nodelib.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="559">
-          <caret line="113" column="7" selection-start-line="113" selection-start-column="7" selection-end-line="113" selection-end-column="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/resourcemodel.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="145" column="27" selection-start-line="145" selection-start-column="27" selection-end-line="145" selection-end-column="27" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/term.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/topo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="142" column="28" lean-forward="true" selection-start-line="142" selection-start-column="28" selection-end-line="142" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/topolib.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/util.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-360" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/clean.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="345">
-          <caret line="23" column="37" selection-start-line="23" selection-start-column="37" selection-end-line="23" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/cli.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="40" column="14" selection-start-line="40" selection-start-column="14" selection-end-line="40" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/link.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="325">
-          <caret line="525" column="37" selection-start-line="525" selection-start-column="37" selection-end-line="525" selection-end-column="37" />
+        <state relative-caret-position="60">
+          <caret line="4" lean-forward="true" selection-start-line="4" selection-end-line="4" />
           <folding>
-            <element signature="e#691#700#0" expanded="true" />
+            <element signature="e#69#100#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/log.py">
+    <entry file="file://$PROJECT_DIR$/bin/mn">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="904">
-          <caret line="170" selection-start-line="170" selection-end-line="170" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/bind.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="36" selection-start-line="36" selection-end-line="36" />
+        <state relative-caret-position="-1440">
+          <caret line="42" selection-start-line="42" selection-end-line="42" />
           <folding>
-            <element signature="e#1389#1424#0" expanded="true" />
+            <element signature="e#243#252#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/examples/cluster.py">
+    <entry file="file://$PROJECT_DIR$/LICENSE">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/tools.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="150">
-          <caret line="82" column="35" selection-start-line="82" selection-start-column="35" selection-end-line="82" selection-end-column="35" />
+        <state relative-caret-position="2040">
+          <caret line="148" column="36" selection-start-line="148" selection-start-column="36" selection-end-line="148" selection-end-column="36" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ansible/install.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ansible/install_centos.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ansible/install_docker.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/ansible/install_metis.yml">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/versioncheck.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" column="19" selection-start-line="3" selection-start-column="19" selection-end-line="3" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/doxify.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/container.py">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/cli.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -818,57 +578,298 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/container.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file:///usr/lib/python2.7/ConfigParser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="326" column="37" selection-start-line="326" selection-start-column="37" selection-end-line="326" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/libvirt.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
+    <entry file="file://$PROJECT_DIR$/share/MaxiNet-cfg-sample">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="17" lean-forward="true" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/FrontendServer/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="212" column="20" selection-start-line="212" selection-start-column="20" selection-end-line="212" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/filetransfer.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-60">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
+          <folding>
+            <element signature="e#367#384#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/health_care.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="265">
+          <caret line="69" column="22" selection-start-line="69" selection-start-column="22" selection-end-line="69" selection-end-column="22" />
+          <folding>
+            <element signature="e#83#94#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/libvirtNodeWrapper.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/linkUpDown.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/monitoring.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/nodeWrapperTest.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/openflow13.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/shell.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/simplePing.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/sshd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-80" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/static_mapping.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-95" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/sync_file.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="20" column="27" selection-start-line="20" selection-start-column="27" selection-end-line="20" selection-end-column="27" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/dockerNodeWrapper.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="60">
+          <caret line="4" column="35" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/util.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="188">
+          <caret line="440" column="4" selection-start-line="440" selection-start-column="4" selection-end-line="440" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/dynamicTopology.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="230">
+          <caret line="46" column="12" selection-start-line="46" selection-start-column="12" selection-end-line="46" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/resourcemodel.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2340">
+          <caret line="156" lean-forward="true" selection-start-line="156" selection-end-line="156" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/partitioner.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="263">
+          <caret line="159" column="13" selection-start-line="159" selection-start-column="13" selection-end-line="159" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/maxinet/WorkerServer/server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="309" column="39" selection-start-line="309" selection-start-column="39" selection-end-line="309" selection-end-column="39" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/maxinet_main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="42" column="41" selection-start-line="42" selection-start-column="41" selection-end-line="42" selection-end-column="41" />
+        <state relative-caret-position="15">
+          <caret line="30" selection-start-line="30" selection-end-line="30" />
+          <folding>
+            <element signature="e#1084#1097#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/maxinet/Scripts/create_tunnel.sh">
+    <entry file="file://$PROJECT_DIR$/examples/cluster.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="759" column="8" selection-start-line="759" selection-start-column="8" selection-end-line="759" selection-end-column="8" />
+          <folding>
+            <element signature="e#2177#2239#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/topo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="180">
+          <caret line="12" lean-forward="true" selection-start-line="12" selection-end-line="12" />
+          <folding>
+            <element signature="e#326#378#0" expanded="true" />
+            <marker date="1537231127816" expanded="true" signature="12937:13191" ph="..." />
+            <marker date="1537231127816" expanded="true" signature="13270:13271" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/cli.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="47" column="8" selection-start-line="47" selection-start-column="8" selection-end-line="47" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/link.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="358">
+          <caret line="531" column="33" selection-start-line="531" selection-start-column="30" selection-end-line="531" selection-end-column="33" />
+          <folding>
+            <element signature="e#691#700#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/mininet/net.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="342" column="24" selection-start-line="342" selection-start-column="24" selection-end-line="342" selection-end-column="24" />
+          <folding>
+            <element signature="e#3584#3593#0" expanded="true" />
+            <marker date="1537232794225" expanded="true" signature="13440:13446" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/docker/entrypoint.sh">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/bin/clear_crash.sh">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/examples/virtual_instance_example.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="385">
+          <caret line="87" lean-forward="true" selection-start-line="87" selection-end-line="87" />
+          <folding>
+            <element signature="e#78#89#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/examples/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
+    <entry file="file://$PROJECT_DIR$/src/fogbed/experiment.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="585">
+          <caret line="39" column="31" selection-start-line="39" selection-start-column="31" selection-end-line="39" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#65#0" expanded="true" />
+            <marker date="1537241556070" expanded="true" signature="291:1177" ph="..." />
+            <marker date="1537241556070" expanded="true" signature="1209:1543" ph="..." />
+            <marker date="1537241556070" expanded="true" signature="1286:1543" ph="..." />
+            <marker date="1537241556070" expanded="true" signature="1457:1501" ph="..." />
+          </folding>
+        </state>
+      </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/mininet/__init__.py">
+    <entry file="file://$PROJECT_DIR$/src/maxinet/Frontend/examples/dockerSimplePing.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
-          <caret line="1" column="21" selection-start-line="1" selection-start-column="21" selection-end-line="1" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/examples/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/bin/mn">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="555">
-          <caret line="45" column="13" selection-start-line="45" selection-start-column="13" selection-end-line="45" selection-end-column="13" />
+          <caret line="13" column="25" selection-start-line="13" selection-start-column="25" selection-end-line="13" selection-end-column="25" />
           <folding>
-            <element signature="e#243#252#0" expanded="true" />
+            <element signature="e#88#99#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
+    <entry file="file://$PROJECT_DIR$/src/mininet/node.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="309">
-          <caret line="53" column="9" selection-start-line="53" selection-start-column="9" selection-end-line="53" selection-end-column="9" />
+        <state relative-caret-position="-157">
+          <caret line="786" column="49" selection-start-line="786" selection-start-column="49" selection-end-line="786" selection-end-column="49" />
           <folding>
-            <element signature="e#44#87#0" expanded="true" />
+            <element signature="e#1836#1847#0" expanded="true" />
+            <marker date="1537241342133" expanded="true" signature="25333:25339" ph="..." />
           </folding>
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/INSTALL">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" selection-start-line="6" selection-end-line="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="285">
+            <caret line="44" selection-start-line="44" selection-end-line="44" />
+          </first_editor>
+          <second_editor />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/docker/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Dockerfile">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible/install.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" column="51" selection-start-line="20" selection-start-column="51" selection-end-line="20" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible/install_centos.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="415">
+          <caret line="58" column="46" selection-start-line="58" selection-start-column="46" selection-end-line="58" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible/install_docker.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ansible/install_metis.yml">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/install.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/getstarted.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
 </project>

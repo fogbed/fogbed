@@ -28,8 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Installation" href="install.html" />
-    <link rel="prev" title="Welcome to Fogbed’s documentation!" href="index.html" /> 
+    <link rel="prev" title="Installation" href="install.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,10 +79,11 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Getting Started</a><ul class="simple">
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="install.html">Installation</a></li>
 </ul>
 
             
@@ -232,6 +232,48 @@ source files for one Sphinx project</dd>
 </tr>
 </tbody>
 </table>
+<p>There are two ways to get started using MaxiNet: Using our preconfigured Virtual Machine Images or installing from scratch.
+For starters, we recommend to use our preconfigured Virtual Machine Images. When performance matters, MaxiNet should definitively be used on non-virtualized machines.</p>
+<p>Download these two Virtual Machine images:
+[MaxiNet-1.0-rc1.ova] MD5 (MaxiNet-1.0-rc1.ova) = 6dfc4546bd48bc727861b0ad51ecf2ca</p>
+<p>The username for both machines is maxinet with the password maxinet.</p>
+<p>The file MaxiNet-1.0-rc1.ova contains two virtual machine images: worker1 and worker 2.
+You need a program like Virtual Box to run them on your computer.</p>
+<p>Start each virtual machine on a dedicated physical machine and make sure the virtual machines can reach each other. For testing purposes both virtual machines can also run on the same physical machine.
+The virtual machines are using the IP addresses 192.168.0.1 and 192.168.0.2 on the interface eth0. Make sure both machines can reach each other.
+To start the emulation process, login into worker1 and cd to /home/maxinet/maxinet/Frontend/examples/
+Specify the OpenFlow controller by editing the file /etc/MaxiNet.cfg. You have to change the line
+controller = “192.168.0.1:6633” # default controller
+to point to the IP address of your OpenFlow controller. Make sure the controller is reachable from both worker1 and worker2.
+You can also start a pox controller at worker1 by invoking the commands:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">maxinet@worker1:~$</span> <span class="nb">cd</span> pox
+<span class="gp">maxinet@worker1:~/pox$</span> screen -d -m -S PoxScr ./pox.py forwarding.l2_learning
+</pre></div>
+</div>
+<p>Before any MaxiNet expepriment can be executed, you first need to start the MaxiNetFrontendServer and the MaxiNetWorkerServers. To this end, on worker1, execute the following commands to start both the Frontend and a Worker:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">maxinet@worker1:~$</span> screen -d -m -S MaxiNetFrontend MaxiNetFrontendServer
+<span class="gp">maxinet@worker1:~$</span> screen -d -m -S MaxiNetWorker sudo MaxiNetWorker
+</pre></div>
+</div>
+<p>and on worker2, execute the following to start a second Worker:</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">maxinet@worker2:~$</span> sudo screen -d -m -S MaxiNetWorker MaxiNetWorker
+</pre></div>
+</div>
+<p>Until now, we have a running Frontend server with two connected Workers. You can check the status of the MaxiNet cluster with the command MaxiNetStatus</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">maxinet@worker2:~$</span> MaxiNetStatus
+<span class="go">MaxiNet Frontend server running at 192.168.0.1</span>
+<span class="go">Number of connected workers: 2</span>
+<span class="go">--------------------------------</span>
+<span class="go">worker1             free</span>
+<span class="go">worker2             free</span>
+</pre></div>
+</div>
+<p>As you can see, the cluster has two workers which are currently not allocated to an experiment.</p>
+<p>You can now start the simplePing example as user maxinet.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">maxinet@worker1:~/maxinet/Frontend/examples$</span> python simplePing.py
+</pre></div>
+</div>
+<p>You can find even more examples under ~/maxinet/Frontend/examples.</p>
 <div class="toctree-wrapper compound">
 </div>
 </div>
@@ -244,10 +286,8 @@ source files for one Sphinx project</dd>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="install.html" class="btn btn-neutral float-right" title="Installation" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-      
-        <a href="index.html" class="btn btn-neutral" title="Welcome to Fogbed’s documentation!" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="install.html" class="btn btn-neutral" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

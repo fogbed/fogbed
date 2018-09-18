@@ -28,7 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="prev" title="Getting Started" href="getstarted.html" /> 
+    <link rel="next" title="Getting Started" href="getstarted.html" />
+    <link rel="prev" title="Introduction" href="intro.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -79,10 +80,15 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
-<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Getting Started</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul class="simple">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Installation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#bare-metal-installation">Bare-metal installation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#nested-docker-deployment">Nested Docker deployment</a><ul class="simple">
 </ul>
 </li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getstarted.html">Getting Started</a></li>
 </ul>
 
             
@@ -149,8 +155,41 @@
             
   <div class="section" id="installation">
 <h1>Installation<a class="headerlink" href="#installation" title="Permalink to this headline">¶</a></h1>
-<p>How to install fogbed</p>
+<p>Fogbed comes with two installation and deployment options.</p>
+<div class="section" id="bare-metal-installation">
+<h2>Bare-metal installation<a class="headerlink" href="#bare-metal-installation" title="Permalink to this headline">¶</a></h2>
+<p>Automatic installation is provided through an Ansible playbook.</p>
+<ul class="simple">
+<li>Requires: at least Ubuntu <strong>16.04 LTS</strong></li>
+</ul>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$</span> sudo apt-get install ansible git aptitude
+<span class="gp">$</span> git clone https://github.com/fogbed/fogbed.git
+<span class="gp">$</span> <span class="nb">cd</span> fogbed/ansible
+<span class="gp">$</span> sudo ansible-playbook -i <span class="s2">&quot;localhost,&quot;</span> -c <span class="nb">local</span> install_metis.yml
+<span class="gp">$</span> sudo ansible-playbook -i <span class="s2">&quot;localhost,&quot;</span> -c <span class="nb">local</span> install_docker.yml
+<span class="gp">$</span> sudo ansible-playbook -i <span class="s2">&quot;localhost,&quot;</span> -c <span class="nb">local</span> --skip-tags <span class="s2">&quot;notindocker&quot;</span> install.yml
+</pre></div>
+</div>
+</div>
+<div class="section" id="nested-docker-deployment">
+<h2>Nested Docker deployment<a class="headerlink" href="#nested-docker-deployment" title="Permalink to this headline">¶</a></h2>
+<p>Fogbed can be executed within a privileged Docker container
+(nested container deployment).
+There is also a pre-build Docker image available on <a class="reference external" href="https://hub.docker.com/r/fogbed/fogbed/">DockerHub</a>.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> build the container locally
+<span class="gp">$</span> docker build -t fogbed .
+
+<span class="gp">#</span> or pull the latest pre-built container
+<span class="gp">$</span> docker pull fogbed/fogbed
+</pre></div>
+</div>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">#</span> run the container
+<span class="gp">$</span> docker run --name fogbed -it --rm --privileged --pid<span class="o">=</span><span class="s1">&#39;host&#39;</span> -v /var/run/docker.sock:/var/run/docker.sock fogbed /bin/bash
+</pre></div>
+</div>
+<p>Good luck!</p>
 <div class="toctree-wrapper compound">
+</div>
 </div>
 </div>
 
@@ -162,8 +201,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
+        <a href="getstarted.html" class="btn btn-neutral float-right" title="Getting Started" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
-        <a href="getstarted.html" class="btn btn-neutral" title="Getting Started" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+        <a href="intro.html" class="btn btn-neutral" title="Introduction" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

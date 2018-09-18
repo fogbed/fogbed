@@ -295,8 +295,10 @@ class MininetManager(object):
         self.net = None
 
     @Pyro4.expose
-    def create_mininet(self, topo, tunnels=[],  switch=UserSwitch,
-                       controller=None, STT=False):
+    def create_mininet(self, topo, tunnels=None,  switch=UserSwitch,
+                       controller=None, STT=False, mininet_cls=Mininet):
+
+        tunnels = tunnels if tunnels else []
         if(not self.net is None):
             self.logger.warn("running mininet instance detected!\
                               Shutting it down...")
@@ -305,10 +307,10 @@ class MininetManager(object):
         self.logger.info("Creating mininet instance")
         try:
             if controller:
-                self.net = Mininet(topo=topo, intf=TCIntf, link=TCLinkParams,
+                self.net = mininet_cls(topo=topo, intf=TCIntf, link=TCLinkParams,
                                    switch=switch, controller=controller)
             else:
-                self.net = Mininet(topo=topo, intf=TCIntf, link=TCLinkParams,
+                self.net = mininet_cls(topo=topo, intf=TCIntf, link=TCLinkParams,
                                    switch=switch)
         except Exception, e:
             self.logger.error("Failed to create mininet instance: %s" % traceback.format_exc())
@@ -332,7 +334,7 @@ class MininetManager(object):
                 del tunnel[2]["cls"]
             self.addTunnel(tunnel[0], tunnel[1], port, cls, STT=STT, **tunnel[2])
         if not STT:
-            self.logger.info("Starting Mininet...")
+            self.logger.info("Starting {}...".format(mininet_cls.__name__))
             self.net.start()
         self.logger.info("Startup complete.")
         self.x11popens = []

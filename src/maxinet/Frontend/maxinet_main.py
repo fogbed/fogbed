@@ -32,24 +32,24 @@ import atexit
 import functools
 import logging
 import random
-import re
 import subprocess
 import sys
+import threading
 import time
 import warnings
-import threading
 
-from src.mininet.node import RemoteController, UserSwitch
-from src.mininet.link import TCIntf, Intf, Link, TCLink
 import Pyro4
 
 from src.maxinet.Frontend.cli import CLI
-from src.maxinet.tools import Tools, MaxiNetConfig, SSH_Tool
 from src.maxinet.Frontend.partitioner import Partitioner
-
+from src.maxinet.tools import Tools, MaxiNetConfig, SSH_Tool
+from src.mininet.link import TCIntf, Intf, Link, TCLink
+from src.mininet.net import Mininet
+from src.mininet.node import RemoteController, UserSwitch
 
 logger = logging.getLogger(__name__)
 sys.excepthook = Pyro4.util.excepthook
+
 
 # the following block is to support deprecation warnings. this is really
 # not solved nicely and should probably be somewhere else
@@ -68,6 +68,7 @@ def deprecated(func):
             filename=func.func_code.co_filename,
             lineno=func.func_code.co_firstlineno + 1)
         return func(*args, **kwargs)
+
     return new_func
 
 
@@ -102,7 +103,6 @@ def run_cmd_shell(cmd):
 
 
 class Worker(object):
-
     """Worker class used to manage an individual Worker host.
 
     A Worker is part of a Cluster and runs a part of the emulated
@@ -125,14 +125,14 @@ class Worker(object):
     def __init__(self, nameserver, pyroname, pyropw, sshtool, switch=UserSwitch):
         """Init Worker class."""
         self.server = Pyro4.Proxy(nameserver.lookup(pyroname))
-        self.server._pyroHmacKey=pyropw
-        self.mininet = Pyro4.Proxy(nameserver.lookup(pyroname+".mnManager"))
-        self.mininet._pyroHmacKey=pyropw
-        self.ssh = Pyro4.Proxy(nameserver.lookup(pyroname+".sshManager"))
-        self.ssh._pyroHmacKey=pyropw
+        self.server._pyroHmacKey = pyropw
+        self.mininet = Pyro4.Proxy(nameserver.lookup(pyroname + ".mnManager"))
+        self.mininet._pyroHmacKey = pyropw
+        self.ssh = Pyro4.Proxy(nameserver.lookup(pyroname + ".sshManager"))
+        self.ssh._pyroHmacKey = pyropw
         self.config = Pyro4.Proxy(nameserver.lookup("config"))
-        self.config._pyroHmacKey=pyropw
-        if(not self.config.run_with_1500_mtu()):
+        self.config._pyroHmacKey = pyropw
+        if (not self.config.run_with_1500_mtu()):
             self._fix_mtus()
         self.switch = switch
         self.sshtool = sshtool
@@ -146,7 +146,6 @@ class Worker(object):
         k = self.sshtool.get_pub_ssh_key()
         self.ssh.add_key(k)
 
-
     def hn(self):
         """Get hostname of worker machine."""
         return self.server.get_hostname()
@@ -154,7 +153,6 @@ class Worker(object):
     def set_switch(self, switch):
         """Set default switch class."""
         self.switch = switch
-
 
     def configLinkStatus(self, src, dst, status):
         """Wrapper for configLinkStatus method on remote mininet.
@@ -169,7 +167,6 @@ class Worker(object):
         """
         self.mininet.configLinkStatus(src, dst, status)
 
-
     def ip(self, classifier=None):
         """Get public ip adress of worker machine.
 
@@ -179,8 +176,7 @@ class Worker(object):
         """
         return self.config.get_worker_ip(self.hn(), classifier)
 
-
-    def start(self, topo, tunnels, controller=None):
+    def start(self, topo, tunnels, controller=None, cls=Mininet):
         """Start mininet instance on worker machine.
 
         Start mininet emulating the in  argument topo specified topology.
@@ -198,11 +194,12 @@ class Worker(object):
         if controller:
             self.mininet.create_mininet(topo=topo, tunnels=tunnels,
                                         controller=controller,
-                                        switch=self.switch, STT=STT)
+                                        switch=self.switch, STT=STT,
+                                        mininet_cls=cls)
         else:
             self.mininet.create_mininet(topo=topo, tunnels=tunnels,
-                                        switch=self.switch, STT=STT)
-
+                                        switch=self.switch, STT=STT,
+                                        mininet_cls=cls)
 
     def daemonize(self, cmd):
         """run command in background and terminate when MaxiNet is shut
@@ -219,7 +216,6 @@ class Worker(object):
         """
         self.server.daemonize_script(script, args)
 
-
     def tunnelX11(self, node):
         """Create X11 tunnel from Frontend to node on worker to make
         x-forwarding work.
@@ -233,18 +229,17 @@ class Worker(object):
         Returns:
             boolean whether tunnel was successfully created.
         """
-        if(not node in self._x11tunnels):
+        if (not node in self._x11tunnels):
             try:
                 display = subprocess.check_output(
-                            self.sshtool.get_ssh_cmd(targethostname=self.hn(),
-                                                     cmd="env | grep DISPLAY",
-                                                     opts=["-Y"]))[8:]
+                    self.sshtool.get_ssh_cmd(targethostname=self.hn(),
+                                             cmd="env | grep DISPLAY",
+                                             opts=["-Y"]))[8:]
                 self.mininet.tunnelX11(node, display)
                 self._x11tunnels.append(node)
             except subprocess.CalledProcessError:
                 return False
         return True
-
 
     def run_cmd_on_host(self, host, cmd):
         """Run cmd in context of host and return output.
@@ -258,7 +253,6 @@ class Worker(object):
         """
         return self.mininet.runCmdOnHost(host, cmd)
 
-
     def run_cmd(self, cmd):
         """run cmd on worker machine and return output.
 
@@ -270,7 +264,6 @@ class Worker(object):
         """
         return self.server.check_output(cmd)
 
-
     def run_script(self, cmd):
         """Run MaxiNet script on worker machine and return output.
 
@@ -281,7 +274,6 @@ class Worker(object):
             Stdout of program call.
         """
         return self.server.script_check_output(cmd)
-
 
     def rpc(self, host, cmd, *params1, **params2):
         """Do rpc call to mininet node.
@@ -302,7 +294,6 @@ class Worker(object):
         """
         return self.mininet.rpc(host, cmd, *params1, **params2)
 
-
     def rattr(self, host, name):
         """Get attributes of mininet node.
 
@@ -318,7 +309,6 @@ class Worker(object):
                      crash.
         """
         return self.mininet.attr(host, name)
-
 
     def _fix_mtus(self):
         """If mtu of Worker is lower than 1600 set it to 1600.
@@ -345,7 +335,7 @@ class Worker(object):
 
         mtu = int(self.run_cmd("ip li show dev " + intf +
                                " | head -n1 | cut -d ' ' -f5"))
-        if(mtu < 1600):
+        if (mtu < 1600):
             self.run_cmd("ip li se dev " + intf + " mtu 1600")
 
     def stop(self):
@@ -429,7 +419,6 @@ class Worker(object):
         """
         return self.mininet.addHost(name, cls, **params)
 
-
     def addSwitch(self, name, cls=None, **params):
         """Add switch at runtime.
 
@@ -445,7 +434,6 @@ class Worker(object):
             nodename
         """
         return self.mininet.addSwitch(name, cls, **params)
-
 
     def addController(self, name="c0", controller=None, **params):
         """Add controller at runtime.
@@ -463,7 +451,6 @@ class Worker(object):
         """
         return self.mininet.addHost(name, controller, **params)
 
-
     def addTunnel(self, name, switch, port, intf, **params):
         """Add tunnel at runtime.
 
@@ -477,7 +464,6 @@ class Worker(object):
             intf: Intf class to use when creating the tunnel.
         """
         self.mininet.addTunnel(name, switch, port, intf, **params)
-
 
     def addLink(self, node1, node2, port1=None, port2=None,
                 cls=None, **params):
@@ -609,26 +595,26 @@ class Cluster(object):
         self.logger = logging.getLogger(__name__)
         self.tunhelper = TunHelper()
         self.config = MaxiNetConfig()
-        if(ip is None):
+        if (ip is None):
             ip = self.config.get_nameserver_ip()
-        if(port is None):
+        if (port is None):
             port = self.config.get_nameserver_port()
-        if(password is None):
+        if (password is None):
             password = self.config.get_nameserver_password()
         self.nameserver = Pyro4.locateNS(host=ip, port=port, hmac_key=password)
         self.config = Pyro4.Proxy(self.nameserver.lookup("config"))
-        self.config._pyroHmacKey=password
+        self.config._pyroHmacKey = password
         self.manager = Pyro4.Proxy(self.nameserver.lookup("MaxiNetManager"))
-        self.manager._pyroHmacKey=password
+        self.manager._pyroHmacKey = password
         self.sshtool = SSH_Tool(self.config)
-        self.hostname_to_worker={}
+        self.hostname_to_worker = {}
         self._create_ident()
         logging.basicConfig(level=self.config.get_loglevel())
         self.hosts = []
         self.worker = []
         atexit.register(self._stop)
 
-        #register this Cluster to the nameserver as key self.ident:
+        # register this Cluster to the nameserver as key self.ident:
         myIP = subprocess.check_output("ip route get %s | cut -d' ' -f1" % ip, shell=True)
         if (myIP.strip() == "local"):
             myIP = "127.0.0.1"
@@ -636,22 +622,22 @@ class Cluster(object):
             myIP = subprocess.check_output("ip route get %s" % ip, shell=True).split("src")[1].split()[0]
 
         self._pyrodaemon = Pyro4.Daemon(host=myIP)
-        self._pyrodaemon._pyroHmacKey=password
+        self._pyrodaemon._pyroHmacKey = password
         uri = self._pyrodaemon.register(self)
         self.nameserver.register(self.ident, uri)
         self._pyro_daemon_thread = threading.Thread(target=self._pyrodaemon.requestLoop)
         self._pyro_daemon_thread.daemon = True
         self._pyro_daemon_thread.start()
 
-        if(maxWorkers == None):
+        if (maxWorkers == None):
             self.add_workers()
         else:
-            for i in range(0,maxWorkers):
+            for i in range(0, maxWorkers):
                 self.add_worker()
 
         if ((minWorkers != None) and (self.num_workers() < minWorkers)):
-            raise Exception("Not enough free workers to run this experiment (got %s, required %s). " % (self.num_workers(), minWorkers))
-
+            raise Exception("Not enough free workers to run this experiment (got %s, required %s). " % (
+            self.num_workers(), minWorkers))
 
     def _create_ident(self):
         """Create and register identifier to use when communicating with the
@@ -701,7 +687,7 @@ class Cluster(object):
             True if worker was successfully added, False if not.
         """
         pyname = self.manager.reserve_worker(hostname, self.ident)
-        if(pyname):
+        if (pyname):
             self.worker.append(Worker(self.nameserver, pyname, self.config.get_nameserver_password(), self.sshtool))
             self.hostname_to_worker[hostname] = self.worker[-1]
             self.logger.info("added worker %s" % hostname)
@@ -723,7 +709,7 @@ class Cluster(object):
         """
         hns = self.get_available_workers().keys()
         for hn in hns:
-            if(self.add_worker_by_hostname(hn)):
+            if (self.add_worker_by_hostname(hn)):
                 return True
         return False
 
@@ -752,7 +738,7 @@ class Cluster(object):
         Args:
             worker: hostname or Worker instance of Worker to remove.
         """
-        if(not isinstance(worker, Worker)):
+        if (not isinstance(worker, Worker)):
             worker = self.hostname_to_worker[worker]
         del self.hostname_to_worker[worker.hn()]
         self.worker.remove(worker)
@@ -768,7 +754,7 @@ class Cluster(object):
         Removes all Workers from the Cluster and makes them available for other
         Cluster instances on the FrontendServer.
         """
-        while(len(self.worker) > 0):
+        while (len(self.worker) > 0):
             self.remove_worker(self.worker[0])
 
     def _stop(self):
@@ -783,8 +769,6 @@ class Cluster(object):
         self.nameserver.remove(self.ident)
         self._pyrodaemon.unregister(self)
         self._pyrodaemon.shutdown()
-
-
 
     @Pyro4.expose
     def num_workers(self):
@@ -829,16 +813,16 @@ class Cluster(object):
         intf = "mn_tun" + str(tid)
         ip1 = w1.ip(classifier="backend")
         ip2 = w2.ip(classifier="backend")
-        #use multiple IP addresses for the workers:
-        #modern NICs have multiple queues with own IRQs. This is called RSS. The queue a packet is enqueued in is determined by a hashing algorithm using the IP headers.
-        #unfortunatelly, most RSS implementations ignore the GRE headers.
-        #on GRE, most RSS hashing algorithms only use src-dest IP addresses to assign packets to queues which makes is necessary to provide multiple IP combinations per worker pair
-        #otherwise, all packets between a pair of workers would be assigned to the same queue.
+        # use multiple IP addresses for the workers:
+        # modern NICs have multiple queues with own IRQs. This is called RSS. The queue a packet is enqueued in is determined by a hashing algorithm using the IP headers.
+        # unfortunatelly, most RSS implementations ignore the GRE headers.
+        # on GRE, most RSS hashing algorithms only use src-dest IP addresses to assign packets to queues which makes is necessary to provide multiple IP combinations per worker pair
+        # otherwise, all packets between a pair of workers would be assigned to the same queue.
         if self.config.getint("all", "useMultipleIPs") > 1:
             ip1_int = [int(a) for a in ip1.split(".")]
             ip2_int = [int(a) for a in ip2.split(".")]
-            ip1_int[3] += random.randint(0, self.config.getint("all", "useMultipleIPs")-1)
-            ip2_int[3] += random.randint(0, self.config.getint("all", "useMultipleIPs")-1)
+            ip1_int[3] += random.randint(0, self.config.getint("all", "useMultipleIPs") - 1)
+            ip2_int[3] += random.randint(0, self.config.getint("all", "useMultipleIPs") - 1)
             ip1 = "%d.%d.%d.%d" % tuple(ip1_int)
             ip2 = "%d.%d.%d.%d" % tuple(ip2_int)
         return (ip1, ip2, tid, tkey, intf)
@@ -873,7 +857,7 @@ class Cluster(object):
         """Shut down all tunnels on all workers."""
         for worker in self.workers():
             worker.run_script("delete_tunnels.sh")
-        #replace tunhelper instance as tunnel names/keys can be reused now.
+        # replace tunhelper instance as tunnel names/keys can be reused now.
         self.tunhelper = TunHelper()
 
 
@@ -912,9 +896,11 @@ class Experiment(object):
         workerid_to_hostname: dict to map workerids to hostnames of workers to
             worker ids.
     """
+
     def __init__(self, cluster, topology, controller=None,
                  is_partitioned=False, switch=UserSwitch,
-                 nodemapping=None, hostnamemapping=None, sharemapping=None):
+                 nodemapping=None, hostnamemapping=None, sharemapping=None,
+                 mininet_cls=Mininet):
         """Inits Experiment.
 
         Args:
@@ -948,6 +934,7 @@ class Experiment(object):
         self.starttime = time.localtime()
         self._printed_log_info = False
         self.isMonitoring = False
+        self.mininet_cls = mininet_cls
         self.shares = sharemapping
         self.nodemapping = nodemapping
         if is_partitioned:
@@ -956,10 +943,10 @@ class Experiment(object):
             self.origtopology = topology
         self.node_to_worker = {}
         self.node_to_wrapper = {}
-        if(self.is_valid_hostname_mapping(hostnamemapping)):
+        if (self.is_valid_hostname_mapping(hostnamemapping)):
             self.hostname_to_workerid = hostnamemapping
         else:
-            if(not hostnamemapping is None):
+            if (not hostnamemapping is None):
                 self.logger.error("invalid hostnamemapping!")
             self.hostname_to_workerid = self.generate_hostname_mapping()
         self.workerid_to_hostname = {}
@@ -986,20 +973,20 @@ class Experiment(object):
     def _update_shares(self):
         """helper function which reads workload shares per worker from
         config file. Has no effect if shares are already configured"""
-        if(self.shares is None):
+        if (self.shares is None):
             ts = [1] * self.cluster.num_workers()
             for i in range(0, self.cluster.num_workers()):
-                if(self._get_config_share(i)):
+                if (self._get_config_share(i)):
                     ts[i] = self._get_config_share(i)
             s = sum(ts)
             self.shares = []
             for i in range(0, self.cluster.num_workers()):
-                self.shares.append(float(ts[i])/float(s))
+                self.shares.append(float(ts[i]) / float(s))
 
     def _get_config_share(self, wid):
         """get workload share of worker with worker id wid"""
         hn = self.workerid_to_hostname[wid]
-        if(self.config.has_section(hn) and self.config.has_option(hn, "share")):
+        if (self.config.has_section(hn) and self.config.has_option(hn, "share")):
             return self.config.getint(hn, "share")
         return None
 
@@ -1016,12 +1003,12 @@ class Experiment(object):
         """checks whether hostname -> workerid mappign is valid
         (every worker has exactly one workerid, workerids are contiguos from 0
         upwards)"""
-        if(d is None):
+        if (d is None):
             return False
-        if(len(d) != len(self.cluster.workers())):
+        if (len(d) != len(self.cluster.workers())):
             return False
         for w in self.cluster.workers():
-            if(not w.hn() in d.keys()):
+            if (not w.hn() in d.keys()):
                 return False
         for i in range(0, len(self.cluster.workers())):
             if (d.values().count(i) != 1):
@@ -1040,7 +1027,7 @@ class Experiment(object):
        """
         ws = self.get_worker(src)
         wd = self.get_worker(dst)
-        if(ws == wd):
+        if (ws == wd):
             # src and dst are on same worker. let mininet handle this
             ws.configLinkStatus(src, dst, status)
         else:
@@ -1073,7 +1060,7 @@ class Experiment(object):
         Returns:
             Worker instance
         """
-        if(isinstance(node, NodeWrapper)):
+        if (isinstance(node, NodeWrapper)):
             return node.worker
         return self.node_to_worker[node]
 
@@ -1083,7 +1070,7 @@ class Experiment(object):
         Returns:
             Logfile folder as String.
         """
-        return "/tmp/maxinet_logs/" + Tools.time_to_string(self.starttime) +\
+        return "/tmp/maxinet_logs/" + Tools.time_to_string(self.starttime) + \
                "/"
 
     def terminate_logging(self):
@@ -1091,26 +1078,26 @@ class Experiment(object):
         for worker in self.cluster.workers():
             worker.run_cmd("killall mpstat getRxTx.sh getMemoryUsage.sh")
 
-            #get CPU logs
+            # get CPU logs
             worker.get_file("/tmp/maxinet_cpu_" +
-                        str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
-                        "/tmp/maxinet_logs/" +
-                        Tools.time_to_string(self.starttime) + "/")
-            #get memory logs
+                            str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
+                            "/tmp/maxinet_logs/" +
+                            Tools.time_to_string(self.starttime) + "/")
+            # get memory logs
             worker.get_file("/tmp/maxinet_mem_" +
                             str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
                             "/tmp/maxinet_logs/" +
                             Tools.time_to_string(self.starttime) + "/")
 
-            #get interface logs
+            # get interface logs
             intf = worker.run_cmd("ip addr show to " + worker.ip(classifier="backend") + "/24 " +
-                                  "| head -n1 | cut -d' ' -f2 | tr -d :")\
-                                  .strip().split('@')[0]
+                                  "| head -n1 | cut -d' ' -f2 | tr -d :") \
+                .strip().split('@')[0]
 
             worker.get_file("/tmp/maxinet_intf_" + intf + "_" +
-                        str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
-                        "/tmp/maxinet_logs/" +
-                        Tools.time_to_string(self.starttime) + "/")
+                            str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log",
+                            "/tmp/maxinet_logs/" +
+                            Tools.time_to_string(self.starttime) + "/")
 
         self._print_log_info()
         self._print_monitor_info()
@@ -1147,7 +1134,7 @@ class Experiment(object):
                          Tools.time_to_string(self.starttime) + "/"])
         for worker in self.cluster.workers():
             worker.daemonize_script("getMemoryUsage.sh", " > \"/tmp/maxinet_mem_" +
-                             str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log\"")
+                                    str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() + ").log\"")
 
     def log_interfaces_of_node(self, node):
         """Log statistics of interfaces of node.
@@ -1173,8 +1160,8 @@ class Experiment(object):
         """
         intf = intf.split('@')[0]
         worker.daemonize_script("getRxTx.sh", " " + intf + " > \"/tmp/maxinet_intf_" +
-                         intf + "_" + str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() +
-                         ").log\"")
+                                intf + "_" + str(self.hostname_to_workerid[worker.hn()]) + "_(" + worker.hn() +
+                                ").log\"")
 
     def monitor(self):
         """Log statistics of worker interfaces and memory usage.
@@ -1186,9 +1173,9 @@ class Experiment(object):
         self.log_cpu()
         for worker in self.cluster.workers():
             intf = worker.run_cmd("ip addr show to " + worker.ip(classifier="backend") + "/24 " +
-                                  "| head -n1 | cut -d' ' -f2 | tr -d :")\
-                                  .strip().split('@')[0]
-            if(intf == ""):
+                                  "| head -n1 | cut -d' ' -f2 | tr -d :") \
+                .strip().split('@')[0]
+            if (intf == ""):
                 self.logger.warn("could not find main eth interface for " +
                                  worker.hn() + ". no logging possible.")
             else:
@@ -1199,7 +1186,7 @@ class Experiment(object):
 
         Prints info one time only even if called multiple times.
         """
-        if(not self._printed_log_info):
+        if (not self._printed_log_info):
             self._printed_log_info = True
             self.logger.info("Log files will be placed in /tmp/maxinet_logs/" +
                              Tools.time_to_string(self.starttime) + "/." +
@@ -1248,7 +1235,6 @@ class Experiment(object):
         self.node_to_wrapper[name] = NodeWrapper(name, self.get_worker(name))
         self.nodes.append(self.node_to_wrapper[name])
 
-
     def addHost(self, name, cls=None, wid=None, pos=None, **params):
         """Add host at runtime.
 
@@ -1268,12 +1254,12 @@ class Experiment(object):
         self.get_worker(name).addHost(name, cls=cls, **params)
         self.hosts.append(self.get(name))
 
-        #deactivate TSO
+        # deactivate TSO
         if (self.config.deactivateTSO()):
             for intf in self.get_node(name).intfNames():
                 self.get_node(name).cmd("sudo ethtool -K %s tso off" % intf)
 
-        #set MTU if necessary
+        # set MTU if necessary
         if (self.config.run_with_1500_mtu()):
             self.setMTU(self.get_node(name), 1450)
 
@@ -1298,7 +1284,7 @@ class Experiment(object):
         self.get_worker(name).addSwitch(name, cls, **params)
         self.switches.append(self.get(name))
 
-        #set MTU if necessary
+        # set MTU if necessary
         if (self.config.run_with_1500_mtu()):
             self.setMTU(self.get_node(name), 1450)
 
@@ -1333,7 +1319,7 @@ class Experiment(object):
         Returns:
             String of node name.
         """
-        if(isinstance(node, NodeWrapper)):
+        if (isinstance(node, NodeWrapper)):
             return node.nn
         return node
 
@@ -1367,45 +1353,45 @@ class Experiment(object):
         """
         w1 = self.get_worker(node1)
         w2 = self.get_worker(node2)
-        if(not isinstance(node1, NodeWrapper)):
+        if (not isinstance(node1, NodeWrapper)):
             node1 = self.get(node1)
-        if(not isinstance(node2, NodeWrapper)):
+        if (not isinstance(node2, NodeWrapper)):
             node2 = self.get(node2)
-        if(w1 == w2):
+        if (w1 == w2):
             self.logger.debug("no tunneling needed")
             l = w1.addLink(self.name(node1), self.name(node2), port1, port2,
                            cls, **params)
         else:
             self.logger.debug("tunneling needed")
-            if(not ((node1 in self.switches) and (node2 in self.switches))):
+            if (not ((node1 in self.switches) and (node2 in self.switches))):
                 self.logger.error("We cannot create tunnels between switches" +
                                   " and hosts. Sorry.")
                 raise RuntimeError("Can't create tunnel between switch and" +
                                    "host")
-            if(not ((cls is None) or isinstance(cls, Link) or
-                    isinstance(cls, TCLink))):
+            if (not ((cls is None) or isinstance(cls, Link) or
+                     isinstance(cls, TCLink))):
                 self.logger.error("Only Link or TCLink instances are " +
                                   "supported by MaxiNet")
                 raise RuntimeError("Only Link or TCLink instances are " +
                                    "supported by MaxiNet")
             intfn = self.cluster.create_tunnel(w1, w2)
-            if((cls is None) or isinstance(cls, TCLink)):
+            if ((cls is None) or isinstance(cls, TCLink)):
                 intf = TCIntf
             else:
                 intf = Intf
             w1.addTunnel(intfn, self.name(node1), port1, intf, **params)
             w2.addTunnel(intfn, self.name(node2), port2, intf, **params)
             l = ((self.name(node1), intfn), (self.name(node2), intfn))
-        if(autoconf):
-            if(node1 in self.switches):
+        if (autoconf):
+            if (node1 in self.switches):
                 node1.attach(l[0][1])
             else:
                 node1.configDefault()
-            if(node2 in self.switches):
+            if (node2 in self.switches):
                 node2.attach(l[1][1])
             else:
                 node2.configDefault()
-        if(self.config.run_with_1500_mtu()):
+        if (self.config.run_with_1500_mtu()):
             self.setMTU(node1, 1450)
             self.setMTU(node2, 1450)
 
@@ -1419,7 +1405,7 @@ class Experiment(object):
             NodeWrapper instance with name nodename or None if none is
             found.
         """
-        if(node in self.node_to_wrapper):
+        if (node in self.node_to_wrapper):
             return self.node_to_wrapper[node]
         else:
             return None
@@ -1449,17 +1435,17 @@ class Experiment(object):
         """
         self.logger.info("Clustering topology...")
         # partition topology (if needed)
-        if(not self.topology):
+        if (not self.topology):
             parti = Partitioner()
             parti.loadtopo(self.origtopology)
-            if(self.nodemapping):
+            if (self.nodemapping):
                 self.topology = parti.partition_using_map(self.nodemapping)
             else:
                 self.topology = parti.partition(self.cluster.num_workers(),
                                                 shares=self.shares)
             self.logger.debug("Tunnels: " + str(self.topology.getTunnels()))
         subtopos = self.topology.getTopos()
-        if(len(subtopos) > self.cluster.num_workers()):
+        if (len(subtopos) > self.cluster.num_workers()):
             raise RuntimeError("Cluster does not have enough workers for " +
                                "given topology")
         # initialize internal bookkeeping
@@ -1488,8 +1474,8 @@ class Experiment(object):
             for i in range(0, 2):
                 # Assumes that workerid = subtopoid
                 tunnels[self.hostname_to_workerid[self.node_to_worker[tunnel[i]].hn()]].append([intf,
-                                                                  tunnel[i],
-                                                                  tunnel[2]])
+                                                                                                tunnel[i],
+                                                                                                tunnel[2]])
         # start mininet instances
         for topo in subtopos:
             wid = subtopos.index(topo)
@@ -1498,20 +1484,22 @@ class Experiment(object):
             # cache hostname for possible error message
             thn = worker.hn()
             try:
-                if(self.controller):
+                if (self.controller):
                     worker.start(
                         topo=topo,
                         tunnels=tunnels[subtopos.index(topo)],
-                        controller=self.controller)
+                        controller=self.controller,
+                        cls=self.mininet_cls)
                 else:
                     worker.start(
                         topo=topo,
-                        tunnels=tunnels[wid])
+                        tunnels=tunnels[wid],
+                        cls=self.mininet_cls)
             except Pyro4.errors.ConnectionClosedError:
                 self.logger.error("Remote " + thn + " exited abnormally. " +
                                   "This is probably due to mininet not" +
-                                  " starting up. You might want to have a look"+
-                                  " at the output of the MaxiNetWorker calls on"+
+                                  " starting up. You might want to have a look" +
+                                  " at the output of the MaxiNetWorker calls on" +
                                   " the Worker machines.")
                 raise
         # configure network if needed
@@ -1520,15 +1508,17 @@ class Experiment(object):
                 for host in topo.nodes():
                     self.setMTU(self.get(host), 1450)
 
-        #deactivate TSO if needed
+        # deactivate TSO if needed
         if (self.config.deactivateTSO()):
             for topo in subtopos:
                 for host in topo.nodes():
                     for intf in self.get(host).intfNames():
                         self.get(host).cmd("sudo ethtool -K %s tso off" % intf)
         for (w1, w2, ip1, ip2, tid, tkey, intf) in stt_tunnels:
-            w1.run_cmd("ovs-vsctl -- set interface %s type=stt options=\"remote_ip=%s,local_ip=%s,key=%i\"" % (intf, ip2, ip1, tkey))
-            w2.run_cmd("ovs-vsctl -- set interface %s type=stt options=\"remote_ip=%s,local_ip=%s,key=%i\"" % (intf, ip1, ip2, tkey))
+            w1.run_cmd("ovs-vsctl -- set interface %s type=stt options=\"remote_ip=%s,local_ip=%s,key=%i\"" % (
+            intf, ip2, ip1, tkey))
+            w2.run_cmd("ovs-vsctl -- set interface %s type=stt options=\"remote_ip=%s,local_ip=%s,key=%i\"" % (
+            intf, ip1, ip2, tkey))
         # start mininet instances
 
     def setMTU(self, host, mtu):
@@ -1538,7 +1528,7 @@ class Experiment(object):
             host: NodeWrapper instance or nodename.
             mtu: MTU value.
         """
-        if(not isinstance(host, NodeWrapper)):
+        if (not isinstance(host, NodeWrapper)):
             host = self.get(host)
         for intf in host.intfNames():
             host.cmd("ifconfig %s mtu %i" % (intf, mtu))
@@ -1650,7 +1640,7 @@ class NodeWrapper(object):
             "addIntf", "checkListening", "chrt", "connectionsTo",
             "defaultIntf", "deleteIntfs", "intf"
             # attributes:
-            "nameToIntf"
+                                          "nameToIntf"
         ]:
             raise NotImplementedError(
                 str(name)

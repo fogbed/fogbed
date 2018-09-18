@@ -11,8 +11,8 @@ Welcome to Fogbed's documentation!
    :caption: Contents:
 
    intro
-   getstarted
    install
+   getstarted
 
 Indices and tables
 ==================

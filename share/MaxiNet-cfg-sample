@@ -5,7 +5,7 @@ controller = 172.17.0.2:6633
 logLevel = INFO        ; Either CRITICAL, ERROR, WARNING, INFO  or DEBUG
 port_ns = 9090         ; Nameserver port
 port_sshd = 5345       ; Port where MaxiNet will start an ssh server on each worker
-runWith1500MTU = False ; Set this to True if your physical network can not handle MTUs >1500.
+runWith1500MTU = True  ; Set this to True if your physical network can not handle MTUs >1500.
 useMultipleIPs = 0     ; for RSS load balancing. Set to n > 0 to use multiple IP addresses per worker. More information on this feature can be found at MaxiNets github Wiki.
 deactivateTSO = True   ; Deactivate TCP-Segmentation-Offloading at the emulated hosts.
 sshuser = root         ; On Debian set this to root. On ubuntu set this to user which can do passwordless sudo
@@ -16,10 +16,10 @@ useSTT = False         ; enables stt usage for tunnels. Only usable with OpenVSw
 ip = 172.17.0.2
 threadpool = 256       ; increase if more workers are needed (each Worker requires 2 threads on the FrontendServer)
 
-[fogbed]
+[42aac6b631d1]
 ip = 172.17.0.2
 share = 1
 
-[worker2]
+[527a4589d9aa]
 ip = 172.17.0.3
 share = 1

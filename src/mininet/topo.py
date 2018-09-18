@@ -10,7 +10,7 @@ This package includes code to represent network topologies.
 A Topo object can be a topology database for NOX, can represent a physical
 setup for testing, and can even be emulated with the Mininet package.
 """
-from src.mininet.node import Docker
+from src.mininet.node import Docker, VirtualInstance
 from src.mininet.util import irange, natural, naturalSeq
 
 class MultiGraph( object ):
@@ -358,5 +358,21 @@ class LinearTopo( Topo ):
             if lastSwitch:
                 self.addLink( switch, lastSwitch )
             lastSwitch = switch
+
+class FogTopo( Topo ):
+
+    def addLink( self, node1, node2, port1=None, port2=None,
+                 key=None, **opts ):
+
+        if isinstance(node1, VirtualInstance):
+            node1 = node1.getSwitch()
+
+        if isinstance(node2, VirtualInstance):
+            node2 = node2.getSwitch()
+
+        return Topo.addLink(self, node1, node2, port1, port2, key, **opts)
+
+    def addVirtualInstance(self, name):
+        return VirtualInstance(name, self)
 
 # pylint: enable=arguments-differ
