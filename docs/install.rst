@@ -18,7 +18,7 @@ Automatic installation is provided through an Ansible playbook.
     $ cd fogbed/ansible
     $ sudo ansible-playbook -i "localhost," -c local install_metis.yml
     $ sudo ansible-playbook -i "localhost," -c local install_docker.yml
-    $ sudo ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install.yml
+    $ sudo ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install_fogbed.yml
 
 Nested Docker deployment
 ------------------------

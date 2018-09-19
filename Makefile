@@ -1,6 +1,6 @@
-MININET = mininet/*.py
-TEST = mininet/test/*.py
-EXAMPLES = mininet/examples/*.py
+MININET = src/mininet/*.py
+TEST = src/mininet/test/*.py
+EXAMPLES = src/mininet/examples/*.py
 MN = bin/mn
 PYMN = python -B bin/mn
 BIN = $(MN)
@@ -10,8 +10,8 @@ MANPAGES = mn.1 mnexec.1
 P8IGN = E251,E201,E302,E202,E126,E127,E203,E226
 BINDIR = /usr/bin
 MANDIR = /usr/share/man/man1
-DOCDIRS = doc/html doc/latex
-PDF = doc/latex/refman.pdf
+DOCDIRS = docs/doxygen/html docs/doxygen/latex
+PDF = docs/doxygen/latex/refman.pdf
 
 CFLAGS += -Wall -Wextra
 
@@ -35,15 +35,15 @@ errcheck: $(PYSRC)
 
 test: $(MININET) $(TEST)
 	-echo "Running tests"
-	mininet/test/test_nets.py
-	mininet/test/test_hifi.py
+	src/mininet/test/test_nets.py
+	src/mininet/test/test_hifi.py
 
 slowtest: $(MININET)
 	-echo "Running slower tests (walkthrough, examples)"
-	mininet/test/test_walkthrough.py -v
-	mininet/examples/test/runner.py -v
+	src/mininet/test/test_walkthrough.py -v
+	src/mininet/examples/test/runner.py -v
 
-mnexec: mnexec.c $(MN) mininet/net.py
+mnexec: mnexec.c $(MN) src/mininet/net.py
 	cc $(CFLAGS) $(LDFLAGS) -DVERSION=\"`PYTHONPATH=. $(PYMN) --version`\" $< -o $@
 
 install: $(MNEXEC) $(MANPAGES)
@@ -53,7 +53,7 @@ install: $(MNEXEC) $(MANPAGES)
 
 maxinstall:
 	mkdir -p /usr/local/share/maxinet
-	cp -rv maxinet/Frontend/examples /usr/local/share/maxinet/
+	cp -rv src/maxinet/Frontend/examples /usr/local/share/maxinet/
 	chmod +x /usr/local/share/maxinet/examples/*
 	cp share/MaxiNet-cfg-sample /usr/local/share/maxinet/config.example
 	cp share/maxinet_plot.py /usr/local/share/maxinet/
@@ -82,5 +82,6 @@ mnexec.1: mnexec
 .PHONY: doc
 
 doc: man
-	doxygen doc/doxygen.cfg
-	make -C doc/latex
+	mkdir -p $(DOCDIRS)
+	doxygen docs/doxygen/doxygen.cfg
+	make -C docs/doxygen/latex

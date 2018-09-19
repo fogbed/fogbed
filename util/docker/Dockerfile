@@ -38,7 +38,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 WORKDIR /fogbed/ansible
 RUN ansible-playbook -i "localhost," -c local install_metis.yml
 RUN ansible-playbook -i "localhost," -c local install_docker.yml
-RUN ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install.yml
+RUN ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install_fogbed.yml
 WORKDIR /fogbed
 RUN python setup.py develop
 

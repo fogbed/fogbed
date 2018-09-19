@@ -5,11 +5,11 @@ This is the most simple example to showcase Fogbed.
 import time
 
 from src.fogbed.experiment import FogbedExperiment
+from src.fogbed.resourcemodel import CloudResourceModel, EdgeResourceModel, FogResourceModel, PREDEFINED_RESOURCES
+from src.fogbed.topo import FogTopo
 from src.mininet.link import TCLink
 from src.mininet.log import setLogLevel
 from src.mininet.node import OVSSwitch
-from src.mininet.resourcemodel import EdgeResourceModel, FogResourceModel, CloudResourceModel
-from src.mininet.topo import FogTopo
 
 setLogLevel('info')
 
@@ -57,7 +57,7 @@ c1 = topo.addVirtualInstance("cloud")
 f1 = topo.addVirtualInstance("fog")
 e1 = topo.addVirtualInstance("edge")
 
-erm = EdgeResourceModel(max_cu=10, max_mu=2048)
+erm = EdgeResourceModel(max_cu=20, max_mu=2048)
 frm = FogResourceModel()
 crm = CloudResourceModel()
 
@@ -69,6 +69,8 @@ d1 = c1.addDocker('d1', ip='10.0.0.251', dimage="ubuntu:trusty")
 d2 = f1.addDocker('d2', ip='10.0.0.252', dimage="ubuntu:trusty")
 d3 = e1.addDocker('d3', ip='10.0.0.253', dimage="ubuntu:trusty")
 d4 = topo.addDocker('d4', ip='10.0.0.254', dimage="ubuntu:trusty")
+d5 = e1.addDocker('d5', ip='10.0.0.255', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['medium'])
+d6 = e1.addDocker('d6', ip='10.0.0.256', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['large'])
 
 s1 = topo.addSwitch('s1')
 s2 = topo.addSwitch('s2')

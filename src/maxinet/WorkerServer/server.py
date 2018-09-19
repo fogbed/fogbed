@@ -396,6 +396,7 @@ class MininetManager(object):
     @Pyro4.expose
     def tunnelX11(self, node, display):
         node = self.net.get(node)
+        from src import mininet
         (tunnel, popen) = mininet.term.tunnelX11(node, display)
         self.x11popens.append(popen)
 

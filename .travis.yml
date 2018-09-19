@@ -21,7 +21,7 @@ before_install:
 
 # bare metal installation
 install:
-  - cd ansible; sudo ansible-playbook -i "localhost," -c local -v install.yml; cd ..
+  - cd ansible; sudo ansible-playbook -i "localhost," -c local -v install_fogbed.yml; cd ..
 
 # run tests
 script:

@@ -3,7 +3,7 @@
    - name: updates apt
      shell: apt-get -qq update
 
-   - name: built and install Containernet (using Mininet installer)
+   - name: build and install Containernet (using Mininet installer)
      shell: fogbed/util/install.sh
      args:
        chdir: ../../
