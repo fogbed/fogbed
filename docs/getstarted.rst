@@ -201,7 +201,7 @@ alongside fogbed:
 Copy the content from ``/usr/local/share/maxinet/config.example`` to ``/etc/MaxiNet.cfg``,
 it should look more or less like this:
 
-.. code-block::
+::
 
     [all]
     password = HalloWelt
@@ -285,16 +285,15 @@ Now run the topology script in the FrontendServer machine:
     $ python examples/virtual_instance_example.py
 
 
-.. todolist::
+.. todo::
 
-    * Add more details about examples
-    * Add more examples
-    *
+    Add more details about examples
+    Add more examples
 
 .. toctree::
     :maxdepth: 4
 
-.. _son_emu: https://github.com/sonata-nfv/son-emu
+.. _son-emu: https://github.com/sonata-nfv/son-emu
 .. _Containernet: https://github.com/containernet/containernet
 .. _Mininet: https://github.com/mininet/mininet
 .. _Maxinet: https://github.com/MaxiNet/MaxiNet
