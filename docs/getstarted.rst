@@ -251,7 +251,7 @@ Check the status of the cluster with:
 
 .. code-block:: console
 
-    maxinet@worker2:~$ MaxiNetStatus
+    $ FogbedStatus
     MaxiNet Frontend server running at 172.17.0.2
     Number of connected workers: 2
     --------------------------------
