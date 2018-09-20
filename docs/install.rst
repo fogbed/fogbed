@@ -20,6 +20,12 @@ Automatic installation is provided through an Ansible playbook.
     $ sudo ansible-playbook -i "localhost," -c local install_docker.yml
     $ sudo ansible-playbook -i "localhost," -c local --skip-tags "notindocker" install_fogbed.yml
 
+.. warning::
+
+    Unless you are trying to get the best emulation performance,
+    use a VM instead of installing in your own machine, fogbed installation
+    process may mess with your native OS installation or damage it in any way.
+
 Nested Docker deployment
 ------------------------
 

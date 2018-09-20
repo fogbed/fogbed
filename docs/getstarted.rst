@@ -1,145 +1,300 @@
-
 Getting Started
 ===============
 
-
-Getting started text
-
-.. note::
-
-   This function is not suitable for sending spam e-mails.
-
-.. deprecated:: 3.1
-   Use :func:`spam` instead.
-
-.. seealso::
-
-   Module :py:mod:`zipfile`
-      Documentation of the :py:mod:`zipfile` standard module.
-
-   `GNU tar manual, Basic Tar Format <http://link>`_
-      Documentation for tar archive files, including GNU tar extensions.
-
-.. hlist::
-   :columns: 3
-
-   * A list of
-   * short items
-   * that should be
-   * displayed
-   * horizontally
-
-.. glossary::
-
-   environment
-      A structure where information about all documents under the root is
-      saved, and used for cross-referencing.  The environment is pickled
-      after the parsing stage, so that successive runs only need to read
-      and parse new and changed documents.
-
-   source directory
-      The directory which, including its subdirectories, contains all
-      source files for one Sphinx project
-
-.. sectionauthor:: Guido van Rossum <guido@python.org>
-
-.. index::
-   single: execution; context
-   module: __main__
-   module: sys
-   triple: module; search; path
-
-.. math::
-
-   (a + b)^2 = a^2 + 2ab + b^2
-
-   (a - b)^2 = a^2 - 2ab + b^2
-
-.. math::
-   :nowrap:
-
-   \begin{eqnarray}
-      y    & = & ax^2 + bx + c \\
-      f(x) & = & x^2 + 2xy + y^2
-   \end{eqnarray}
-
-.. productionlist::
-   try_stmt: try1_stmt | try2_stmt
-   try1_stmt: "try" ":" `suite`
-            : ("except" [`expression` ["," `target`]] ":" `suite`)+
-            : ["else" ":" `suite`]
-            : ["finally" ":" `suite`]
-   try2_stmt: "try" ":" `suite`
-            : "finally" ":" `suite`
-
-
-+------------------------+------------+----------+----------+
-| Header row, column 1   | Header 2   | Header 3 | Header 4 |
-| (header rows optional) |            |          |          |
-+========================+============+==========+==========+
-| body row 1, column 1   | column 2   | column 3 | column 4 |
-+------------------------+------------+----------+----------+
-| body row 2             | ...        | ...      |          |
-+------------------------+------------+----------+----------+
-
-There are two ways to get started using MaxiNet: Using our preconfigured Virtual Machine Images or installing from scratch.
-For starters, we recommend to use our preconfigured Virtual Machine Images. When performance matters, MaxiNet should definitively be used on non-virtualized machines.
-
-Download these two Virtual Machine images:
-[MaxiNet-1.0-rc1.ova] MD5 (MaxiNet-1.0-rc1.ova) = 6dfc4546bd48bc727861b0ad51ecf2ca
-
-The username for both machines is maxinet with the password maxinet.
-
-The file MaxiNet-1.0-rc1.ova contains two virtual machine images: worker1 and worker 2.
-You need a program like Virtual Box to run them on your computer.
-
-Start each virtual machine on a dedicated physical machine and make sure the virtual machines can reach each other. For testing purposes both virtual machines can also run on the same physical machine.
-The virtual machines are using the IP addresses 192.168.0.1 and 192.168.0.2 on the interface eth0. Make sure both machines can reach each other.
-To start the emulation process, login into worker1 and cd to /home/maxinet/maxinet/Frontend/examples/
-Specify the OpenFlow controller by editing the file /etc/MaxiNet.cfg. You have to change the line
-controller = "192.168.0.1:6633" # default controller
-to point to the IP address of your OpenFlow controller. Make sure the controller is reachable from both worker1 and worker2.
-You can also start a pox controller at worker1 by invoking the commands:
+After having installed fogbed in a VM or in the Docker container, you can start
+using it running an example topology:
 
 .. code-block:: console
 
-    maxinet@worker1:~$ cd pox
-    maxinet@worker1:~/pox$ screen -d -m -S PoxScr ./pox.py forwarding.l2_learning
+    # inside the VM or container with fogbed installed
+    $ python examples/virtual_instance_example.py
 
-Before any MaxiNet expepriment can be executed, you first need to start the MaxiNetFrontendServer and the MaxiNetWorkerServers. To this end, on worker1, execute the following commands to start both the Frontend and a Worker:
+If everything was done right until now, it will instantiate a few hosts and ping one another.
+
+Local emulation
+---------------
+
+Checking the content of the example we have:
+
+.. code-block:: python
+
+    topo = FogTopo()
+
+    c1 = topo.addVirtualInstance("cloud")
+    f1 = topo.addVirtualInstance("fog")
+    e1 = topo.addVirtualInstance("edge")
+
+    erm = EdgeResourceModel(max_cu=20, max_mu=2048)
+    frm = FogResourceModel()
+    crm = CloudResourceModel()
+
+    e1.assignResourceModel(erm)
+    f1.assignResourceModel(frm)
+    c1.assignResourceModel(crm)
+
+    d1 = c1.addDocker('d1', ip='10.0.0.251', dimage="ubuntu:trusty")
+    d2 = f1.addDocker('d2', ip='10.0.0.252', dimage="ubuntu:trusty")
+    d3 = e1.addDocker('d3', ip='10.0.0.253', dimage="ubuntu:trusty")
+    d4 = topo.addDocker('d4', ip='10.0.0.254', dimage="ubuntu:trusty")
+    d5 = e1.addDocker('d5', ip='10.0.0.255', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['medium'])
+    d6 = e1.addDocker('d6', ip='10.0.0.256', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['large'])
+
+    s1 = topo.addSwitch('s1')
+    s2 = topo.addSwitch('s2')
+
+    topo.addLink(d4, s1)
+    topo.addLink(s1, s2)
+    topo.addLink(s2, e1)
+    topo.addLink(c1, f1, cls=TCLink, delay='200ms', bw=1)
+    topo.addLink(f1, e1, cls=TCLink, delay='350ms', bw=2)
+
+    exp = FogbedExperiment(topo, switch=OVSSwitch)
+    exp.start()
+
+    try:
+        print exp.get_node("cloud.d1").cmd("ifconfig")
+        print exp.get_node(d2).cmd("ifconfig")
+
+        print "waiting 5 seconds for routing algorithms on the controller to converge"
+        time.sleep(5)
+
+        print exp.get_node(d1).cmd("ping -c 5 10.0.0.252")
+        print exp.get_node("fog.d2").cmd("ping -c 5 10.0.0.251")
+    finally:
+        exp.stop()
+
+As can be seen, a fogbed topology definition is a python script where all the
+hosts and links are described, and at the end a predefined experiment can be run
+on top of it.
+
+First, let's look closely at the first part:
+
+.. code-block:: python
+
+    topo = FogTopo()
+
+    c1 = topo.addVirtualInstance("cloud")
+    f1 = topo.addVirtualInstance("fog")
+    e1 = topo.addVirtualInstance("edge")
+
+    erm = EdgeResourceModel(max_cu=20, max_mu=2048)
+    frm = FogResourceModel()
+    crm = CloudResourceModel()
+
+    e1.assignResourceModel(erm)
+    f1.assignResourceModel(frm)
+    c1.assignResourceModel(crm)
+
+Here we have the instantiation of a fog topology, used by fogbed, followed by the
+definition of 3 Virtual Instances.
+A Virtual Instance in the context of fogbed is a unit that can have one or more
+hosts linked together by a single switch. Each Virtual Instance has a resource model
+associated with it that says how many resources that instance have so that they can be
+distributed between it's containers.
+
+The resource model use is based on what was proposed in `son-emu`_, each resource model
+has a ``max_cu`` and ``max_mu`` value, representing the maximum computing and memory units
+the Virtual Instance that assigns it has.
+
+Then, each container determines how much ``cu`` and ``mu`` they have, representing how many
+parts of the total of it's Virtual Instance is available to the container. These values
+are converted to real cpu time and memory limit.
+
+Example: if a container ``a`` is assigned 4 computing units and container ``b`` 2 computing units,
+and they are both in the same Virtual Instance, container ``a`` has twice more cpu time than
+container ``b``.
+
+There are three types of resource models in fogbed right now: ``EdgeResourceModel``,
+``FogResourceModel`` and ``CloudResourceModel``. Currently, Fog and Cloud resource models
+are the same, using an overprovisioning strategy where if a container requests resources
+and all of it was already allocated to other containers, the new container starts anyway
+and every container suffers with reduced resources.
+The Edge resource model has a fixed limit strategy, where if a container requests resources
+and all of it was already allocated, an exception is raised alerting that it can't allocate
+anymore resources for new containers.
+
+Second code block:
+
+.. code-block:: python
+
+    d1 = c1.addDocker('d1', ip='10.0.0.251', dimage="ubuntu:trusty")
+    d2 = f1.addDocker('d2', ip='10.0.0.252', dimage="ubuntu:trusty")
+    d3 = e1.addDocker('d3', ip='10.0.0.253', dimage="ubuntu:trusty")
+    d4 = topo.addDocker('d4', ip='10.0.0.254', dimage="ubuntu:trusty")
+    d5 = e1.addDocker('d5', ip='10.0.0.255', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['medium'])
+    d6 = e1.addDocker('d6', ip='10.0.0.256', dimage="ubuntu:trusty", resources=PREDEFINED_RESOURCES['large'])
+
+    s1 = topo.addSwitch('s1')
+    s2 = topo.addSwitch('s2')
+
+    topo.addLink(d4, s1)
+    topo.addLink(s1, s2)
+    topo.addLink(s2, e1)
+    topo.addLink(c1, f1, cls=TCLink, delay='200ms', bw=1)
+    topo.addLink(f1, e1, cls=TCLink, delay='350ms', bw=2)
+
+It is similar to examples from `Containernet`_ and other emulators based
+on `Mininet`_. Here each new host is started with some information
+about it, every one, except ``d4``, is started inside a Virtual Instance. The ``resources``
+field in ``d5`` and ``d6`` describe how much of the Virtual Instance resources that container should take.
+If it isn't specified, the predefined resource named *small* is chosen. Below is the list of the predefined
+resources table:
+
+.. code-block:: python
+
+    PREDEFINED_RESOURCES = {
+        "tiny": {"cu": 0.5, "mu": 32},
+        "small": {"cu": 1, "mu": 128},
+        "medium": {"cu": 4, "mu": 256},
+        "large": {"cu": 8, "mu": 512},
+        "xlarge": {"cu": 16, "mu": 1024},
+        "xxlarge": {"cu": 32, "mu": 2048}
+    }
+
+If none of the predefined resources is suitable for your application, you can pass a custom one.
+
+After the creation of all hosts, two switches are instantiated followed by the connections
+between stray hosts, Virtual Instances and switches.
+
+Third code block:
+
+.. code-block:: python
+
+    exp = FogbedExperiment(topo, switch=OVSSwitch)
+    exp.start()
+
+    try:
+        print exp.get_node("cloud.d1").cmd("ifconfig")
+        print exp.get_node(d2).cmd("ifconfig")
+
+        print "waiting 5 seconds for routing algorithms on the controller to converge"
+        time.sleep(5)
+
+        print exp.get_node(d1).cmd("ping -c 5 10.0.0.252")
+        print exp.get_node("fog.d2").cmd("ping -c 5 10.0.0.251")
+    finally:
+        exp.stop()
+
+Here an experiment is created for the newly made topology. After it's start,
+we tell the steps it should do. In this example we are checking the command ``ifconfig``
+inside the host ``d1`` that is inside the Virtual Instance ``cloud``, and then running the
+same command inside host ``d2``, this time using a variable reference instead of passing a name string.
+After 5 seconds waiting, it runs a ping from ``d1`` to ``d2``, and vice-versa.
+
+Distributed emulation
+---------------------
+
+The previous example explored a single host emulation, but fogbed can be adapted using
+an interface, like the one provided by `Maxinet`_, to execute the topology distributed in many machines.
+
+First, make sure that all the machines that are going to run fogbed distributed have it installed
+and that they can reach each other.
+
+Start the SDN controller ``pox`` in one of the machines, it should've been installed
+alongside fogbed:
 
 .. code-block:: console
 
-    maxinet@worker1:~$ screen -d -m -S MaxiNetFrontend MaxiNetFrontendServer
-    maxinet@worker1:~$ screen -d -m -S MaxiNetWorker sudo MaxiNetWorker
+    $ cd pox
+    $ ./pox.py forwarding.l2_learning
 
-and on worker2, execute the following to start a second Worker:
+Copy the content from ``/usr/local/share/maxinet/config.example`` to ``/etc/MaxiNet.cfg``,
+it should look more or less like this:
+
+.. code-block::
+
+    [all]
+    password = HalloWelt
+    controller = 172.17.0.2:6633
+    logLevel = INFO        ; Either CRITICAL, ERROR, WARNING, INFO  or DEBUG
+    port_ns = 9090         ; Nameserver port
+    port_sshd = 5345       ; Port where MaxiNet will start an ssh server on each worker
+    runWith1500MTU = True  ; Set this to True if your physical network can not handle MTUs >1500.
+    useMultipleIPs = 0     ; for RSS load balancing. Set to n > 0 to use multiple IP addresses per worker. More information on this feature can be found at MaxiNets github Wiki.
+    deactivateTSO = True   ; Deactivate TCP-Segmentation-Offloading at the emulated hosts.
+    sshuser = root         ; On Debian set this to root. On ubuntu set this to user which can do passwordless sudo
+    usesudo = False        ; If sshuser is set to something different than root set this to True.
+    useSTT = False         ; enables stt usage for tunnels. Only usable with OpenVSwitch. Bandwithlimitations etc do not work on STT tunnels!
+
+    [FrontendServer]
+    ip = 172.17.0.2
+    threadpool = 256       ; increase if more workers are needed (each Worker requires 2 threads on the FrontendServer)
+
+    [worker1-hostname]
+    ip = 172.17.0.2
+    share = 1
+
+    [worker2-hostname]
+    ip = 172.17.0.3
+    share = 1
+
+Substitute the field ``controller`` with the address of the machine running ``pox``.
+
+In the ``ip`` field of the FrontendServer put the address of the machine you intend to run the FrontendServer.
+
+For each worker in you network, at it's hostname and ip address in the lines below the FrontendServer,
+like the example.
+
+Now, in the machine that you specified as FrontendServer, run it:
 
 .. code-block:: console
 
-    maxinet@worker2:~$ sudo screen -d -m -S MaxiNetWorker MaxiNetWorker
+    $ sudo FogbedFrontendServer
 
-Until now, we have a running Frontend server with two connected Workers. You can check the status of the MaxiNet cluster with the command MaxiNetStatus
+And for each worker, run:
+
+.. code-block:: console
+
+    $ sudo FogbedWorker
+
+Check the status of the cluster with:
 
 .. code-block:: console
 
     maxinet@worker2:~$ MaxiNetStatus
-    MaxiNet Frontend server running at 192.168.0.1
+    MaxiNet Frontend server running at 172.17.0.2
     Number of connected workers: 2
     --------------------------------
-    worker1		free
-    worker2		free
+    worker1-hostname		free
+    worker2-hostname		free
 
-As you can see, the cluster has two workers which are currently not allocated to an experiment.
+If everything went well, adjust the previous example to run distributed,
+you only need to change the experiment class to ``FogbedDistributedExperiment``:
 
-You can now start the simplePing example as user maxinet.
+.. code-block:: python
+
+    exp = FogbedDistributedExperiment(topo, switch=OVSSwitch)
+    exp.start()
+
+    try:
+        print exp.get_node("cloud.d1").cmd("ifconfig")
+        print exp.get_node(d2).cmd("ifconfig")
+
+        print "waiting 5 seconds for routing algorithms on the controller to converge"
+        time.sleep(5)
+
+        print exp.get_node(d1).cmd("ping -c 5 10.0.0.252")
+        print exp.get_node("fog.d2").cmd("ping -c 5 10.0.0.251")
+    finally:
+        exp.stop()
+
+Now run the topology script in the FrontendServer machine:
 
 .. code-block:: console
 
-    maxinet@worker1:~/maxinet/Frontend/examples$ python simplePing.py
+    $ python examples/virtual_instance_example.py
 
-You can find even more examples under ~/maxinet/Frontend/examples.
+
+.. todolist::
+
+    * Add more details about examples
+    * Add more examples
+    *
 
 .. toctree::
     :maxdepth: 4
 
+.. _son_emu: https://github.com/sonata-nfv/son-emu
+.. _Containernet: https://github.com/containernet/containernet
+.. _Mininet: https://github.com/mininet/mininet
+.. _Maxinet: https://github.com/MaxiNet/MaxiNet
