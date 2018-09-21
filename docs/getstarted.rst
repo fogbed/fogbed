@@ -18,6 +18,17 @@ Checking the content of the example we have:
 
 .. code-block:: python
 
+    import time
+
+    from src.fogbed.experiment import FogbedExperiment, FogbedDistributedExperiment
+    from src.fogbed.resourcemodel import CloudResourceModel, EdgeResourceModel, FogResourceModel, PREDEFINED_RESOURCES
+    from src.fogbed.topo import FogTopo
+    from src.mininet.link import TCLink
+    from src.mininet.log import setLogLevel
+    from src.mininet.node import OVSSwitch
+
+    setLogLevel('info')
+
     topo = FogTopo()
 
     c1 = topo.addVirtualInstance("cloud")
@@ -89,10 +100,10 @@ Here we have the instantiation of a fog topology, used by fogbed, followed by th
 definition of 3 Virtual Instances.
 A Virtual Instance in the context of fogbed is a unit that can have one or more
 hosts linked together by a single switch. Each Virtual Instance has a resource model
-associated with it that says how many resources that instance have so that they can be
-distributed between it's containers.
+associated with it that defines how many resources that instance have so that they can be
+distributed among it's containers.
 
-The resource model use is based on what was proposed in `son-emu`_, each resource model
+The resource model use is based on the proposed in `son-emu`_, each resource model
 has a ``max_cu`` and ``max_mu`` value, representing the maximum computing and memory units
 the Virtual Instance that assigns it has.
 
@@ -105,10 +116,11 @@ and they are both in the same Virtual Instance, container ``a`` has twice more c
 container ``b``.
 
 There are three types of resource models in fogbed right now: ``EdgeResourceModel``,
-``FogResourceModel`` and ``CloudResourceModel``. Currently, Fog and Cloud resource models
-are the same, using an overprovisioning strategy where if a container requests resources
+``FogResourceModel`` and ``CloudResourceModel`` and the default ``max_cu`` and ``max_mu`` values
+are 32 and 2048, respectively. Currently, Fog and Cloud resource models
+are the same, using an over-provisioning strategy where if a container requests resources
 and all of it was already allocated to other containers, the new container starts anyway
-and every container suffers with reduced resources.
+and the cpu time and memory limit for every container is recalculated.
 The Edge resource model has a fixed limit strategy, where if a container requests resources
 and all of it was already allocated, an exception is raised alerting that it can't allocate
 anymore resources for new containers.
@@ -176,7 +188,7 @@ Third code block:
         exp.stop()
 
 Here an experiment is created for the newly made topology. After it's start,
-we tell the steps it should do. In this example we are checking the command ``ifconfig``
+we tell the steps it should follow. In this example we are checking the command ``ifconfig``
 inside the host ``d1`` that is inside the Virtual Instance ``cloud``, and then running the
 same command inside host ``d2``, this time using a variable reference instead of passing a name string.
 After 5 seconds waiting, it runs a ping from ``d1`` to ``d2``, and vice-versa.
@@ -195,6 +207,8 @@ alongside fogbed:
 
 .. code-block:: console
 
+    # you can find the pox folder in the same directory you put fogbed
+    # in case you are running fogbed inside Docker, pox path is /pox
     $ cd pox
     $ ./pox.py forwarding.l2_learning
 
@@ -209,7 +223,7 @@ it should look more or less like this:
     logLevel = INFO        ; Either CRITICAL, ERROR, WARNING, INFO  or DEBUG
     port_ns = 9090         ; Nameserver port
     port_sshd = 5345       ; Port where MaxiNet will start an ssh server on each worker
-    runWith1500MTU = True  ; Set this to True if your physical network can not handle MTUs >1500.
+    runWith1500MTU = False ; Set this to True if your physical network can not handle MTUs >1500.
     useMultipleIPs = 0     ; for RSS load balancing. Set to n > 0 to use multiple IP addresses per worker. More information on this feature can be found at MaxiNets github Wiki.
     deactivateTSO = True   ; Deactivate TCP-Segmentation-Offloading at the emulated hosts.
     sshuser = root         ; On Debian set this to root. On ubuntu set this to user which can do passwordless sudo
@@ -228,12 +242,23 @@ it should look more or less like this:
     ip = 172.17.0.3
     share = 1
 
+
 Substitute the field ``controller`` with the address of the machine running ``pox``.
 
 In the ``ip`` field of the FrontendServer put the address of the machine you intend to run the FrontendServer.
 
-For each worker in you network, at it's hostname and ip address in the lines below the FrontendServer,
+For each worker in you network, put it's hostname and ip address at the lines below the FrontendServer,
 like the example.
+
+To check the hostname and ip of a machine, just run in the terminal:
+
+.. code-block:: console
+
+    # print hostname
+    $ hostname
+
+    # print ip
+    $ ip -4 addr show
 
 Now, in the machine that you specified as FrontendServer, run it:
 
@@ -259,7 +284,8 @@ Check the status of the cluster with:
     worker2-hostname		free
 
 If everything went well, adjust the previous example to run distributed,
-you only need to change the experiment class to ``FogbedDistributedExperiment``:
+you only need to change the experiment class to ``FogbedDistributedExperiment``
+and save the file.
 
 .. code-block:: python
 

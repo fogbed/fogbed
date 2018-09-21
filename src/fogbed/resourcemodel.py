@@ -62,7 +62,7 @@ class ResourcesTable(object):
         cpu_period, cpu_quota = resource_model.real_cpu(resources['cu'])
         mem_limit = resource_model.real_mem(resources['mu'])
 
-        return {'cpu_period': cpu_period, 'cpu_quota': cpu_quota, 'mem_limit': mem_limit}
+        return {'cpu_period': cpu_period, 'cpu_quota': cpu_quota, 'mem_limit': mem_limit, 'memswap_limit': -1}
 
     @property
     def resource_models(self):

@@ -4,20 +4,19 @@ from src.maxinet.Frontend.maxinet_main import Experiment, Cluster
 from src.maxinet.WorkerServer.server import TCLinkParams
 from src.mininet.link import TCIntf
 from src.mininet.log import debug, info
-from src.mininet.node import UserSwitch, Controller
+from src.mininet.node import UserSwitch, Controller, RemoteController
 
 
 class FogbedDistributedExperiment(object):
 
-    def __init__(self, topology, controller=Controller, switch=UserSwitch,
+    def __init__(self, topology, controller_addr=None, switch=UserSwitch,
                  nodemapping=None, hostnamemapping=None, sharemapping=None,
                  minworkers=None, maxworkers=None):
         cluster = Cluster(minWorkers=minworkers, maxWorkers=maxworkers)
         self.topo = topology
-        self.res_table = ResourcesTable()
         self.exp = Experiment(cluster,
                               topology,
-                              controller,
+                              controller_addr,
                               is_partitioned=False,
                               switch=switch,
                               nodemapping=nodemapping,
@@ -49,7 +48,6 @@ class FogbedExperiment(object):
 
     def __init__(self, topology, controller=Controller, switch=UserSwitch):
         self.topo = topology
-        self.res_table = ResourcesTable()
         self.net = Fogbed(topo=topology, intf=TCIntf, link=TCLinkParams,
                           switch=switch, controller=controller)
 

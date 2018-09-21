@@ -11,7 +11,7 @@ import tempfile
 import time
 
 from src.mininet.node import UserSwitch, OVSSwitch
-from src.mininet.link import Link, TCIntf
+from src.mininet.link import Link, TCIntf, Intf
 
 import src.mininet.term
 import Pyro4
@@ -322,6 +322,7 @@ class MininetManager(object):
         for tunnel in tunnels:
             port = None
             cls = None
+            print(tunnel)
             if "node1" not in tunnel[2].keys():
                self.logger.info("Error! node1 is missing in tunnel metadata")
             if tunnel[2]["node1"] in topo.nodes():
@@ -386,7 +387,8 @@ class MininetManager(object):
     @Pyro4.expose
     def addTunnel(self, name, switch, port, intf, STT=False, **params):
         switch_i = self.net.get(switch)
-        if not intf:
+        print(intf, params)
+        if not intf or not isinstance(intf, Intf):
             intf = TCIntf
         if STT:
             subprocess.check_output(["ovs-vsctl","add-port", switch, name])
