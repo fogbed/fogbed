@@ -1,10 +1,11 @@
 from src.fogbed.net import Fogbed
-from src.fogbed.resourcemodel import ResourcesTable
+from src.maxinet.Frontend.cli import CLI as MAXINET_CLI
 from src.maxinet.Frontend.maxinet_main import Experiment, Cluster
 from src.maxinet.WorkerServer.server import TCLinkParams
+from src.mininet.cli import CLI as MININET_CLI
 from src.mininet.link import TCIntf
-from src.mininet.log import debug, info
-from src.mininet.node import UserSwitch, Controller, RemoteController
+from src.mininet.log import info
+from src.mininet.node import UserSwitch, Controller
 
 
 class FogbedDistributedExperiment(object):
@@ -26,6 +27,9 @@ class FogbedDistributedExperiment(object):
 
     def __getattr__(self, item):
         return getattr(self.exp, item)
+
+    def CLI(self):
+        return MAXINET_CLI(self.exp, locals(), globals())
 
     def _update_hosts_resources(self):
         for node in self.topo.hosts():
@@ -53,6 +57,9 @@ class FogbedExperiment(object):
 
     def __getattr__(self, item):
         return getattr(self.net, item)
+
+    def CLI(self):
+        return MININET_CLI(self.net)
 
     def _update_hosts_resources(self):
 

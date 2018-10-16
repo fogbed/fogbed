@@ -43,7 +43,7 @@ topo.addLink(s2, e1)
 topo.addLink(c1, f1, cls=TCLink, delay='200ms', bw=1)
 topo.addLink(f1, e1, cls=TCLink, delay='350ms', bw=2)
 
-exp = FogbedDistributedExperiment(topo, switch=OVSSwitch)
+exp = FogbedExperiment(topo, switch=OVSSwitch)
 exp.start()
 
 try:
@@ -55,5 +55,7 @@ try:
 
     print exp.get_node(d1).cmd("ping -c 5 10.0.0.252")
     print exp.get_node("fog.d2").cmd("ping -c 5 10.0.0.251")
+
+    exp.CLI()
 finally:
     exp.stop()
