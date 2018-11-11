@@ -114,6 +114,10 @@ class WorkerServer(object):
     @Pyro4.expose
     def start(self, ip, port, password, retry=float("inf")):
         """Start WorkerServer and ssh daemon and connect to nameserver."""
+
+        self.logger.info("Cleaning previously created interfaces...")
+        print subprocess.check_output(["mn", "-c"]).strip()
+
         self.logger.info("starting up and connecting to  %s:%d"
                          % (ip, port))
 

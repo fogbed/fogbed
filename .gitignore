@@ -1,5 +1,6 @@
 mnexec
 .cache/
+.vscode/
 *.log
 *.pyc
 *~

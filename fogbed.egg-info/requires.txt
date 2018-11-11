@@ -1,6 +1,0 @@
-setuptools
-urllib3
-docker==3.4.0
-python-iptables
-pytest
-Pyro4

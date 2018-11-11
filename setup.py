@@ -7,8 +7,8 @@ from os.path import join
 
 # Get version number from source tree
 import sys
+from src import __fogbed_version__
 sys.path.append( '.' )
-from src.mininet.net import FOGBED_VERSION
 
 scripts = [ join( 'bin', filename ) for filename in [ 'mn' ] ]
 
@@ -16,7 +16,7 @@ modname = distname = 'fogbed'
 
 setup(
     name=distname,
-    version=FOGBED_VERSION,
+    version=__fogbed_version__,
     description='Containernet fork that add Fogbed support.',
     author='Heitor Rodrigues',
     author_email='hr.heitor@hotmail.com',
@@ -44,6 +44,7 @@ setup(
     install_requires=[
         'setuptools',
         'urllib3',
+        'ipaddress',
         'docker==3.4.0',
         'python-iptables',
         'pytest',

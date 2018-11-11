@@ -37,6 +37,7 @@ class CLI(Cmd):
     def do_hosts(self, s):
         "Print all hostnames"
         h = ""
+        print "%r Hosts" % len(self.experiment.hosts)
         for host in self.experiment.hosts:
             h = h + " " + host.name
         print h
@@ -44,6 +45,7 @@ class CLI(Cmd):
     def do_workers(self, s):
         "Print all workers; worker id in brackets"
         h = ""
+        print "%r Workers" % len(self.experiment.cluster.worker)
         for worker in self.experiment.cluster.worker:
             wid = self.experiment.hostname_to_workerid[worker.hn()]
             h = h + " " + worker.hn() + "[" + str(wid) + "]"
@@ -52,6 +54,7 @@ class CLI(Cmd):
     def do_switches(self, s):
         "Print all switchnames; worker id in brackets"
         h = ""
+        print "%r Switches" % len(self.experiment.switches)
         for switch in self.experiment.switches:
             wid = self.experiment.hostname_to_workerid[
                 self.experiment.get_worker(switch).hn()
@@ -115,6 +118,14 @@ class CLI(Cmd):
         else:
             print node.IP()
 
+    def do_ipall(self, s):
+        "Print ip of each host"
+        for node in self.experiment.hosts:
+            print "%s -> %s" % (node.name, node.IP())
+        
+        if not self.experiment.hosts:
+            print "No host found."
+    
     def do_py(self, s):
         "Execute Python command"
         cmd = s

@@ -1,5 +1,0 @@
-[console_scripts]
-FogbedFrontendServer = src.maxinet.FrontendServer.server:main
-FogbedStatus = src.maxinet.WorkerServer.server:getFrontendStatus
-FogbedWorker = src.maxinet.WorkerServer.server:main
-

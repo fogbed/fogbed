@@ -1076,7 +1076,10 @@ class Experiment(object):
     def terminate_logging(self):
         """Stop logging."""
         for worker in self.cluster.workers():
-            worker.run_cmd("killall mpstat getRxTx.sh getMemoryUsage.sh")
+            try:
+                worker.run_cmd("killall mpstat getRxTx.sh getMemoryUsage.sh")
+            except:
+                pass
 
             # get CPU logs
             worker.get_file("/tmp/maxinet_cpu_" +
@@ -1196,7 +1199,7 @@ class Experiment(object):
         """Place monitor info message in log if Experiment was monitored."""
         self.logger.info("You monitored this experiment. To generate a graph" +
                          " from your logs call " +
-                         "\"/usr/local/share/MaxiNet/maxinet_plot.py " +
+                         "\"/usr/local/share/maxinet/maxinet_plot.py " +
                          "/tmp/maxinet_logs/" +
                          Tools.time_to_string(self.starttime) +
                          "/ plot.png\" ")
